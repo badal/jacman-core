@@ -9,7 +9,7 @@
 require_relative 'spec_helper.rb'
 require_relative '../lib/jacman/core/utils/file_utilities.rb'
 
-include JacintheManagement
+include JacintheManagement::Core
 
 describe Utils do
 

@@ -7,24 +7,26 @@
 # (c) Michel Demazure <michel@demazure.com>
 
 module JacintheManagement
-  # subclass of File to manage sql sources
-  class SqlScriptFile < ::File
-    # pattern to be ignored
-    SQL_SCRIPT_IGNORE_PATTERN = /^--|^\s*$/
+  module Core
+    # subclass of File to manage sql sources
+    class SqlScriptFile < ::File
+      # pattern to be ignored
+      SQL_SCRIPT_IGNORE_PATTERN = /^--|^\s*$/
 
-    # @param [String] name base name of file (without .sql)
-    def initialize(name)
-      file_name = File.join(SQL_SCRIPT_DIR, "#{name}.sql")
-      super(file_name, 'r:utf-8')
-    end
+      # @param [String] name base name of file (without .sql)
+      def initialize(name)
+        file_name = File.join(SQL_SCRIPT_DIR, "#{name}.sql")
+        super(file_name, 'r:utf-8')
+      end
 
-    # @return [String] sql fragment contained in file
-    def script
-      File.readlines(self)
-      .reject { |line| SQL_SCRIPT_IGNORE_PATTERN.match(line) } # comments and empty lines
-      .map(&:chomp)
-      .join(' ')
-      .gsub(/\s+/, ' ')
+      # @return [String] sql fragment contained in file
+      def script
+        File.readlines(self)
+        .reject { |line| SQL_SCRIPT_IGNORE_PATTERN.match(line) } # comments and empty lines
+        .map(&:chomp)
+        .join(' ')
+        .gsub(/\s+/, ' ')
+      end
     end
   end
 end

@@ -7,87 +7,89 @@
 # (c) Michel Demazure & Kenji Lefevre
 
 module JacintheManagement
-  # methods for (re)building Jacinthe database
-  module ResetDb
-    SQL_DIR = File.join(SMF_SERVEUR, 'Jacinthe', 'Tools', 'Library', 'JacintheDatabase')
-    SQL_MODULE_DIR = File.join(SQL_DIR, 'Modules')
+  module Core
+    # methods for (re)building Jacinthe database
+    module ResetDb
+      SQL_DIR = File.join(SMF_SERVEUR, 'Jacinthe', 'Tools', 'Library', 'JacintheDatabase')
+      SQL_MODULE_DIR = File.join(SQL_DIR, 'Modules')
 
-    # build database, with schema, tables, views, libraries...
-    def self.reset_without_data
-      Sql.reset_loaded_files_list
-      reset_db_schema
-      reset_db_post
-    end
+      # build database, with schema, tables, views, libraries...
+      def self.reset_without_data
+        Sql.reset_loaded_files_list
+        reset_db_schema
+        reset_db_post
+      end
 
-    # build database, with everything, including dumped data
-    def self.reset_and_load_data
-      Sql.reset_loaded_files_list
-      reset_db_schema
-      puts "Loading #{JacintheManagement::JACINTHE_DATABASE} db data..."
-      Data.import_data
-      puts 'Loading drupal db data...'
-      Drupal.import_drupal
-      reset_db_post
-    end
+      # build database, with everything, including dumped data
+      def self.reset_and_load_data
+        Sql.reset_loaded_files_list
+        reset_db_schema
+        puts "Loading #{JacintheManagement::JACINTHE_DATABASE} db data..."
+        Data.import_data
+        puts 'Loading drupal db data...'
+        Drupal.import_drupal
+        reset_db_post
+      end
 
-    # build database, with schema and tables
-    def self.reset_db_schema
-      puts 'SCHEMA'
-      recreate_db
-      create_tables
-      puts 'MODULES'
-      load_tables_in_modules
-    end
+      # build database, with schema and tables
+      def self.reset_db_schema
+        puts 'SCHEMA'
+        recreate_db
+        create_tables
+        puts 'MODULES'
+        load_tables_in_modules
+      end
 
-    # drop and recreate database
-    def self.recreate_db
-      puts "Drop db #{JACINTHE_DATABASE}"
-      Sql.query(ROOT_MODE, "drop database #{JACINTHE_DATABASE}")
-      puts "Create db #{JACINTHE_DATABASE}"
-      qry = "CREATE DATABASE #{JACINTHE_DATABASE} " +
-          'CHARACTER SET utf8 COLLATE utf8_general_ci;'
-      Sql.query(ROOT_MODE, qry)
-    end
+      # drop and recreate database
+      def self.recreate_db
+        puts "Drop db #{JACINTHE_DATABASE}"
+        Sql.query(ROOT_MODE, "drop database #{JACINTHE_DATABASE}")
+        puts "Create db #{JACINTHE_DATABASE}"
+        qry = "CREATE DATABASE #{JACINTHE_DATABASE} " +
+            'CHARACTER SET utf8 COLLATE utf8_general_ci;'
+        Sql.query(ROOT_MODE, qry)
+      end
 
-    # load main tables
-    def self.create_tables
-      puts "Creating tables of #{JACINTHE_DATABASE} db"
-      Sql.pipe_files_in_directory(ADMIN_MODE, SQL_DIR, 'Database/Tables/**/*.sql')
-    end
+      # load main tables
+      def self.create_tables
+        puts "Creating tables of #{JACINTHE_DATABASE} db"
+        Sql.pipe_files_in_directory(ADMIN_MODE, SQL_DIR, 'Database/Tables/**/*.sql')
+      end
 
-    # load tables in modules
-    def self.load_tables_in_modules
-      Sql.pipe_files_in_directory(ADMIN_MODE, SQL_MODULE_DIR, '*/Tables/**/*.sql')
-    end
+      # load tables in modules
+      def self.load_tables_in_modules
+        Sql.pipe_files_in_directory(ADMIN_MODE, SQL_MODULE_DIR, '*/Tables/**/*.sql')
+      end
 
-    # load libraries and views
-    def self.reset_db_post
-      load_db_lib
-      load_db_modules
-      start_cron
-    end
+      # load libraries and views
+      def self.reset_db_post
+        load_db_lib
+        load_db_modules
+        start_cron
+      end
 
-    # start sql cron
-    def self.start_cron
-      puts "Run cron on #{JACINTHE_DATABASE} db"
-      Sql.query(ADMIN_MODE, 'CALL CRON();')
-    end
+      # start sql cron
+      def self.start_cron
+        puts "Run cron on #{JACINTHE_DATABASE} db"
+        Sql.query(ADMIN_MODE, 'CALL CRON();')
+      end
 
-    # load main libraries and views
-    def self.load_db_lib
-      puts 'Loading libraries'
-      Sql.pipe_files_in_directory(ADMIN_MODE, SQL_DIR, 'Database/Library/*/*.sql')
-      puts 'Loading views'
-      Sql.pipe_files_in_directory(ADMIN_MODE, SQL_DIR, 'Database/Views/*.sql')
-    end
+      # load main libraries and views
+      def self.load_db_lib
+        puts 'Loading libraries'
+        Sql.pipe_files_in_directory(ADMIN_MODE, SQL_DIR, 'Database/Library/*/*.sql')
+        puts 'Loading views'
+        Sql.pipe_files_in_directory(ADMIN_MODE, SQL_DIR, 'Database/Views/*.sql')
+      end
 
-    # load library and views in modules
-    def self.load_db_modules
-      Sql.pipe_files_in_directory(ADMIN_MODE, SQL_MODULE_DIR, '**/*.sql', /Views/)
-      Sql.pipe_files_in_directory(ADMIN_MODE, SQL_MODULE_DIR, '**/Views/*.sql')
-      puts 'Reloading /Sage/export_client_sage.sql with special rights'
-      Dir.chdir(File.join(SQL_MODULE_DIR, 'Sage'))
-      Sql.pipe_sql_file(ROOT_MODE_WITH_DB, 'export_client_sage.sql')
+      # load library and views in modules
+      def self.load_db_modules
+        Sql.pipe_files_in_directory(ADMIN_MODE, SQL_MODULE_DIR, '**/*.sql', /Views/)
+        Sql.pipe_files_in_directory(ADMIN_MODE, SQL_MODULE_DIR, '**/Views/*.sql')
+        puts 'Reloading /Sage/export_client_sage.sql with special rights'
+        Dir.chdir(File.join(SQL_MODULE_DIR, 'Sage'))
+        Sql.pipe_sql_file(ROOT_MODE_WITH_DB, 'export_client_sage.sql')
+      end
     end
   end
 end

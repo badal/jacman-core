@@ -7,11 +7,12 @@
 # (c) Michel Demazure & Kenji Lefevre
 
 module JacintheManagement
-  # import and export of JacintheD data
-  module Data
-    # tables category
-    # main JacintheD tables
-    SETTINGS_TABLES = "\
+  module Core
+    # import and export of JacintheD data
+    module Data
+      # tables category
+      # main JacintheD tables
+      SETTINGS_TABLES = "\
 beneficiaire_don \
 categorie_comptable \
 champs_tiers_extras \
@@ -31,9 +32,9 @@ type_tiers \
 usage_adresse \
 zone_poste_pays \
 zone_statistique_pays \
-    "
-    # other JacintheD tables
-    OTHER_TABLES = "\
+      "
+      # other JacintheD tables
+      OTHER_TABLES = "\
 abonnement \
 adhesion_locale \
 adhesion_tierce \
@@ -48,61 +49,62 @@ sage_document \
 tiers \
 tiers_extras \
 achat_divers \
-    "
+      "
 
-    # copy file to archive directory
-    # @param [Path] filename name of file to be archived
-    # @param [Object] add txt to add to file name
-    def self.backup_sql_dump_file(filename, add = 'previous')
-      if File.exists?(filename)
-        basename = File.basename(filename, '.sql')
-        archive_dir = File.join(DATADIR, 'Archives')
-        Utils.make_dir_if_necessary(archive_dir, 0773)
-        archive = File.join(archive_dir, "#{basename}-#{add}.sql")
-        FileUtils.copy(filename, archive)
+      # copy file to archive directory
+      # @param [Path] filename name of file to be archived
+      # @param [Object] add txt to add to file name
+      def self.backup_sql_dump_file(filename, add = 'previous')
+        if File.exists?(filename)
+          basename = File.basename(filename, '.sql')
+          archive_dir = File.join(DATADIR, 'Archives')
+          Utils.make_dir_if_necessary(archive_dir, 0773)
+          archive = File.join(archive_dir, "#{basename}-#{add}.sql")
+          FileUtils.copy(filename, archive)
+        end
       end
-    end
 
-    # dump settings tables to 'dumped_settings.sql'
-    def self.dump_settings_tables
-      tables = SETTINGS_TABLES
-      dump_file = File.join(DATADIR, 'dumped_settings.sql')
-      do_dump(tables, dump_file)
-    end
-
-    # dump all tables to 'dumped_data.sql'
-    def self.dump_all_data
-      tables = SETTINGS_TABLES + ' ' + OTHER_TABLES
-      dump_file = File.join(DATADIR, 'dumped_data.sql')
-      do_dump(tables, dump_file)
-    end
-
-    # dump given tables in given file
-    # @param [String] tables list of tables, separated by spaces
-    # @param [Path] dump_file file to write the dump
-    def self.do_dump(tables, dump_file)
-      backup_sql_dump_file(dump_file)
-      puts 'Dumping database data'
-      raw_dump = Sql.dump(ROOT_MODE_WITH_DB, tables)
-      lines = raw_dump.reject { |line| line =~ /^\/\*/ }.map do |line|
-        line.sub('INSERT INTO', 'REPLACE INTO')
+      # dump settings tables to 'dumped_settings.sql'
+      def self.dump_settings_tables
+        tables = SETTINGS_TABLES
+        dump_file = File.join(DATADIR, 'dumped_settings.sql')
+        do_dump(tables, dump_file)
       end
-      File.open(dump_file, 'w') { |file| file.puts lines }
-      if File.exist?(dump_file)
-        puts "File #{dump_file}"
-        puts "File size: #{(File.size(dump_file) / 1024).round} K"
-        backup_sql_dump_file(dump_file, Utils.my_date)
-      end
-    end
 
-    #  import dumped data from 'dumped_data.sql'
-    def self.import_data
-      puts "loading #{DATADIR}/dumped_data.sql in #{JACINTHE_DATABASE} DB"
-      Dir.chdir(DATADIR)
-      queries = ['SET foreign_key_checks = 0',
-                 "source #{DATADIR}/dumped_data.sql",
-                 'SET foreign_key_checks = 1;']
-      Sql.query(ADMIN_MODE, queries.join('; '))
+      # dump all tables to 'dumped_data.sql'
+      def self.dump_all_data
+        tables = SETTINGS_TABLES + ' ' + OTHER_TABLES
+        dump_file = File.join(DATADIR, 'dumped_data.sql')
+        do_dump(tables, dump_file)
+      end
+
+      # dump given tables in given file
+      # @param [String] tables list of tables, separated by spaces
+      # @param [Path] dump_file file to write the dump
+      def self.do_dump(tables, dump_file)
+        backup_sql_dump_file(dump_file)
+        puts 'Dumping database data'
+        raw_dump = Sql.dump(ROOT_MODE_WITH_DB, tables)
+        lines = raw_dump.reject { |line| line =~ /^\/\*/ }.map do |line|
+          line.sub('INSERT INTO', 'REPLACE INTO')
+        end
+        File.open(dump_file, 'w') { |file| file.puts lines }
+        if File.exist?(dump_file)
+          puts "File #{dump_file}"
+          puts "File size: #{(File.size(dump_file) / 1024).round} K"
+          backup_sql_dump_file(dump_file, Utils.my_date)
+        end
+      end
+
+      #  import dumped data from 'dumped_data.sql'
+      def self.import_data
+        puts "loading #{DATADIR}/dumped_data.sql in #{JACINTHE_DATABASE} DB"
+        Dir.chdir(DATADIR)
+        queries = ['SET foreign_key_checks = 0',
+                   "source #{DATADIR}/dumped_data.sql",
+                   'SET foreign_key_checks = 1;']
+        Sql.query(ADMIN_MODE, queries.join('; '))
+      end
     end
   end
 end

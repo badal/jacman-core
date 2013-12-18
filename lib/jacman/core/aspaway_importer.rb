@@ -6,52 +6,54 @@
 #
 # (c) Michel Demazure <michel@demazure.com>
 
-# script methods for Jacinthe Management
+# script methods for JacintheManagement
 module JacintheManagement
-  SMF2_MODE = {
-      host: 'smf-2.ihp.fr',
-      user: 'smf',
-      directory: '/home/Aspaway/transfert'
-  }
+  module Core
+    SMF2_MODE = {
+        host: 'smf-2.ihp.fr',
+        user: 'smf',
+        directory: '/home/Aspaway/transfert'
+    }
 
-  # in REAL mode, use ssh key, else use password
-  SMF2_OPTIONS = REAL ? {} : { password: SMF2_PASSWORD }
+    # in REAL mode, use ssh key, else use password
+    SMF2_OPTIONS = REAL ? {} : { password: SMF2_PASSWORD }
 
-  # Methods for accessing and fetching Aspaway files on smf-2
-  class AspawayImporter
-    # @param [Path] local_path path of destination file w.r. to transferts directories
-    def initialize(local_path)
-      @local_path = local_path
-      @filename = File.basename(local_path)
-      @local = File.join(TRANSFERT_DIR, local_path)
-      @remote = File.join(SMF2_MODE[:directory], local_path)
-      @remote_dir = File.join(SMF2_MODE[:directory], File.dirname(local_path))
-    end
+    # Methods for accessing and fetching Aspaway files on smf-2
+    class AspawayImporter
+      # @param [Path] local_path path of destination file w.r. to transferts directories
+      def initialize(local_path)
+        @local_path = local_path
+        @filename = File.basename(local_path)
+        @local = File.join(TRANSFERT_DIR, local_path)
+        @remote = File.join(SMF2_MODE[:directory], local_path)
+        @remote_dir = File.join(SMF2_MODE[:directory], File.dirname(local_path))
+      end
 
-    # get file from Aspaway 'transfert' directory on smf-2
-    #    to Transfert directory on SMF_SERVEUR
-    def fetch
-      Net::SFTP.start(SMF2_MODE[:host], SMF2_MODE[:user], SMF2_OPTIONS) do |sftp|
-        entries = sftp.dir.entries(@remote_dir)
-        if entries.map(&:name).include?(@filename)
-          puts "Fetching #{@remote} from Aspaway transfer directory"
-          sftp.download!(@remote, @local)
+      # get file from Aspaway 'transfert' directory on smf-2
+      #    to Transfert directory on SMF_SERVEUR
+      def fetch
+        Net::SFTP.start(SMF2_MODE[:host], SMF2_MODE[:user], SMF2_OPTIONS) do |sftp|
+          entries = sftp.dir.entries(@remote_dir)
+          if entries.map(&:name).include?(@filename)
+            puts "Fetching #{@remote} from Aspaway transfer directory"
+            sftp.download!(@remote, @local)
+          end
         end
       end
-    end
 
-    # @return [Time] creation time of file (Epoch if file does not exist)
-    def time_of_file
-      Net::SSH.start(SMF2_MODE[:host], SMF2_MODE[:user], SMF2_OPTIONS)  do |ssh|
-        ls = ssh.exec!("stat --format=%Y #{@remote}")
-        Time.at(ls.to_i)
+      # @return [Time] creation time of file (Epoch if file does not exist)
+      def time_of_file
+        Net::SSH.start(SMF2_MODE[:host], SMF2_MODE[:user], SMF2_OPTIONS) do |ssh|
+          ls = ssh.exec!("stat --format=%Y #{@remote}")
+          Time.at(ls.to_i)
+        end
       end
-    end
 
-    # used for checking client_sage files
-    # @return [Boolean] whether a later remote file exists with the same name
-    def returned
-      time_of_file > File.mtime(@local)
+      # used for checking client_sage files
+      # @return [Boolean] whether a later remote file exists with the same name
+      def returned
+        time_of_file > File.mtime(@local)
+      end
     end
   end
 end

@@ -20,7 +20,6 @@ require_relative '../../lib/my_config.rb'
 
 # script methods for Jacinthe Management
 module JacintheManagement
-  COPYRIGHT = "\u00A9 Michel Demazure  & Kenji Lefevre"
 
   # JacMan directory
   HEAD_DIRECTORY = File.join(File.dirname(__FILE__), '..', '..')
@@ -46,7 +45,6 @@ require_relative('core/data.rb')
 require_relative('core/defaults.rb')
 require_relative('core/drupal.rb')
 require_relative('core/electronic.rb')
-require_relative('core/info.rb')
 require_relative('core/mail.rb')
 require_relative('core/notification.rb')
 require_relative('core/notify.rb')
@@ -55,6 +53,7 @@ require_relative('core/reset_db.rb')
 require_relative('core/sales.rb')
 require_relative('core/transmission.rb')
 
+require_relative('core/info.rb')
 require_relative('core/commands/command.rb')
 
 require_relative('core/commands/commands(sage).rb')
