@@ -10,9 +10,6 @@ module JacintheManagement
   module Core
     # Command : interface between scripts and GUI
     class Command
-      # cron reports
-      CRON_DIR = File.expand_path('cron', HEAD_DIRECTORY)
-
       # run the named command with cron reports
       # @param [String] call_name name of the command to be 'cron_executed'
       def self.cron_run(call_name)
