@@ -20,12 +20,8 @@ require_relative '../../lib/my_config.rb'
 
 # script methods for Jacinthe Management
 module JacintheManagement
-
   # JacMan directory
   HEAD_DIRECTORY = File.join(File.dirname(__FILE__), '..', '..')
-
-  # sql source files
-  SQL_SCRIPT_DIR = File.join(File.dirname(__FILE__), 'core', 'sql')
 
   TAB = "\t"
 end
@@ -62,4 +58,3 @@ require_relative('core/commands/commands(drupal).rb')
 require_relative('core/commands/commands(electronic).rb')
 require_relative('core/commands/commands(extra).rb')
 require_relative('core/commands/commands(catalog).rb')
-

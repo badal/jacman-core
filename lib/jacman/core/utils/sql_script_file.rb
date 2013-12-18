@@ -10,6 +10,8 @@ module JacintheManagement
   module Core
     # subclass of File to manage sql sources
     class SqlScriptFile < ::File
+      # sql source files
+      SQL_SCRIPT_DIR = File.join(File.dirname(__FILE__), '..', 'sql')
       # pattern to be ignored
       SQL_SCRIPT_IGNORE_PATTERN = /^--|^\s*$/
 
@@ -33,8 +35,8 @@ end
 
 if __FILE__ == $PROGRAM_NAME
 
-  include JacintheManagement
-  require_relative '../core.rb'
+  include JacintheManagement::Core
+  require_relative '../../core.rb'
   name = 'subscriptions_number_to_notify'
   puts SqlScriptFile.new(name).script
 

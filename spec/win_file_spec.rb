@@ -13,6 +13,8 @@ include JacintheManagement
 
 describe WinFile do
 
+  TEST_FILES = File.join(__FILE__, '..', 'test_files')
+
   it 'should be a WinFile' do
     WinFile.open('test', 'w') do |file|
       file.must_be_instance_of(WinFile)
@@ -43,16 +45,16 @@ describe WinFile do
   end
 
   it 'should convert from win to utf-8' do
-    win_file = File.join(HEAD_DIRECTORY, 'spec/test_files', 'Test_win_r_n.txt')
-    utf8_converted = File.join(HEAD_DIRECTORY, 'spec/test_files', 'Test_utf8_prod.txt')
+    win_file = File.join(TEST_FILES, 'Test_win_r_n.txt')
+    utf8_converted = File.join(TEST_FILES, 'Test_utf8_prod.txt')
     WinFile.convert_to_unicode(win_file, utf8_converted)
     size_diff = File.size(utf8_converted) - File.size(win_file)
     size_diff.must_equal 33
   end
 
   it 'should convert from utf_8 to win' do
-    utf8_file = File.join(HEAD_DIRECTORY, 'spec/test_files', 'Test_utf8_n.txt')
-    win_converted = File.join(HEAD_DIRECTORY, 'spec/test_files', 'Test_win_prod.txt')
+    utf8_file = File.join(TEST_FILES, 'Test_utf8_n.txt')
+    win_converted = File.join(TEST_FILES, 'Test_win_prod.txt')
     WinFile.convert_from_unicode(utf8_file, win_converted)
     size_diff = File.size(utf8_file) - File.size(win_converted)
     size_diff.must_equal 11

@@ -116,7 +116,6 @@ module JacintheManagement
   end
 end
 
-
 if $PROGRAM_NAME == __FILE__
 
   include JacintheManagement

@@ -25,6 +25,10 @@ module JacintheManagement
           'FIELDS TERMINATED BY "\t" OPTIONALLY ENCLOSED BY \'"\'' +
               ' ESCAPED BY "\\\\\\\\" LINES TERMINATED BY "\n" '
 
+      # Drupal export pattern
+      EXPORT_FILES_PATTERN =
+          File.join(Core::SqlScriptFile::SQL_SCRIPT_DIR, 'jacinthe_export_drupal_sql', '*.sql')
+
       # @return [Integer] default number of years to be exported
       def self.default_years
         Defaults.defaults[:years]
@@ -45,8 +49,7 @@ module JacintheManagement
         Utils.make_dir_if_necessary(DRUPAL_DUMP_DIR, 0733)
         Utils.delete_if_exists(DUMP_FILES_STACK)
         File.open(DUMP_FILES_STACK, 'w:utf-8') do |file_stack|
-          glob_pattern = File.join(SQL_SCRIPT_DIR, 'jacinthe_export_drupal_sql', '*.sql')
-          Dir.glob(glob_pattern).each do |sql_file|
+          Dir.glob(EXPORT_FILES_PATTERN).each do |sql_file|
             dump_file = dump_drupal_file(sql_file, years)
             file_stack.puts dump_file
             puts "#{dump_file} written"
@@ -117,7 +120,7 @@ end
 
 if $PROGRAM_NAME == __FILE__
 
-  include JacintheManagement
-  # Drupal.local_export_drupal(4)
+  include JacintheManagement::Core
+  Drupal.local_export_drupal(4)
 
 end

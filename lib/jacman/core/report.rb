@@ -11,7 +11,7 @@ module JacintheManagement
     # building executive report and mailing it
     module Report
       # FIXME: SMELL: coupling with J2R
-      #    require_relative(File.join(J2R_PATH, 'lib', 'j2r', 'audits', 'tableau_de_bord.rb'))
+      # require_relative(File.join(J2R_PATH, 'lib', 'j2r', 'audits', 'tableau_de_bord.rb'))
 
       MESSAGE = [
           'Message automatique.',
