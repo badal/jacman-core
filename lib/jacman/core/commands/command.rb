@@ -30,7 +30,7 @@ module JacintheManagement
         @help_text = help_text
       end
 
-       # Execute the proc, managing success/failure reporting
+      # Execute the proc, managing success/failure reporting
       # @return [Boolean] true if success / false if failure
       def execute
         default_proc = -> { puts "commande #{title} non installée" }

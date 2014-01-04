@@ -11,34 +11,35 @@ module JacintheManagement
     # Information on pending actions
     module Info
       class << self
-        attr_reader :client_files_number,
-                    :clients_to_export_number,
-                    :remaining_sales_number,
-                    :notifications_number,
-                    :invalid_ranges_number,
-                    :tiers_without_mail
+        attr_reader :values
+
+        LEGENDS = [
+            'ventes non importées',
+            'fichiers clients en cours',
+            'clients à exporter',
+            'notifications à faire',
+            'plages ip invalides',
+            'abonnés électroniques sans mail'
+        ]
 
         # fetch values and refresh the variables
         def refresh
-          @client_files_number = Clients.pending_client_files_number
-          @clients_to_export_number = Clients.clients_to_export_number
-          @remaining_sales_number = Core::Sales.remaining_sales.size
-          @notifications_number = Notification.notifications_number
-          @invalid_ranges_number = Electronic.invalid_ranges.size
-          @tiers_without_mail = Notification.tiers_without_mail
+          @values = [
+              Core::Sales.remaining_sales.size,
+              Clients.pending_client_files_number,
+              Clients.clients_to_export_number,
+              Notification.notifications_number,
+              Electronic.invalid_ranges.size,
+              Notification.tiers_without_mail
+          ]
         end
 
         # @return [Array<String>] lines reporting state of things
         def report
           refresh
-          [
-              "#{@client_files_number} fichiers clients en cours",
-              "#{@clients_to_export_number} clients à exporter",
-              "#{@remaining_sales_number} ventes non importées",
-              "#{@notifications_number} notifications à faire",
-              "#{@invalid_ranges_number} plages ip invalides",
-              "#{@tiers_without_mail} abonnés électroniques sans mail"
-          ]
+          LEGENDS.zip(@values).map do |legend, value|
+            "#{value} #{legend}"
+          end
         end
       end
     end

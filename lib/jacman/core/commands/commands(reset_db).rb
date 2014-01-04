@@ -53,6 +53,20 @@ END_CRON_HELP
             -> { ResetDb.start_cron },
             CRON_HELP)
       end
+
+      CATA_HELP = <<END_CATA_HELP
+Cette commande permet de restaurer le schéma
+de la base catalogue et ses données de configuration.
+END_CATA_HELP
+
+      # @return [Command] partial reset command
+      def self.crb
+        new('crb', 'Reset structurel du catalogue',
+            ['Recréer de zéro',
+             'la base catalogue vide'],
+            -> { ResetCatalog.build_base },
+            CATA_HELP)
+      end
     end
   end
 end

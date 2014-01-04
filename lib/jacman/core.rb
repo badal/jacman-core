@@ -20,13 +20,10 @@ require_relative '../../lib/my_config.rb'
 
 # script methods for Jacinthe Management
 module JacintheManagement
-  # JacMan directory
-  HEAD_DIRECTORY = File.join(File.dirname(__FILE__), '..', '..')
+  COPYRIGHT = "\u00A9 Michel Demazure  & Kenji Lefevre"
 
   TAB = "\t"
 end
-
-require_relative('core/version.rb')
 
 require_relative('core/utils/file_utilities.rb')
 require_relative('core/utils/sql.rb')

@@ -57,8 +57,8 @@ module JacintheManagement
           'open -a /Applications/TextEdit.app'
         when /mswin|mingw/
           'start'
-        else
-          'open'
+        else # linux
+          'xdg-open'
         end
       end
 
@@ -76,8 +76,8 @@ module JacintheManagement
           'open'
         when /mswin|mingw/
           'start'
-        else
-          'open'
+        else # linux
+          'xdg-open'
         end
       end
 

@@ -8,6 +8,7 @@
 
 # script methods for JacintheManagement
 module JacintheManagement
+  # core methods for JacMan
   module Core
     SMF2_MODE = {
         host: 'smf-2.ihp.fr',

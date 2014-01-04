@@ -10,25 +10,19 @@ module JacintheManagement
   module Core
     # class to carry all subscriptions to a given tiers
     class Notify
-      # model mail files
-      MODEL_DIRECTORY = File.expand_path('models', HEAD_DIRECTORY)
-
       # file containing the model of notifications in french
-      FRENCH_MODEL_FILE = File.join(MODEL_DIRECTORY, 'french_model_mail.txt')
-
+      FRENCH_MODEL_FILE = File.join(MODEL_DIR, 'french_model_mail.txt')
       # file containing the model of notifications in english
-      ENGLISH_MODEL_FILE = File.join(MODEL_DIRECTORY, 'english_model_mail.txt')
-
+      ENGLISH_MODEL_FILE = File.join(MODEL_DIR, 'english_model_mail.txt')
       # subject line of french mails
       FRENCH_SUBJECT = 'Notification de vos e-abonnements'
-
       # subject line of english mails
       ENGLISH_SUBJECT = 'Notification of yours e-subscriptions'
 
       # @param [Integer|#to_i] tiers_id tiers identification
       def initialize(tiers_id)
-        @tiers = Notification.get_tiers(tiers_id)
-        @subscriptions = Notification.all_subscriptions(tiers_id)
+        @tiers = Notification.find_tiers(tiers_id)
+        @subscriptions = Notification.to_be_notified_for(tiers_id)
       end
 
       # do notification for this tiers
@@ -46,13 +40,13 @@ module JacintheManagement
       # send notification in french to this address
       # @param [String] dest mail address
       def notify_french(dest)
-        mail(dest, FRENCH_SUBJECT, french_content)
+        mail(dest, FRENCH_SUBJECT, mail_content(FRENCH_MODEL_FILE))
       end
 
       # send notification in english to this address
       # @param [String] dest mail address
       def notify_english(dest)
-        mail(dest, ENGLISH_SUBJECT, english_content)
+        mail(dest, ENGLISH_SUBJECT, mail_content(ENGLISH_MODEL_FILE))
       end
 
       # update database
@@ -66,8 +60,7 @@ module JacintheManagement
           NAME: @tiers.name,
           RANGES: @tiers.ranges.join("\n"),
           REVUES: @subscriptions.map(&:report).join("\n"),
-          DRUPAL: @tiers.drupal.to_s
-        }
+          DRUPAL: @tiers.drupal.to_s }
       end
 
       # @param [Path] file path to model file
@@ -78,16 +71,6 @@ module JacintheManagement
           raw.gsub!(key.to_s, value)
         end
         raw
-      end
-
-      # @return [String] content for mail in french
-      def french_content
-        mail_content(FRENCH_MODEL_FILE)
-      end
-
-      # @return [String] content for mail in english
-      def english_content
-        mail_content(ENGLISH_MODEL_FILE)
       end
 
       # Register this Tiers

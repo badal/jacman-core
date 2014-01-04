@@ -6,13 +6,12 @@
 #
 # (c) Michel Demazure <michel@demazure.com>
 
+require_relative(JacintheManagement::TABLEAU_DE_BORD_FILE)
+
 module JacintheManagement
   module Core
     # building executive report and mailing it
     module Report
-      # FIXME: SMELL: coupling with J2R
-      # require_relative(File.join(J2R_PATH, 'lib', 'j2r', 'audits', 'tableau_de_bord.rb'))
-
       MESSAGE = [
           'Message automatique.',
           'Informations concernant la situation des ventes.',

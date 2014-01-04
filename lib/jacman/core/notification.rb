@@ -22,13 +22,12 @@ module JacintheManagement
       # tiers for notification
       Tiers = Struct.new(:tiers_id, :name, :ranges, :mails, :drupal)
 
-      # WARNING: Electronic::Subscription and Notification::Subscription are different
-      # Electronic subscriptions for notifications
+      # subscription parameters to be notified
       # noinspection RubyConstantNamingConvention
-      Subscription = Struct.new(:id, :revue, :year, :ref, :billing)
+      ToBeNotified = Struct.new(:id, :revue, :year, :ref, :billing)
 
       # reopening class
-      class Subscription
+      class ToBeNotified
         # @return [String] report for mail
         def report
           "#{revue} (#{year}) ref:#{ref}"
@@ -53,40 +52,47 @@ module JacintheManagement
         Sql.answer_to_query(ADMIN_MODE, SQL_SUBSCRIPTION_NUMBER)[1].to_i
       end
 
-      # build @all_subscription and @tiers_list
-      def self.get_subscriptions_and_tiers
-        @all_subscriptions = []
+      # build @to_be_notified_for and @tiers_list
+      def self.extract_subscriptions_and_tiers
+        @to_be_notified_for = []
         tiers_list = []
         Sql.answer_to_query(ADMIN_MODE, SQL_SUBSCRIPTIONS).drop(1).each do |line|
           items = line.chomp.split(TAB)
           tiers_id = items.pop.to_i
-          (@all_subscriptions[tiers_id] ||= []) << Subscription.new(*items)
+          (@to_be_notified_for[tiers_id] ||= []) << ToBeNotified.new(*items)
           tiers_list << tiers_id
         end
         @tiers_list = tiers_list.sort.uniq
       end
 
       # @param [Integer|#to_i] tiers_id tiers identification
-      # @return [Array<Subscription>] all subscriptions for this tiers
-      def self.all_subscriptions(tiers_id)
-        get_subscriptions_and_tiers unless @all_subscriptions
-        @all_subscriptions[tiers_id.to_i]
+      # @return [Array<ToBeNotified] all subscriptions for this tiers
+      def self.to_be_notified_for(tiers_id)
+        extract_subscriptions_and_tiers unless @to_be_notified_for
+        @to_be_notified_for[tiers_id.to_i]
       end
 
       # @return [Array<Integer>] list of tiers_id appearing in subscriptions
       def self.tiers_list
-        get_subscriptions_and_tiers unless @tiers_list
+        extract_subscriptions_and_tiers unless @tiers_list
         @tiers_list
       end
 
       # @return [Array<Tiers>] list of all Jacinthe Tiers
-      def self.get_all_tiers
-        @tiers = []
+      def self.build_jacinthe_tiers_list
+        @all_jacinthe_tiers = []
         Sql.answer_to_query(ADMIN_MODE, SQL_TIERS).drop(1).each do |line|
           items = line.split(TAB)
           parameters = format_items(items)
-          @tiers[parameters[0]] = Tiers.new(*parameters)
+          @all_jacinthe_tiers[parameters[0]] = Tiers.new(*parameters)
         end
+      end
+
+      # @param [Integer|#to_i] tiers_id tiers identification
+      # @return [Tiers] this Tiers
+      def self.find_tiers(tiers_id)
+        build_jacinthe_tiers_list unless @all_jacinthe_tiers
+        @all_jacinthe_tiers[tiers_id.to_i]
       end
 
       # @param [Array<String>] items split line form sql answer
@@ -104,13 +110,6 @@ module JacintheManagement
       # @return [Array<String|nil>] formatted splitting of string
       def self.clean_split(sep, string)
         string.split(sep).delete_if { |item| item == 'NULL' }
-      end
-
-      # @param [Integer|#to_i] tiers_id tiers identification
-      # @return [Tiers] this Tiers
-      def self.get_tiers(tiers_id)
-        get_all_tiers unless @tiers
-        @tiers[tiers_id.to_i]
       end
 
       # @return [String] time stamp for files

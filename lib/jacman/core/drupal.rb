@@ -26,8 +26,8 @@ module JacintheManagement
               ' ESCAPED BY "\\\\\\\\" LINES TERMINATED BY "\n" '
 
       # Drupal export pattern
-      EXPORT_FILES_PATTERN =
-          File.join(Core::SqlScriptFile::SQL_SCRIPT_DIR, 'jacinthe_export_drupal_sql', '*.sql')
+      EXPORT_FILES_PATTERN = File.join(Core::SqlScriptFile::SQL_SCRIPT_DIR,
+                                       'jacinthe_export_drupal_sql', '*.sql')
 
       # @return [Integer] default number of years to be exported
       def self.default_years

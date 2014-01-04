@@ -49,7 +49,7 @@ de confirmation.
 Les modèles de mails se trouvent dans des fichiers
 'french_model_mail.txt' et 'english_model_mail.txt'.
 Ces fichiers se trouvent dans le dossier
-#{Core::Notify::MODEL_DIRECTORY}.
+#{MODEL_DIR}.
 
 Les abonnés sans adresse mail sont enregstrés dans le fichier
 "#{File.join(DATADIR, 'tiers_sans_mail.csv')}".

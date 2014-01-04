@@ -39,13 +39,13 @@ module JacintheManagement
       # @param [String] bonus extra time on next year, format 'MM-DD'
       # @return [Array<String>] array of ranges for csv file
       def self.valid_ranges(bonus = default_bonus)
-        subscriptions(bonus).map(&:get_valid_ranges).flatten.uniq
+        subscriptions(bonus).map(&:valid_ranges).flatten.uniq
       end
 
       # return all invalid ranges for electronic subscriptions
       # @return [Array<String>] array of ranges for csv file
       def self.invalid_ranges
-        subscriptions.map(&:get_invalid_ranges).flatten.uniq
+        subscriptions.map(&:invalid_ranges).flatten.uniq
       end
 
       # sql command to get electronic subscriptions for exporting

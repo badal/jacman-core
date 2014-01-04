@@ -14,7 +14,7 @@ module JacintheManagement
       USER_COMMAND_NAMES = %w(gi ge gr di de ca cn ca cs ce ep ea en ei tb)
 
       # commands for jacdev
-      DEV_COMMAND_NAMES = %w(jpd jtd jpr jtr cron)
+      DEV_COMMAND_NAMES = %w(jpd jtd jpr jtr cron crb)
 
       # name of defaults configuration subcommand
       CONFIG_CMD_NAME = 'conf'

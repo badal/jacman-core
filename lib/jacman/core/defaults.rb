@@ -73,7 +73,7 @@ module JacintheManagement
       # @param [Array<Strings>] args arguments to the defaults command
       def self.configure(args)
         load_defaults
-        command = "set_#{args.shift}_default"
+        command = "modify_#{args.shift}_default"
         send(command, args)
       rescue NoMethodError
         puts help_conf
@@ -81,7 +81,7 @@ module JacintheManagement
 
       # process the 'years' sub-command
       # @param [Array<String>] args arguments for the 'years' sub-command
-      def self.set_years_default(args)
+      def self.modify_years_default(args)
         if args.size == 1 && args[0].to_i > 0
           modify_default(:years, args[0].to_i)
         else
@@ -91,7 +91,7 @@ module JacintheManagement
 
       # process the 'bonus' sub-command
       # @param [Array<String>] args arguments for the 'bonus' sub-command
-      def self.set_bonus_default(args)
+      def self.modify_bonus_default(args)
         if args.size == 1 && valid_bonus(args[0])
           modify_default(:bonus, args[0])
         else
@@ -109,7 +109,7 @@ module JacintheManagement
 
       # process the 'from' sub-command
       # @param [Array<String>] args arguments for the 'from' sub-command
-      def self.set_from_default(args)
+      def self.modify_from_default(args)
         if args.size == 1 && valid_mail(args[0])
           modify_default(:from, args[0])
         else
@@ -119,7 +119,7 @@ module JacintheManagement
 
       # process the 'report' sub-command
       # @param [Array<String>] list arguments for the 'report' sub-command
-      def self.set_report_default(list)
+      def self.modify_report_default(list)
         if !list.empty? && list.all? { |item| valid_mail(item) }
           modify_default(:report, list)
         else
