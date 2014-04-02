@@ -22,7 +22,7 @@ module JacintheManagement
 
       # Escaped SQL options for dumping
       ESCAPED_DRUPAL_DUMP_OPTIONS =
-          'FIELDS TERMINATED BY "\t" OPTIONALLY ENCLOSED BY \'"\'' +
+          'FIELDS TERMINATED BY "\t" OPTIONALLY ENCLOSED BY \'"\'' \
               ' ESCAPED BY "\\\\\\\\" LINES TERMINATED BY "\n" '
 
       # Drupal export pattern
@@ -85,15 +85,15 @@ module JacintheManagement
 
       # SQL options for loading
       DRUPAL_LOAD_OPTIONS =
-          'CHARACTER SET UTF8 FIELDS TERMINATED BY "\t"' +
-              ' OPTIONALLY ENCLOSED BY \'"\' ESCAPED BY "\\\\"' +
+          'CHARACTER SET UTF8 FIELDS TERMINATED BY "\t"' \
+              ' OPTIONALLY ENCLOSED BY \'"\' ESCAPED BY "\\\\"' \
               ' LINES TERMINATED BY "\n" '
 
       # @param [String] file path of file
       # @param [String] table name of table
       # @return [String] Sql query to import file into table
       def self.import_query(file, table)
-        "LOAD DATA LOCAL INFILE '#{file}'" +
+        "LOAD DATA LOCAL INFILE '#{file}'" \
             " REPLACE INTO TABLE #{table} " +
             DRUPAL_LOAD_OPTIONS
       end

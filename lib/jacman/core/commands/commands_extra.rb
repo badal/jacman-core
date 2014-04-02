@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
 
-# File: commands(extra).rb
+# File: commands_extra.rb
 # Created: 31/08/13
 #
 # (c) Michel Demazure <michel@demazure.com>

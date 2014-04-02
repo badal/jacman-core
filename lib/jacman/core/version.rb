@@ -4,7 +4,7 @@
 # File: version.rb
 # Created: 28 June 2013
 #
-# (c) Michel Demazure
+# (c) Michel Demazure & Kenji Lefevre
 
 module JacintheManagement
   module Core

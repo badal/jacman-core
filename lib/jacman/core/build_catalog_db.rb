@@ -33,7 +33,7 @@ module JacintheManagement
         puts "Drop db #{DATABASE}"
         Sql.query(ROOT_MODE, "drop database #{DATABASE}")
         puts "Create db #{DATABASE}"
-        qry = "CREATE DATABASE #{DATABASE} " +
+        qry = "CREATE DATABASE #{DATABASE} " \
             'CHARACTER SET utf8 COLLATE utf8_general_ci;'
         Sql.query(ROOT_MODE, qry)
       end

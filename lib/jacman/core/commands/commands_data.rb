@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
 
-# File: commands(data).rb
+# File: commands_data.rb
 # Created: 18/08/13
 #
 # (c) Michel Demazure <michel@demazure.com>

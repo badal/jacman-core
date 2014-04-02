@@ -55,7 +55,7 @@ achat_divers \
       # @param [Path] filename name of file to be archived
       # @param [Object] add txt to add to file name
       def self.backup_sql_dump_file(filename, add = 'previous')
-        if File.exists?(filename)
+        if File.exist?(filename)
           basename = File.basename(filename, '.sql')
           archive_dir = File.join(DATADIR, 'Archives')
           Utils.make_dir_if_necessary(archive_dir, 0773)

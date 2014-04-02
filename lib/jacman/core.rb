@@ -20,7 +20,7 @@ require_relative '../../lib/my_config.rb'
 
 # script methods for Jacinthe Management
 module JacintheManagement
-  COPYRIGHT = "\u00A9 Michel Demazure  & Kenji Lefevre"
+  COPYRIGHT = "\u00A9 Michel Demazure & Kenji Lefevre"
 
   TAB = "\t"
 end
@@ -48,12 +48,13 @@ require_relative('core/sales.rb')
 require_relative('core/transmission.rb')
 
 require_relative('core/info.rb')
-require_relative('core/commands/command.rb')
 
-require_relative('core/commands/commands(catalog).rb')
-require_relative('core/commands/commands(data).rb')
-require_relative('core/commands/commands(drupal).rb')
-require_relative('core/commands/commands(electronic).rb')
-require_relative('core/commands/commands(extra).rb')
-require_relative('core/commands/commands(reset_db).rb')
-require_relative('core/commands/commands(sage).rb')
+require_relative('core/commands/command.rb')
+require_relative('core/commands/command_watcher.rb')
+require_relative('core/commands/commands_catalog.rb')
+require_relative('core/commands/commands_data.rb')
+require_relative('core/commands/commands_drupal.rb')
+require_relative('core/commands/commands_electronic.rb')
+require_relative('core/commands/commands_extra.rb')
+require_relative('core/commands/commands_reset_db.rb')
+require_relative('core/commands/commands_sage.rb')

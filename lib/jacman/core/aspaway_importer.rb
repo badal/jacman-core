@@ -11,9 +11,9 @@ module JacintheManagement
   # core methods for JacMan
   module Core
     SMF2_MODE = {
-        host: 'smf-2.ihp.fr',
-        user: 'smf',
-        directory: '/home/Aspaway/transfert'
+      host: 'smf-2.ihp.fr',
+      user: 'smf',
+      directory: '/home/Aspaway/transfert'
     }
 
     # in REAL mode, use ssh key, else use password
@@ -51,9 +51,10 @@ module JacintheManagement
       end
 
       # used for checking client_sage files
-      # @return [Boolean] whether a later remote file exists with the same name
+      # @return [Boolean] whether a remote file exists with the same name
       def returned
-        time_of_file > File.mtime(@local)
+        # time_of_file > File.mtime(@local) # not Threadsafe
+        time_of_file > Time.at(0)
       end
     end
   end

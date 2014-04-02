@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
 
-# File: commands(reset_db).rb
+# File: commands_reset_db.rb
 # Created: 27/08/13
 #
 # (c) Michel Demazure <michel@demazure.com>

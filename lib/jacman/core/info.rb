@@ -14,23 +14,23 @@ module JacintheManagement
         attr_reader :values
 
         LEGENDS = [
-            'ventes non importées',
-            'fichiers clients en cours',
-            'clients à exporter',
-            'notifications à faire',
-            'plages ip invalides',
-            'abonnés électroniques sans mail'
+          'ventes non importées',
+          'fichiers clients en cours',
+          'clients à exporter',
+          'notifications à faire',
+          'plages ip invalides',
+          'abonnés électroniques sans mail'
         ]
 
         # fetch values and refresh the variables
         def refresh
           @values = [
-              Core::Sales.remaining_sales.size,
-              Clients.pending_client_files_number,
-              Clients.clients_to_export_number,
-              Notification.notifications_number,
-              Electronic.invalid_ranges.size,
-              Notification.tiers_without_mail
+            Core::Sales.remaining_sales.size,
+            Clients.pending_client_files_number,
+            Clients.clients_to_export_number,
+            Notification.notifications_number,
+            Electronic.invalid_ranges.size,
+            Notification.tiers_without_mail
           ]
         end
 

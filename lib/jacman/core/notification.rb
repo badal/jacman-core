@@ -136,18 +136,31 @@ module JacintheManagement
         if number > 0
           puts "#{number} notifications à faire"
           do_notify_all
+          report_without_mail
         else
           puts 'Pas de notification à faire'
         end
       end
 
+      # WARNING: HACK here to protect for invalid tiers
       # Notify all subscriptions
       def self.do_notify_all
-        tiers_list.each { |tiers_id| Notify.new(tiers_id).notify }
-        puts "#{tiers_list.size} mails(s) de notification envoyé(s)"
-        size = @register.size
+        number = tiers_list.size
+        tiers_list.each do |tiers_id|
+          done = Notify.new(tiers_id).notify
+          unless done
+            number -= 1
+            puts "notification impossible pour le tiers #{tiers_id}"
+          end
+        end
+        puts "#{number} mails(s) de notification envoyé(s)"
+      end
+
+      # Report how many users w/o mail
+      def self.report_without_mail
+        number = @register.size - 1
         save_register
-        puts "<b>#{size - 1} abonné(s) dépourvu(s) d'adresse mail</b>" if size > 1
+        puts "<b>#{number} abonné(s) dépourvu(s) d'adresse mail</b>" if number > 0
       end
 
       NO_MAIL_FILE = File.join(DATADIR, 'tiers_sans_mail.txt')

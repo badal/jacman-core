@@ -14,8 +14,8 @@ module JacintheManagement
       FILE = File.expand_path('../../defaults.ini', File.dirname(__FILE__))
 
       USAGE = [
-          'Commande commune à batman et jacdev. Usage:',
-          '<cmd> désigne batman ou jacdev indifféremment.'
+        'Commande commune à batman et jacdev. Usage:',
+        '<cmd> désigne batman ou jacdev indifféremment.'
       ]
 
       # @return [Hash] the defaults, memoized

@@ -26,7 +26,9 @@ module JacintheManagement
       end
 
       # do notification for this tiers
+      # WARNING: first line is HACK for invalid tiers
       def notify
+        return false unless @tiers
         destinations = @tiers.mails.group_by { |dest| dest.split('.').last == 'fr' }
         french = destinations[true]
         other = destinations[false]
@@ -35,6 +37,7 @@ module JacintheManagement
         # register if mails is empty ?
         register_tiers unless french || other
         say_notified
+        true
       end
 
       # send notification in french to this address

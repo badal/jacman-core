@@ -10,10 +10,42 @@ module JacintheManagement
   module Core
     # File utilities
     module Utils
+      HOUR = 60 * 60
+
+      # @return [Numeric|nil] age of file in hours | nil if file does not exist
+      # @param [Path] file path of file
+      def self.age(file)
+        return nil unless File.exist?(file)
+        delay(File.mtime(file))
+      end
+
+      # @param [Time] time time of event
+      # @return [Numeric] delay in hours
+      def self.delay(time)
+        (Time.now - time) / HOUR
+      end
+
+      # @return [Numeric] age in text
+      # @param [Numeric|nil] age in number (hours)
+      def self.age_text(age)
+        return 'jamais' unless age
+        age = age.to_i
+        case age
+        when 0...24
+          "#{age} heure(s)"
+        when 24...168
+          "#{age / 24} jour(s)"
+        when 168...720
+          "#{age / 168} semaine(s)"
+        else
+          "#{age / 720} mois"
+        end
+      end
+
       # Delete a file (if it exists)
       # @param [Path] file file to be deleted
       def self.delete_if_exists(file)
-        File.delete(file) if File.exists?(file)
+        File.delete(file) if File.exist?(file)
       end
 
       # Create a directory if non existent
@@ -26,7 +58,7 @@ module JacintheManagement
       # Backup a file (if existing)
       # @param [Path] file path of file
       def self.backup(file)
-        File.rename(file, "#{file}.old") if File.exists?(file)
+        File.rename(file, "#{file}.old") if File.exist?(file)
       end
 
       # Copy a file to Archives subdirectory

@@ -13,9 +13,9 @@ module JacintheManagement
     # building executive report and mailing it
     module Report
       MESSAGE = [
-          'Message automatique.',
-          'Informations concernant la situation des ventes.',
-          'Se renseigner auprès du personnel pour des informations additionnelles.'
+        'Message automatique.',
+        'Informations concernant la situation des ventes.',
+        'Se renseigner auprès du personnel pour des informations additionnelles.'
       ].join("\n")
 
       # @return [Array<String>] addresses to send to

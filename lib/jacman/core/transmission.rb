@@ -10,16 +10,16 @@
 module JacintheManagement
   module Core
     DRUPAL_MODE = {
-        host: 'drupal.mathrice.fr',
-        user: 'kenjil'
+      host: 'drupal.mathrice.fr',
+      user: 'kenjil'
     }
     SMF4_MODE = {
-        host: 'smf4.emath.fr',
-        user: 'www-data'
+      host: 'smf4.emath.fr',
+      user: 'www-data'
     }
     ASPAWAY_MODE = {
-        host: '185.7.39.70',
-        user: 'SMF_SFTP'
+      host: '185.7.39.70',
+      user: 'SMF_SFTP'
     }
 
     # transmission methods
