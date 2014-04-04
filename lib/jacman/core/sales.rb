@@ -99,6 +99,12 @@ module JacintheManagement
         end
       end
 
+      # @return [Integer] number of remaining sales
+      def self.remaining_sales_number
+        lines = Sql.answer_to_query(ADMIN_MODE, SHOW_SQL)
+        lines.size / 4
+      end
+
       # build file with non imported sales
       # @param [Array<String>] sales description of non imported sales
       # @return [Path] path of file

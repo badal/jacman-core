@@ -30,16 +30,17 @@ module JacintheManagement
       def self.age_text(age)
         return 'jamais' unless age
         age = age.to_i
-        case age
-        when 0...24
-          "#{age} heure(s)"
-        when 24...168
-          "#{age / 24} jour(s)"
-        when 168...720
-          "#{age / 168} semaine(s)"
-        else
-          "#{age / 720} mois"
-        end
+        fragment = case age
+                   when 0...24
+                     "#{age} heure(s)"
+                   when 24...168
+                     "#{age / 24} jour(s)"
+                   when 168...720
+                     "#{age / 168} semaine(s)"
+                   else
+                     "#{age / 720} mois"
+                   end
+        "il y a #{fragment}"
       end
 
       # Delete a file (if it exists)

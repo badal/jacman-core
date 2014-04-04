@@ -18,7 +18,7 @@ module JacintheManagement
       # @return [String] report for command
       def self.report(cmd, limit = 24)
         category, _, age = CommandWatcher.new(cmd).check_command(limit)
-        puts "#{Command.send(cmd).title} : #{category}, #{Utils.age_text(age)}"
+        puts "#{Command.send(cmd).title} : #{category}, #{age}"
       end
 
       # @param [String] cmd call_name of command

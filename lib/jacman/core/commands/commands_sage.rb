@@ -34,7 +34,7 @@ Elle utilise un fichier produit par GESCOM,
 intitulé 'Ventes.slk', qu'elle trouve dans le dossier d'importation d'Aspaway.
 
 Les ventes non importées sont recensées, le cas échéant dans le fichier
-#{File.join(Sales::TRANSFERT_DOC_VENTE_DIR, 'ventes non importees.txt')}.
+#{Sales::REMAINING_SALES_FILE}.
 
 END_DIS_HELP
 
