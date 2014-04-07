@@ -25,24 +25,6 @@ module JacintheManagement
         (Time.now - time) / HOUR
       end
 
-      # @return [Numeric] age in text
-      # @param [Numeric|nil] age in number (hours)
-      def self.age_text(age)
-        return 'jamais' unless age
-        age = age.to_i
-        fragment = case age
-                   when 0...24
-                     "#{age} heure(s)"
-                   when 24...168
-                     "#{age / 24} jour(s)"
-                   when 168...720
-                     "#{age / 168} semaine(s)"
-                   else
-                     "#{age / 720} mois"
-                   end
-        "il y a #{fragment}"
-      end
-
       # Delete a file (if it exists)
       # @param [Path] file file to be deleted
       def self.delete_if_exists(file)

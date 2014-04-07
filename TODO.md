@@ -6,8 +6,15 @@
 * my_config
 
 ### Fix MODEL_DIRECTORY
-* in 'notify.rb' and in 'command.rb' should be in the server area : move in my_config
+* should be in the server area : change in my_config and move content
 
-## For server
-* create DATADIR/cron and move content of Jacman/cron !
-* create email_models in server.
+### Old files and archives
+* clean old Archives item
+* what about Drupal files in DUMP_DIR ?
+* what about Ventes ?
+* temp files ?
+* delete Aspaway returned file when no more needed
+* what to add ?
+
+### Mathrice
+* a new account, with new certificates

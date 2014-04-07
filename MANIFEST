@@ -1,5 +1,8 @@
-#!mast lib spec HISTORY.md LICENSE Rakefile README.rb
+#!mast lib spec HISTORY.md LICENSE Rakefile README.md
+lib/batman.rb
+lib/cronman.rb
 lib/defaults.ini
+lib/jacdev.rb
 lib/jacman/core/aspaway_importer.rb
 lib/jacman/core/build_catalog_db.rb
 lib/jacman/core/catalog.rb
@@ -60,6 +63,8 @@ lib/jacman/core/utils/win_file.rb
 lib/jacman/core/version.rb
 lib/jacman/core.rb
 lib/my_config.rb
+lib/my_config_model.rb
+lib/my_vagrant_config.rb
 spec/file_utilities_spec.rb
 spec/spec_helper.rb
 spec/subscription_spec.rb
@@ -86,3 +91,4 @@ spec/win_file_spec.rb
 HISTORY.md
 LICENSE
 Rakefile
+README.md
