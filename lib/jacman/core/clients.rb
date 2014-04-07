@@ -79,6 +79,11 @@ module JacintheManagement
         pending_files.size
       end
 
+      # show the client files directory
+      def self.show_client_files
+        Core::Utils.open_file(Core::Clients::TRANSFERT_CLIENT_SAGE_DIR)
+      end
+
       # send again pending client files
       # WARNING: do not inline 'pending_files' because sending may fail again
       #  and the file will stay in the directory

@@ -36,7 +36,7 @@ module JacintheManagement
 
         # @return [Array<String>] lines reporting state of things
         def report
-          refresh
+          refresh_values
           LEGENDS.zip(@values).map do |legend, value|
             "#{value} #{legend}"
           end

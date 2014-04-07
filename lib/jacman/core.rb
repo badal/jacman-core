@@ -16,7 +16,7 @@ require 'net/scp'
 require 'net/sftp'
 require 'net/smtp'
 
-require_relative '../../lib/my_config.rb'
+require_relative '../my_config.rb'
 
 # script methods for Jacinthe Management
 module JacintheManagement
