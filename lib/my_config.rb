@@ -46,12 +46,13 @@ module JacintheManagement
   CRON_DIR = File.join(DATADIR, 'Cron')
 
   # model mail files
-  MODEL_DIR = File.expand_path('models', File.join(File.dirname(__FILE__), '..'))
+  MODEL_DIR = File.join(SMF_SERVEUR, 'Jacinthe', 'Tools', 'Templates', 'Mail')
 
   SQL_DUMP_DIR = 'C:/Temp/Dump'
 
   # J2R path
-  J2R_PATH = File.join(File.dirname(__FILE__), '../../J2R')
+  J2R_PATH = File.join(SMF_SERVEUR, 'Jacinthe', 'Tools', 'Library', 'J2R')
+
   TABLEAU_DE_BORD_FILE = File.join(J2R_PATH, 'lib', 'j2r', 'audits', 'tableau_de_bord.rb')
   J2R_CONNECT_MODE = 'exploitation'
 

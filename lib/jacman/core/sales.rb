@@ -25,8 +25,10 @@ module JacintheManagement
       # File for not imported sales
       REMAINING_SALES_FILE = File.join(TRANSFERT_DOC_VENTE_DIR, 'ventes_non_importees.txt')
 
-      # slk sales file
+      # slk sales file (absolute)
       VENTES_SLK = File.join(TRANSFERT_DOC_VENTE_DIR, 'Ventes.slk')
+      # slk sales file (relative to Transfer directory)
+      FILE_TO_IMPORT = 'DocVente/Ventes.slk'
 
       # CSV format of Sage sales data
       VENTES_CSV = File.join(TRANSFERT_DOC_VENTE_DIR, 'Ventes.csv')
@@ -37,10 +39,9 @@ module JacintheManagement
       # sql command to list non imported sales
       SHOW_SQL = SqlScriptFile.new('show_non_imported').script
 
-      # FIXME: SMELL: constant coupling
       # fetch SYLK file from smf-2
       def self.fetch_aspaway_file
-        AspawayImporter.new('DocVente/Ventes.slk').fetch
+        AspawayImporter.new(FILE_TO_IMPORT).fetch
       end
 
       # convert Sylk sales file to CSV

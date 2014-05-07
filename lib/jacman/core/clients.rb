@@ -100,6 +100,7 @@ module JacintheManagement
       def self.clean_read_files
         pending_files.each do |file|
           path = File.join('ClientSage', File.basename(file))
+          # TODO: delete also the file in aspaway's dir
           File.delete(file) if AspawayImporter.new(path).returned
         end
       end

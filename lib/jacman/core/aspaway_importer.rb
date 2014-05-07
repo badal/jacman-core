@@ -50,6 +50,8 @@ module JacintheManagement
         end
       end
 
+      # TODO: add a method to delete the aspaway file
+
       # used for checking client_sage files
       # @return [Boolean] whether a remote file exists with the same name
       def returned

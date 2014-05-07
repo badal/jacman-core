@@ -6,6 +6,6 @@
 #
 # (c) Michel Demazure <michel@demazure.com>
 
-require_relative 'jacman/require_core.rb'
+require_relative 'jacman/core.rb'
 
 JacintheManagement::Core::Cli.user.run(ARGV)
