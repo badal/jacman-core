@@ -12,15 +12,20 @@ module JacintheManagement
 
   ## sql parameters
 
-  # database
+  # databases
   JACINTHE_DATABASE = 'JacintheD'
   ADMIN_MODE = { user: 'root', password: 'admin', database: JACINTHE_DATABASE }
   ROOT_MODE = { user: 'root', password: 'admin' }
   ROOT_MODE_WITH_DB = { user: 'root', password: 'admin', database: JACINTHE_DATABASE }
-  CATALOG_MODE = { user: 'root', password: 'admin', database: 'catalogue' }
+
+  CATALOG_DATABASE = 'catalogue'
+  CATALOG_MODE = { user: 'root', password: 'admin', database: CATALOG_DATABASE }
+  CATALOG_ADMIN_MODE = { user: 'root', password: 'admin', database: CATALOG_DATABASE }
   MAIL_MODE = { server: 'smtp.sfr.fr', from: 'michel@demazure.com' }
 
-  private_constant :ADMIN_MODE, :ROOT_MODE, :ROOT_MODE_WITH_DB, :CATALOG_MODE, :MAIL_MODE
+  private_constant :ADMIN_MODE, :ROOT_MODE, :ROOT_MODE_WITH_DB,
+                   :CATALOG_MODE, :CATALOG_ADMIN_MODE,
+                   :MAIL_MODE
 
   # MySQL client system command
   MYSQL = 'mysql --default-character-set=utf8'
@@ -39,15 +44,7 @@ module JacintheManagement
   # top path
   SMF_SERVEUR = 'C:/Users/Michel/Documents/Share/SMF_SERVEUR'
 
-  # second level paths
-
-  TRANSFERT_DIR = File.join(SMF_SERVEUR, 'Transfert')
-  DATADIR = File.join(SMF_SERVEUR, 'Data')
-  CRON_DIR = File.join(DATADIR, 'Cron')
-
-  # model mail files
-  MODEL_DIR = File.join(SMF_SERVEUR, 'Jacinthe', 'Tools', 'Templates', 'Mail')
-
+  # free access directory
   SQL_DUMP_DIR = 'C:/Temp/Dump'
 
   # J2R path

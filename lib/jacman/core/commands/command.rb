@@ -10,6 +10,8 @@ module JacintheManagement
   module Core
     # Command : interface between scripts and GUI
     class Command
+      # directory where cron_execute writes his files
+      CRON_DIR = File.join(DATADIR, 'Cron')
       # run the named command with cron reports
       # @param [String] call_name name of the command to be 'cron_executed'
       def self.cron_run(call_name)

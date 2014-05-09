@@ -10,8 +10,8 @@ module JacintheManagement
   module Core
     # methods for (re)building Jacinthe database
     module ResetDb
-      SQL_DIR = File.join(SMF_SERVEUR, 'Jacinthe', 'Tools', 'Library', 'JacintheDatabase')
-      SQL_MODULE_DIR = File.join(SQL_DIR, 'Modules')
+      DB_SOURCE_DIR = File.join(SMF_SERVEUR, 'Jacinthe', 'Tools', 'Library', 'JacintheDatabase')
+      SQL_MODULE_DIR = File.join(DB_SOURCE_DIR, 'Modules')
 
       # build database, with schema, tables, views, libraries...
       def self.reset_without_data
@@ -24,7 +24,7 @@ module JacintheManagement
       def self.reset_and_load_data
         Sql.reset_loaded_files_list
         reset_db_schema
-        puts "Loading #{JacintheManagement::JACINTHE_DATABASE} db data..."
+        puts "Loading #{JACINTHE_DATABASE} db data..."
         Data.import_data
         puts 'Loading drupal db data...'
         Drupal.import_drupal
@@ -53,7 +53,7 @@ module JacintheManagement
       # load main tables
       def self.create_tables
         puts "Creating tables of #{JACINTHE_DATABASE} db"
-        Sql.pipe_files_in_directory(ADMIN_MODE, SQL_DIR, 'Database/Tables/**/*.sql')
+        Sql.pipe_files_in_directory(ADMIN_MODE, DB_SOURCE_DIR, 'Database/Tables/**/*.sql')
       end
 
       # load tables in modules
@@ -77,9 +77,9 @@ module JacintheManagement
       # load main libraries and views
       def self.load_db_lib
         puts 'Loading libraries'
-        Sql.pipe_files_in_directory(ADMIN_MODE, SQL_DIR, 'Database/Library/*/*.sql')
+        Sql.pipe_files_in_directory(ADMIN_MODE, DB_SOURCE_DIR, 'Database/Library/*/*.sql')
         puts 'Loading views'
-        Sql.pipe_files_in_directory(ADMIN_MODE, SQL_DIR, 'Database/Views/*.sql')
+        Sql.pipe_files_in_directory(ADMIN_MODE, DB_SOURCE_DIR, 'Database/Views/*.sql')
       end
 
       # load library and views in modules

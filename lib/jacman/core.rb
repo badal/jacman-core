@@ -21,8 +21,14 @@ require_relative '../my_config.rb'
 # script methods for Jacinthe Management
 module JacintheManagement
   COPYRIGHT = "\u00A9 Michel Demazure & Kenji Lefevre"
-
   TAB = "\t"
+
+  # second level paths
+  TRANSFERT_DIR = File.join(SMF_SERVEUR, 'Transfert')
+  DATADIR = File.join(SMF_SERVEUR, 'Data')
+
+  # model mail files
+  MODEL_DIR = File.join(SMF_SERVEUR, 'Jacinthe', 'Tools', 'Templates', 'Mail')
 end
 
 require_relative('core/utils/file_utilities.rb')

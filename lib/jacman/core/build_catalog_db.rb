@@ -10,9 +10,7 @@ module JacintheManagement
   module Core
     # methods for (re)building the catalog database
     module ResetCatalog
-      DATABASE = 'catalogue'
-      SQL_DIR = File.join(SMF_SERVEUR, 'Catalogue', 'Library', 'CatalogueDatabase')
-      CATALOG_ADMIN_MODE = ADMIN_MODE.merge(database: 'catalogue')
+      CATALOG_SQL_DIR = File.join(SMF_SERVEUR, 'Catalogue', 'Library', 'CatalogueDatabase')
 
       # build catalog database, with schema, tables, views
       def self.build_base
@@ -30,18 +28,18 @@ module JacintheManagement
 
       # drop and recreate database
       def self.recreate_db
-        puts "Drop db #{DATABASE}"
-        Sql.query(ROOT_MODE, "drop database #{DATABASE}")
-        puts "Create db #{DATABASE}"
-        qry = "CREATE DATABASE #{DATABASE} " \
+        puts "Drop db #{CATALOG_DATABASE}"
+        Sql.query(ROOT_MODE, "drop database #{CATALOG_DATABASE}")
+        puts "Create db #{CATALOG_DATABASE}"
+        qry = "CREATE CATALOG_DATABASE #{CATALOG_DATABASE} " \
             'CHARACTER SET utf8 COLLATE utf8_general_ci;'
         Sql.query(ROOT_MODE, qry)
       end
 
       # load main tables
       def self.create_tables
-        puts "Creating tables of #{DATABASE} db"
-        Sql.pipe_files_in_directory(CATALOG_ADMIN_MODE, SQL_DIR, 'Tables/*.sql')
+        puts "Creating tables of #{CATALOG_DATABASE} db"
+        Sql.pipe_files_in_directory(CATALOG_ADMIN_MODE, CATALOG_SQL_DIR, 'Tables/*.sql')
       end
 
       # load libraries and views
@@ -52,9 +50,9 @@ module JacintheManagement
       # load main libraries and views
       def self.load_db_lib
         puts 'Loading libraries'
-        Sql.pipe_files_in_directory(CATALOG_ADMIN_MODE, SQL_DIR, 'Users/*.sql')
+        Sql.pipe_files_in_directory(CATALOG_ADMIN_MODE, CATALOG_SQL_DIR, 'Users/*.sql')
         puts 'Loading views'
-        Sql.pipe_files_in_directory(CATALOG_ADMIN_MODE, SQL_DIR, 'Views/create_views.sql')
+        Sql.pipe_files_in_directory(CATALOG_ADMIN_MODE, CATALOG_SQL_DIR, 'Views/create_views.sql')
       end
     end
   end

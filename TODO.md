@@ -5,6 +5,9 @@
 * defaults.ini
 * my_config to be split
 
+## gems problem
+* necessary gems for tb (sequel...) in Gemfile ?
+
 ### Fix MODEL_DIRECTORY
 * changed in my_config : move content in SMF_SERVER
 

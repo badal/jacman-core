@@ -6,7 +6,7 @@
 #
 # (c) Michel Demazure <michel@demazure.com>
 
-require_relative 'jacman/require_core.rb'
+require_relative 'jacman/core.rb'
 
 call_name = ARGV.first
 JacintheManagement::Core::Command.cron_run(call_name)

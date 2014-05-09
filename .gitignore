@@ -2,3 +2,5 @@
 /cron
 /metrics
 /pkg
+/doc
+/.yardoc
