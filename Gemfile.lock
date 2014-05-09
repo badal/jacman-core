@@ -1,0 +1,41 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    ansi (1.4.3)
+    builder (3.2.2)
+    minitest (5.3.3)
+    minitest-reporters (1.0.4)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
+    mysql2 (0.3.13)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.9.0)
+    pdf-core (0.2.5)
+    prawn (1.0.0)
+      pdf-core (~> 0.2.2)
+      ttfunk (~> 1.1.1)
+    rake (10.3.1)
+    ruby-progressbar (1.4.2)
+    sequel (4.10.0)
+    ttfunk (1.1.1)
+    yard (0.8.7.4)
+
+PLATFORMS
+  x86-mingw32
+
+DEPENDENCIES
+  minitest
+  minitest-reporters
+  mysql2 (= 0.3.13)
+  net-scp
+  net-sftp
+  net-ssh
+  prawn
+  rake
+  sequel
+  yard

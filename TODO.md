@@ -6,8 +6,7 @@
 * my_config to be split
 
 ## gems problem
-* necessary gems for tb (sequel...) in Gemfile ?
-
+* necessary gems for tb (sequel...) added in Gemfile and Rakefile
 ### Fix MODEL_DIRECTORY
 * changed in my_config : move content in SMF_SERVER
 

@@ -33,7 +33,7 @@ describe Subscription do
   end
 
   it 'find the invalid ranges' do
-    non_valid = %W(1\t1.*.* 1\ttoto)
+    non_valid = %w(1\t1.*.* 1\ttoto)
     sub = Electronic::Subscription.new(DEFAULT_TIERS, DEFAULT_REVUE,
                                        DEFAULT_YEAR, DEFAULT_RANGE_LIST, DEFAULT_BONUS)
     sub.get_invalid_ranges.must_equal non_valid

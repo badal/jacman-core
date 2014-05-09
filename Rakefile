@@ -12,9 +12,19 @@ spec = Gem::Specification.new do |s|
   s.extra_rdoc_files = %w(README.md LICENSE)
   s.summary = 'Script tools (core) for Jacinthe DB management'
   s.description = 'Script tools (core) for Jacinthe DB management'
+
+  s.add_development_dependency('rake')
+  s.add_development_dependency('yard')
+  s.add_development_dependency('minitest')
+  s.add_development_dependency('minitest-reporters')
+
   s.add_dependency('net-ssh')
   s.add_dependency('net-scp')
   s.add_dependency('net-sftp')
+  s.add_dependency('mysql2', '0.3.13')
+  s.add_dependency('sequel')
+  s.add_dependency('prawn')
+
   s.author = 'Michel Demazure'
   s.email = 'michel@demazure.com'
   s.files = %w(LICENSE README.md HISTORY.md MANIFEST Rakefile) + Dir.glob('{lib,spec}/**/*')

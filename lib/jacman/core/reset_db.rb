@@ -53,7 +53,8 @@ module JacintheManagement
       # load main tables
       def self.create_tables
         puts "Creating tables of #{JACINTHE_DATABASE} db"
-        Sql.pipe_files_in_directory(ADMIN_MODE, DB_SOURCE_DIR, 'Database/Tables/**/*.sql')
+        Sql.pipe_files_in_directory(ADMIN_MODE, DB_SOURCE_DIR,
+                                    'Database/Tables/**/*.sql')
       end
 
       # load tables in modules

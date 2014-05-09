@@ -50,9 +50,11 @@ module JacintheManagement
       # load main libraries and views
       def self.load_db_lib
         puts 'Loading libraries'
-        Sql.pipe_files_in_directory(CATALOG_ADMIN_MODE, CATALOG_SQL_DIR, 'Users/*.sql')
+        Sql.pipe_files_in_directory(CATALOG_ADMIN_MODE, CATALOG_SQL_DIR,
+                                    'Users/*.sql')
         puts 'Loading views'
-        Sql.pipe_files_in_directory(CATALOG_ADMIN_MODE, CATALOG_SQL_DIR, 'Views/create_views.sql')
+        Sql.pipe_files_in_directory(CATALOG_ADMIN_MODE, CATALOG_SQL_DIR,
+                                    'Views/create_views.sql')
       end
     end
   end
