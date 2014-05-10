@@ -45,9 +45,9 @@ module JacintheManagement
       def check_command(limit = 24)
         age, file = check_files
         if age && age < limit
-          [:OK, file, age]
+          [:OK, file, age.to_i]
         elsif age
-          [:LATE, file, age]
+          [:LATE, file, age.to_i]
         elsif file
           [:ERROR, file]
         else
