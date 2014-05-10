@@ -10,15 +10,16 @@ module JacintheManagement
   module Core
     # methods for checking cronman report files
     class CommandWatcher
-      # For use in command line
+      # For use in command line or in web_service
       #
-      # @example ruby command_watcher.rb gi
-      # @param [String] cmd call_name of command
+      # @example ruby command_watcher.rb gi,ge,de
+      # @param [Array<String>] cmds list of call_name of command
       # @param [Numeric] limit limit time for LATE (in hours)
       # @return [String] report for command
-      def self.report(cmd, limit = 24)
-        category, _, age = CommandWatcher.new(cmd).check_command(limit)
-        puts "#{Command.send(cmd).title} : #{category}, #{age}"
+      def self.report(cmds, limit = 24)
+        cmds.map do |cmd|
+           new(cmd).check_command(limit)
+        end
       end
 
       # @param [String] cmd call_name of command
@@ -41,7 +42,7 @@ module JacintheManagement
 
       # @param [Numeric] limit limit time for LATE (in hours)
       # @return [Array] category, [file], [age]
-      def check_command(limit)
+      def check_command(limit = 24)
         age, file = check_files
         if age && age < limit
           [:OK, file, age]
@@ -62,6 +63,6 @@ if __FILE__ == $PROGRAM_NAME
   # TODO: fix !
   require '../manager_commands.rb'
   include JacintheManagement
-  CommandWatcher.report ARGV[0]
+  CommandWatcher.report ARGV
 
 end
