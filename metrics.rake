@@ -40,6 +40,15 @@ namespace :metrics do
     puts `wc metrics/rubocop_spec.txt`
   end
 
+  desc 'Rubocop fix'
+  task :rubocop_fix do
+    system 'rubocop -a lib/**/*.rb > metrics\rubocop_lib.txt'
+    system 'rubocop -a spec/**/*.rb > metrics\rubocop_spec.txt'
+    puts `wc metrics/rubocop_lib.txt`
+    puts `wc metrics/rubocop_spec.txt`
+  end
+
+
   desc 'Flog, flay, reek, saikuro'
   task :all_checks => [:flog, :flay, :reek, :saikuro]
 

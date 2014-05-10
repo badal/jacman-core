@@ -84,7 +84,7 @@ achat_divers \
       def self.do_dump(tables, dump_file)
         backup_sql_dump_file(dump_file)
         puts 'Dumping database data'
-        raw_dump = Sql.dump(ROOT_MODE_WITH_DB, tables)
+        raw_dump = Sql.dump(JACINTHE_ROOT_MODE, tables)
         lines = raw_dump.reject { |line| line =~ /^\/\*/ }.map do |line|
           line.sub('INSERT INTO', 'REPLACE INTO')
         end
@@ -103,7 +103,7 @@ achat_divers \
         queries = ['SET foreign_key_checks = 0',
                    "source #{DATADIR}/dumped_data.sql",
                    'SET foreign_key_checks = 1;']
-        Sql.query(ADMIN_MODE, queries.join('; '))
+        Sql.query(JACINTHE_MODE, queries.join('; '))
       end
     end
   end

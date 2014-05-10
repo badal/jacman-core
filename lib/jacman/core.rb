@@ -6,22 +6,31 @@
 #
 # (c) Michel Demazure & Kenji Lefevre
 
+# stdlib dependencies
 require 'fileutils'
 require 'set'
 require 'yaml'
 require 'logger'
 require 'tempfile'
+
+# external dependencies
 require 'net/ssh'
 require 'net/scp'
 require 'net/sftp'
 require 'net/smtp'
 
+# local config
 require_relative '../my_config.rb'
 
 # script methods for Jacinthe Management
 module JacintheManagement
   COPYRIGHT = "\u00A9 Michel Demazure & Kenji Lefevre"
   TAB = "\t"
+
+  # connection modes
+  JACINTHE_MODE = ADMIN_MODE.merge(database: JACINTHE_DATABASE)
+  JACINTHE_ROOT_MODE = ROOT_MODE.merge(database: JACINTHE_DATABASE)
+  CATALOG_MODE = ADMIN_MODE.merge(database: CATALOG_DATABASE)
 
   # second level paths
   TRANSFERT_DIR = File.join(SMF_SERVEUR, 'Transfert')

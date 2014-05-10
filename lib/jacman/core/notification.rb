@@ -49,14 +49,14 @@ module JacintheManagement
       # count and return number of notifications to be done
       # @return [Integer] number of notifications to be done
       def self.notifications_number
-        Sql.answer_to_query(ADMIN_MODE, SQL_SUBSCRIPTION_NUMBER)[1].to_i
+        Sql.answer_to_query(JACINTHE_MODE, SQL_SUBSCRIPTION_NUMBER)[1].to_i
       end
 
       # build @to_be_notified_for and @tiers_list
       def self.extract_subscriptions_and_tiers
         @to_be_notified_for = []
         tiers_list = []
-        Sql.answer_to_query(ADMIN_MODE, SQL_SUBSCRIPTIONS).drop(1).each do |line|
+        Sql.answer_to_query(JACINTHE_MODE, SQL_SUBSCRIPTIONS).drop(1).each do |line|
           items = line.chomp.split(TAB)
           tiers_id = items.pop.to_i
           (@to_be_notified_for[tiers_id] ||= []) << ToBeNotified.new(*items)
@@ -81,7 +81,7 @@ module JacintheManagement
       # @return [Array<Tiers>] list of all Jacinthe Tiers
       def self.build_jacinthe_tiers_list
         @all_jacinthe_tiers = []
-        Sql.answer_to_query(ADMIN_MODE, SQL_TIERS).drop(1).each do |line|
+        Sql.answer_to_query(JACINTHE_MODE, SQL_TIERS).drop(1).each do |line|
           items = line.split(TAB)
           parameters = format_items(items)
           @all_jacinthe_tiers[parameters[0]] = Tiers.new(*parameters)
@@ -124,7 +124,7 @@ module JacintheManagement
         .sub(/::abonnement_id::/, subs_id)
         .sub(/::time_stamp::/, time_stamp)
         if REAL
-          Sql.query(ADMIN_MODE, query) # this is real mode
+          Sql.query(JACINTHE_MODE, query) # this is real mode
         else
           puts "SQL : #{query}" # this is  demo mode
         end

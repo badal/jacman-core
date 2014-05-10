@@ -17,7 +17,7 @@ module JacintheManagement
       # @return [Integer] number of new clients
       def self.clients_to_export_number
         qry = 'select count(*) from client_sage where client_sage_a_exporter = 1;'
-        Sql.answer_to_query(ADMIN_MODE, qry)[1].to_i
+        Sql.answer_to_query(JACINTHE_MODE, qry)[1].to_i
       end
 
       # export new clients from JacintheD to 'client_sage-DATE.txt'
@@ -67,7 +67,7 @@ module JacintheManagement
         Utils.delete_if_exists(file)
         puts 'Dumping clients...This might take a while if many. Be patient...'
         qry = "SET NAMES 'utf8'; call export_client_sage('#{file}');"
-        Sql.query(ADMIN_MODE, qry)
+        Sql.query(JACINTHE_MODE, qry)
         file
       end
 

@@ -68,7 +68,7 @@ module JacintheManagement
       def self.extract_and_load(regexp, filename)
         in_file = VENTES_CSV
         out_file = File.join(TRANSFERT_DOC_VENTE_DIR, "#{filename}-#{Utils.my_date}.csv")
-        Sql.filter_and_load(in_file, out_file, ADMIN_MODE, regexp, DOCUMENT_SQL)
+        Sql.filter_and_load(in_file, out_file, JACINTHE_MODE, regexp, DOCUMENT_SQL)
         Utils.archive(TRANSFERT_DOC_VENTE_DIR, out_file)
         File.delete(out_file)
       end
@@ -77,7 +77,7 @@ module JacintheManagement
       def self.inject_in_database
         puts "Launch import_sage_document() in DB #{JACINTHE_DATABASE}"
         command = 'call import_sage_document();'
-        Sql.query(ADMIN_MODE, command)
+        Sql.query(JACINTHE_MODE, command)
       end
 
       # report non imported sales lines
@@ -94,7 +94,7 @@ module JacintheManagement
 
       # @return [Array<String>] lines reporting non imported sales
       def self.remaining_sales
-        lines = Sql.answer_to_query(ADMIN_MODE, SHOW_SQL)
+        lines = Sql.answer_to_query(JACINTHE_MODE, SHOW_SQL)
         lines.each_slice(4).map do |slice|
           slice[1..-1].map(&:chomp).join(', ')
         end
@@ -102,7 +102,7 @@ module JacintheManagement
 
       # @return [Integer] number of remaining sales
       def self.remaining_sales_number
-        lines = Sql.answer_to_query(ADMIN_MODE, SHOW_SQL)
+        lines = Sql.answer_to_query(JACINTHE_MODE, SHOW_SQL)
         lines.size / 4
       end
 

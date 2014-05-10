@@ -28,7 +28,7 @@ module JacintheManagement
       # @param [String] bonus extra time on next year, format 'MM-DD'
       # @return [Array<Subscription>] array of subscriptions
       def self.subscriptions(bonus = default_bonus)
-        subs = Sql.answer_to_query(ADMIN_MODE, SQL_DUMP_IP)
+        subs = Sql.answer_to_query(JACINTHE_MODE, SQL_DUMP_IP)
         subs.shift
         res = subs.map { |line| line.chomp.split(TAB) }
         res.reject! { |line| line.last == 'NULL' }
@@ -58,7 +58,7 @@ module JacintheManagement
       # @return [Array<Subscription>] array of subscriptions
       def self.subscriptions_to_export(bonus = default_bonus)
         sql = ABO_ELEC_EXPORT_SQL.sub('::bonus::', bonus)
-        Sql.answer_to_query(ADMIN_MODE, sql)
+        Sql.answer_to_query(JACINTHE_MODE, sql)
       end
 
       ## building files

@@ -5,10 +5,15 @@
 * defaults.ini
 * my_config to be split
 
-## gems problem
+## Structure problems
+
+### gems problem
 * necessary gems for tb (sequel...) added in Gemfile and Rakefile
+
 ### Fix MODEL_DIRECTORY
 * changed in my_config : move content in SMF_SERVER
+
+### move my_config under Core ?
 
 ### Old files and archives
 * delete client Aspaway returned file when no more needed

@@ -12,21 +12,6 @@ module JacintheManagement
 
   ## sql parameters
 
-  # databases
-  JACINTHE_DATABASE = 'JacintheD'
-  ADMIN_MODE = { user: 'root', password: 'admin', database: JACINTHE_DATABASE }
-  ROOT_MODE = { user: 'root', password: 'admin' }
-  ROOT_MODE_WITH_DB = { user: 'root', password: 'admin', database: JACINTHE_DATABASE }
-
-  CATALOG_DATABASE = 'catalogue'
-  CATALOG_MODE = { user: 'root', password: 'admin', database: CATALOG_DATABASE }
-  CATALOG_ADMIN_MODE = { user: 'root', password: 'admin', database: CATALOG_DATABASE }
-  MAIL_MODE = { server: 'smtp.sfr.fr', from: 'michel@demazure.com' }
-
-  private_constant :ADMIN_MODE, :ROOT_MODE, :ROOT_MODE_WITH_DB,
-                   :CATALOG_MODE, :CATALOG_ADMIN_MODE,
-                   :MAIL_MODE
-
   # MySQL client system command
   MYSQL = 'mysql --default-character-set=utf8'
 
@@ -38,6 +23,17 @@ module JacintheManagement
       ' --opt --complete-insert --skip-triggers --default-character-set=utf8 '
 
   # MYSQL = 'echo'
+
+  # databases
+  JACINTHE_DATABASE = 'JacintheD'
+  CATALOG_DATABASE = 'catalogue'
+
+  ADMIN_MODE = { user: 'root', password: 'admin' }
+  ROOT_MODE = { user: 'root', password: 'admin' }
+  private_constant :ADMIN_MODE, :ROOT_MODE
+
+  # mail parameters
+  MAIL_MODE = { server: 'smtp.sfr.fr', from: 'michel@demazure.com' }
 
   # GENERAL PATHS SETTING
 

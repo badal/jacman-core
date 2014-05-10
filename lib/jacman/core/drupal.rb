@@ -66,7 +66,7 @@ module JacintheManagement
         dump_file = File.join(DRUPAL_DUMP_DIR, File.basename(sql_file).sub('.sql', '.data'))
         Utils.delete_if_exists(dump_file)
         command = parameterize(model_command, dump_file, years)
-        Sql.pipe_command(ROOT_MODE_WITH_DB, command)
+        Sql.pipe_command(JACINTHE_ROOT_MODE, command)
         dump_file
       end
 
@@ -109,9 +109,9 @@ module JacintheManagement
         puts 'Loading data in Jacinthe'
         table = 'drupal_raw'
         file = File.join(DATADIR, 'Drupal2Jacinthe', 'drupal_account.data')
-        Sql.query(ADMIN_MODE, "TRUNCATE #{table}")
-        Sql.pipe_command(ADMIN_MODE, import_query(file, table))
-        res = Sql.answer_to_query(ADMIN_MODE, "select count(*) nb from #{table}")
+        Sql.query(JACINTHE_MODE, "TRUNCATE #{table}")
+        Sql.pipe_command(JACINTHE_MODE, import_query(file, table))
+        res = Sql.answer_to_query(JACINTHE_MODE, "select count(*) nb from #{table}")
         puts "#{res[1].chomp} elements loaded"
       end
     end
