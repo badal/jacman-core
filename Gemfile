@@ -5,6 +5,7 @@ group :development do
   gem 'yard'
   gem 'minitest'
   gem 'minitest-reporters'
+  gem 'reek'
 end
 
 gem 'net-ssh'
