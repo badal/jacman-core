@@ -1,10 +1,10 @@
 # jacman-core
 
 ## Description
-  Command line only part of Jacinthe management tools
+  Command line only part of Jacinthe management tools, extracted from Jacman
 
 ## Version
-  1.0
+  1.1
 
 ## Synopsis
 Script tools for Jacinthe DB management.
@@ -19,6 +19,11 @@ Script tools for Jacinthe DB management.
 ## More documentation
   * See the Yardoc/RDoc documentation.
   * See the html help file
+
+## Source and issues
+   [![Code Climate](https://codeclimate.com/github/badal/jacman-core.png)](https://codeclimate.com/github/badal/jacman-qt)
+
+   * Source code on repository [GitHub](https://github.com/badal/jacman-core)
 
 ## Copyright
   (c) 2014, Michel Demazure

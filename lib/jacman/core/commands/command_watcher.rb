@@ -18,7 +18,7 @@ module JacintheManagement
       # @return [String] report for command
       def self.report(cmds, limit = 24)
         cmds.map do |cmd|
-           new(cmd).check_command(limit)
+          new(cmd).check_command(limit)
         end
       end
 
