@@ -1,19 +1,17 @@
 # jacman-core TODO list
 
 ## Dependency injections
-* Fix core/report.rb : inject the J2R tool
+* Fix core/report.rb : link to j2r_core, via gems !
 * defaults.ini
-* my_config to be split
 
 ## Structure problems
+* fix 'aspaway-importer' config !
 
 ### gems problem
 * necessary gems for tb (sequel...) added in Gemfile and Rakefile
 
 ### Fix MODEL_DIRECTORY
 * changed in my_config : move content in SMF_SERVER
-
-### move my_config under Core ?
 
 ### Old files and archives
 * delete client Aspaway returned file when no more needed

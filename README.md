@@ -4,7 +4,7 @@
   Command line only part of Jacinthe management tools, extracted from Jacman
 
 ## Version
-  1.1
+  1.2
 
 ## Synopsis
 Script tools for Jacinthe DB management.
@@ -14,7 +14,8 @@ Script tools for Jacinthe DB management.
   * jacdev  : batch manager for developers
 
 ## Usage
-  Run one of the executables
+  * Configuration in config.ini
+  * Run one of the executables
 
 ## More documentation
   * See the Yardoc/RDoc documentation.
