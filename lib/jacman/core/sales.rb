@@ -15,8 +15,9 @@ module JacintheManagement
         fetch_aspaway_file
         build_global_csv_file
         extract_and_load_csv_files
+        run_patch
         inject_in_database
-        check_remaining_sales
+      #  check_remaining_sales
       end
 
       # Transfer directory for Sage sales
@@ -50,6 +51,17 @@ module JacintheManagement
         WinFile.convert_from_sylk(VENTES_SLK, VENTES_CSV)
       end
 
+      # PATCH to fix wrong article name
+      def self.run_patch
+        lines = File.readlines(VENTES_CSV, encoding: 'utf-8')
+        lines.each do |line|
+          line.sub!(/NCTEXASI/, 'NVAU0099')
+        end
+        File.open(VENTES_CSV, 'w:utf-8') do |file|
+          lines.each { |line| file.puts(line) }
+        end
+      end
+
       # Extract and load three extracted files
       def self.extract_and_load_csv_files
         # Traitement Abonnement, Adhesion_locale, Adhesion_tierce :
@@ -75,9 +87,9 @@ module JacintheManagement
 
       # call SQL command 'import sage document'
       def self.inject_in_database
-        puts "Launch import_sage_document() in DB #{JACINTHE_DATABASE}"
+        puts 'Launch import_sage_document() in Jacinthe database}'
         command = 'call import_sage_document();'
-        Sql.query(JACINTHE_MODE, command)
+        puts Sql.answer_to_query(JACINTHE_MODE, command)
       end
 
       # report non imported sales lines
@@ -124,6 +136,7 @@ module JacintheManagement
 end
 
 if __FILE__ == $PROGRAM_NAME
+  require_relative('../core.rb')
 
   include JacintheManagement
   Sales.import_sales
