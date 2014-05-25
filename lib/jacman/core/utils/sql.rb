@@ -10,6 +10,10 @@ module JacintheManagement
   module Core
     # encapsulating mysql client methods
     module Sql
+      # Options for mysqldump
+      SQL_DUMP_OPTIONS = '--no-create-info --lock-all-tables --skip-comments ' \
+      ' --opt --complete-insert --skip-triggers --default-character-set=utf8 '
+
       # Initial text of all sql commands
       # @raise RuntimeError if wrong mode
       # @param [Hash] mode connecting mode
@@ -83,7 +87,7 @@ module JacintheManagement
       def self.dump(mode, tables)
         temp_file = File.join(DATADIR, 'dump.temp')
         Utils.delete_if_exists(temp_file)
-        command = "#{MYSQLDUMP} -u#{mode[:user]} -p#{mode[:password]} #{SQL_DUMP_OPTIONS} \
+        command = "#{MYSQLDUMP} #{SQL_DUMP_OPTIONS} -u#{mode[:user]} -p#{mode[:password]} \
         #{mode[:database]} #{tables} > #{temp_file} "
         system command
         File.readlines(temp_file)
