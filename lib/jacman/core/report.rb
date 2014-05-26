@@ -21,15 +21,18 @@ module JacintheManagement
         Defaults.defaults[:report]
       end
 
-      # TODO: all this is an awful hack
+      # TODO: getting this path is an awful hack
+      # FIXME: use j2r_core gem
       # @return [Path] pdf report file
       def self.executive_report
-        j2r_path = File.join(SMF_SERVEUR, 'Jacinthe', 'Tools', 'Library', 'JacintheReports')
-        ruby_file = File.join(j2r_path, 'lib', 'j2r', 'audits', 'tableau_de_bord.rb')
+
+       ## gem 'j2r-jaccess'
+       #  gem 'j2r-core'
+        require 'j2r/core/audits/tableau_de_bord.rb'
         connect_mode = 'exploitation'
-        require_relative(ruby_file)
         dir = File.join(DATADIR, 'Archives')
-        JacintheReports.executive_report_file(connect_mode, dir)
+        include JacintheReports
+        JacintheReports::Audits.executive_report_file(connect_mode, dir)
       end
 
       # build, write and send report
