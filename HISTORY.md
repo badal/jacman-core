@@ -1,4 +1,6 @@
 # jacman-core
+* moved constants inside Core module
+
 ## [v1.2]
 * Hack for TEXAS bug
 * new config.ini, constants loaded in core.rb

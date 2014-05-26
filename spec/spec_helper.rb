@@ -7,10 +7,6 @@
 # (c) Michel Demazure <michel@demazure.com>
 
 require 'minitest/autorun'
-require 'minitest/spec'
-require 'minitest/reporters' unless $stdin.tty?
-
-MiniTest::Reporters.use! unless $stdin.tty?
 
 require_relative '../lib/jacman/core.rb'
 

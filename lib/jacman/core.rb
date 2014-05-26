@@ -25,43 +25,44 @@ require_relative '../config.rb'
 
 # script methods for Jacinthe Management
 module JacintheManagement
-  # copyright
-  COPYRIGHT = "\u00A9 Michel Demazure & Kenji Lefevre"
-  # tab character for csv failes
-  TAB = "\t"
+  # core methods for Jacinthe manager
+  module Core
+    # tab character for csv files
+    TAB = "\t"
 
-  # are we on real server ?
-  REAL = Conf.config['real']
-  # to be used for aspaway_importer when REAL is false
-  SMF2_PASSWORD = Conf.config['smf2_password']
+    # are we on real server ?
+    REAL = Conf.config['real']
+    # to be used for aspaway_importer when REAL is false
+    SMF2_PASSWORD = Conf.config['smf2_password']
 
-  # MySql command
-  MYSQL = Conf.mysql['command']
-  # MySQL dump system command
-  MYSQLDUMP = Conf.mysql['dump_command']
+    # MySql command
+    MYSQL = Conf.mysql['command']
+    # MySQL dump system command
+    MYSQLDUMP = Conf.mysql['dump_command']
 
-  # databases
-  JACINTHE_DATABASE = Conf.config['databases']['jacinthe']
-  CATALOG_DATABASE = Conf.config['databases']['catalogue']
+    # databases
+    JACINTHE_DATABASE = Conf.config['databases']['jacinthe']
+    CATALOG_DATABASE = Conf.config['databases']['catalogue']
 
-  # connection modes
-  JACINTHE_MODE = Conf.admin_mode.merge(database: JACINTHE_DATABASE)
-  JACINTHE_ROOT_MODE = Conf.root_mode.merge(database: JACINTHE_DATABASE)
-  CATALOG_MODE = Conf.admin_mode.merge(database: CATALOG_DATABASE)
+    # connection modes
+    JACINTHE_MODE = Conf.admin_mode.merge(database: JACINTHE_DATABASE)
+    JACINTHE_ROOT_MODE = Conf.root_mode.merge(database: JACINTHE_DATABASE)
+    CATALOG_MODE = Conf.admin_mode.merge(database: CATALOG_DATABASE)
 
-  # paths
-  # top path
-  SMF_SERVEUR = Conf.config['paths']['server']
-  # free access directory
-  SQL_DUMP_DIR = Conf.config['paths']['dump']
-  # second level paths
-  TRANSFERT_DIR = File.join(SMF_SERVEUR, 'Transfert')
-  DATADIR = File.join(SMF_SERVEUR, 'Data')
+    # paths
+    # top path
+    SMF_SERVEUR = Conf.config['paths']['server']
+    # free access directory
+    SQL_DUMP_DIR = Conf.config['paths']['dump']
+    # second level paths
+    TRANSFERT_DIR = File.join(SMF_SERVEUR, 'Transfert')
+    DATADIR = File.join(SMF_SERVEUR, 'Data')
 
-  # model mail files
-  MODEL_DIR = File.join(SMF_SERVEUR, 'Jacinthe', 'Tools', 'Templates', 'Mail')
-  # mail smtp server
-  MAIL_MODE = Conf.mail_mode
+    # model mail files
+    MODEL_DIR = File.join(SMF_SERVEUR, 'Jacinthe', 'Tools', 'Templates', 'Mail')
+    # mail smtp server
+    MAIL_MODE = Conf.mail_mode
+  end
 end
 
 require_relative('core/utils/file_utilities.rb')
