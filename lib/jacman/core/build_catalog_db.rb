@@ -22,18 +22,8 @@ module JacintheManagement
       # build database, with schema and tables
       def self.reset_db_schema
         puts 'SCHEMA'
-        recreate_db
+        ResteDb.recreate_database(CATALOG_DATABASE)
         create_tables
-      end
-
-      # drop and recreate database
-      def self.recreate_db
-        puts "Drop db #{CATALOG_DATABASE}"
-        Sql.query(ROOT_MODE, "drop database #{CATALOG_DATABASE}")
-        puts "Create db #{CATALOG_DATABASE}"
-        qry = "CREATE CATALOG_DATABASE #{CATALOG_DATABASE} " \
-            'CHARACTER SET utf8 COLLATE utf8_general_ci;'
-        Sql.query(ROOT_MODE, qry)
       end
 
       # load main tables
