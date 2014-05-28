@@ -10,6 +10,17 @@ module JacintheManagement
   module Core
     # command : interface between scripts and GUI
     class Command
+      # transfer top directory for catalog
+      TRANSFERT_CATALOGUE_DIR = File.join(TRANSFERT_DIR, 'Catalogue')
+      # transfer directory for articles
+      TRANSFERT_ARTICLE_DIR = File.join(TRANSFERT_CATALOGUE_DIR, 'Articles')
+      # transfer directory for nomenclature
+      TRANSFERT_NOMENCLATURE_DIR = File.join(TRANSFERT_CATALOGUE_DIR, 'Nomenclatures')
+      # transfer directory for tariffs
+      TRANSFERT_TARIFF_DIR = File.join(TRANSFERT_CATALOGUE_DIR, 'Tarifs')
+      # transfer directory for stocks
+      TRANSFERT_STOCK_DIR = File.join(TRANSFERT_CATALOGUE_DIR, 'Stocks')
+
       CE_HELP = <<END_CE_HELP
 Cette commande permet d'extraire de Jacinthe
 de quoi fabriquer le catalogue.
@@ -33,7 +44,7 @@ Cette commande permet de fournir à Jacinthe la liste des articles.
 
 Cette liste est fournie par le fichier ' articles.slk '
 produit par GESCOM, qui se trouve dans le dossier
-#{Catalog::TRANSFERT_ARTICLE_DIR}.
+#{TRANSFERT_ARTICLE_DIR}.
 END_CIA_HELP
 
       # @return [Command] catalog import articles
@@ -51,7 +62,7 @@ Cette commande permet de fournir à Jacinthe la nomenclature.
 
 Cette liste est fournie par le fichier ' Nomenclatures.slk '
 produit par GESCOM, qui se trouve dans le dossier
-#{Catalog::TRANSFERT_NOMENCLATURE_DIR}.
+#{TRANSFERT_NOMENCLATURE_DIR}.
 END_CIN_HELP
 
       # @return [Command] catalog import nomenclature
@@ -69,7 +80,7 @@ Cette commande permet de fournir à Jacinthe la liste des tarifs.
 
 Cette liste est fournie par le fichier ' Articles.slk '
 produit par GESCOM, qui se trouve dans le dossier
-#{Catalog::TRANSFERT_TARIFF_DIR}.
+#{TRANSFERT_TARIFF_DIR}.
 END_CIT_HELP
 
       # @return [Command] catalog import tariffs
@@ -87,7 +98,7 @@ Cette commande permet de fournir à Jacinthe l' état des stocks.
 
 Cet état est fournie par le fichier 'Stock.txt'
 produit par GESCOM, et qui se trouve dans le dossier
-#{Catalog::TRANSFERT_STOCK_DIR}.
+#{TRANSFERT_STOCK_DIR}.
 END_CIS_HELP
 
       # @return [Command] catalog import stock

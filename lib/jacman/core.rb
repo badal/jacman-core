@@ -42,7 +42,7 @@ module JacintheManagement
 
     # databases
     JACINTHE_DATABASE = Conf.config['databases']['jacinthe']
-    CATALOG_DATABASE = Conf.config['databases']['catalogue']
+    CATALOG_DATABASE = Conf.config['databases']['catalog']
 
     # connection modes
     JACINTHE_MODE = Conf.admin_mode.merge(database: JACINTHE_DATABASE)

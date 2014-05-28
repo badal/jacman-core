@@ -10,19 +10,7 @@ module JacintheManagement
   module Core
     # Catalogue methods
     module Catalog
-      # transfer top directory for catalog
-      TRANSFERT_CATALOGUE_DIR = File.join(TRANSFERT_DIR, 'Catalogue')
-      # transfer directory for articles
-      TRANSFERT_ARTICLE_DIR = File.join(TRANSFERT_CATALOGUE_DIR, 'Articles')
-      # transfer directory for nomenclature
-      TRANSFERT_NOMENCLATURE_DIR = File.join(TRANSFERT_CATALOGUE_DIR, 'Nomenclatures')
-      # transfer directory for stock
-      TRANSFERT_STOCK_DIR = File.join(TRANSFERT_CATALOGUE_DIR, 'Stock')
-      # transfer directory for tariffs
-      TRANSFERT_TARIFF_DIR = File.join(TRANSFERT_CATALOGUE_DIR, 'Tarifs')
-
       ### exportation
-
       # sql command for catalog exporting
       EXPORT_SQL = SqlScriptFile.new('catalog_export').script
 
@@ -37,7 +25,47 @@ module JacintheManagement
         end
       end
 
-      ### importation
+      ### importation of articles, nomenclature, tariffs
+
+      # importer for articles, nomenclature and tariffs
+      class CatalogImporter
+        # @param [String] subdirectory path of subdir of TRANSFERT dir
+        # @param [String] initial_file file to fetch from Aspaway
+        # @param [String] converted_file converted file
+        # @param [String] sql_fragment sql fragment for DB importation
+        # @param [Symbon] conversion WinFile method to use
+        def initialize(subdirectory, initial_file, converted_file, sql_fragment, conversion)
+          @initial_path = File.join('Catalogue', subdirectory, initial_file)
+          @full_initial_path = File.join(TRANSFERT_DIR, @initial_path)
+          @full_converted_path = File.join(TRANSFERT_DIR, 'Catalogue',
+                                           subdirectory, converted_file)
+          @sql_fragment = sql_fragment
+          @conversion = conversion
+        end
+
+        # fetch initial from Aspaway
+        def fetch
+          AspawayImporter.new(@initial_path).fetch
+        end
+
+        # convert initial to converted
+        def convert
+          WinFile.send(@conversion, @full_initial_path, @full_converted_path)
+        end
+
+        # extract from converted and inject in DB
+        def load
+          Sql.extract_file_and_load(@full_converted_path,
+                                    CATALOG_MODE, KN_REGEXP, @sql_fragment)
+        end
+
+        # fetch, convert and inject
+        def import
+          fetch
+          convert
+          load
+        end
+      end
 
       ## sql fragments
 
@@ -50,42 +78,37 @@ module JacintheManagement
       # sql fragment for tariff
       TARIFF_SQL = SqlScriptFile.new('catalog_tariff').script
 
-      # sql fragment for stock
-      STOCK_SQL = SqlScriptFile.new('catalog_tariff').script
-
-      ## importation of articles, nomenclature, tariff
-
       # Regexp to select lines
       KN_REGEXP = /^(K|N)/
 
       # import in catalog DB articles from Sage
       def self.import_articles
-        AspawayImporter.new('Catalogue/Articles/Articles.slk').fetch
-        slk_file = File.join(TRANSFERT_ARTICLE_DIR, 'Articles.slk')
-        csv_file = File.join(TRANSFERT_ARTICLE_DIR, 'Articles.csv')
-        WinFile.convert_from_sylk(slk_file, csv_file)
-        Sql.extract_file_and_load(csv_file, CATALOG_MODE, KN_REGEXP, ARTICLE_SQL)
+        CatalogImporter.new('Articles', 'Articles.slk', 'Articles.csv',
+                            ARTICLE_SQL, :convert_from_sylk)
+        .import
       end
 
-      # import in DB nomenclature from Sage
+      # import in catalog DB nomenclature from Sage
       def self.import_nomenclature
-        AspawayImporter.new('Catalogue/Nomenclatures/Nomenclatures.slk').fetch
-        slk_file = File.join(TRANSFERT_NOMENCLATURE_DIR, 'Nomenclatures.slk')
-        csv_file = File.join(TRANSFERT_NOMENCLATURE_DIR, 'Nomenclatures.csv')
-        WinFile.convert_from_sylk(slk_file, csv_file)
-        Sql.extract_file_and_load(csv_file, CATALOG_MODE, KN_REGEXP, NOMENCLATURE_SQL)
+        CatalogImporter.new('Nomenclatures', 'Nomenclatures.slk', 'Nomenclatures.csv',
+                            NOMENCLATURE_SQL, :convert_from_sylk)
+        .import
       end
 
       # import in catalog DB tariffs from Sage
       def self.import_tariffs
-        AspawayImporter.new('Catalogue/Tarifs/Tarifs.csv').fetch
-        csv_file = File.join(TRANSFERT_TARIFF_DIR, 'Tarifs.csv')
-        utf8_file = File.join(TRANSFERT_TARIFF_DIR, 'Tarifs-utf8.csv')
-        WinFile.convert_to_unicode(csv_file, utf8_file)
-        Sql.extract_file_and_load(utf8_file, CATALOG_MODE, KN_REGEXP, TARIFF_SQL)
+        CatalogImporter.new('Tarifs', 'Tarifs.csv', 'Tarifs-utf8.csv',
+                            TARIFF_SQL, :convert_to_unicode)
+        .import
       end
 
-      ## importation of stock
+      ### importation of stock
+
+      # transfer directory for stock
+      TRANSFERT_STOCK_DIR = File.join(TRANSFERT_DIR, 'Catalogue', 'Stock')
+
+      # sql fragment for stock
+      STOCK_SQL = SqlScriptFile.new('catalog_tariff').script
 
       # Regexp to select lines and extract catalog data
       CAT_REGEXP = /^(?<item>N\w*)\t+(?<qty>\d*).*/
@@ -117,6 +140,6 @@ end
 if $PROGRAM_NAME == __FILE__
 
   include JacintheManagement
-  Catalog.import_tariffs
+  Core::Catalog.import_articles
 
 end
