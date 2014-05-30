@@ -41,7 +41,7 @@ module JacintheManagement
         load_tables_in_modules
       end
 
-      # drop and create databse
+      # drop and recreate databose
       # @param [STRING] database name of base to recreate
       def self.recreate_database(database)
         puts "Drop db #{database}"
@@ -87,6 +87,7 @@ module JacintheManagement
 
       # load library and views in modules
       def self.load_db_modules
+        puts "Loading modules"
         Sql.pipe_files_in_directory(JACINTHE_MODE, SQL_MODULE_DIR, '**/*.sql', /Views/)
         Sql.pipe_files_in_directory(JACINTHE_MODE, SQL_MODULE_DIR, '**/Views/*.sql')
         puts 'Reloading /Sage/export_client_sage.sql with special rights'
