@@ -87,7 +87,7 @@ module JacintheManagement
 
       # load library and views in modules
       def self.load_db_modules
-        puts "Loading modules"
+        puts 'Loading modules'
         Sql.pipe_files_in_directory(JACINTHE_MODE, SQL_MODULE_DIR, '**/*.sql', /Views/)
         Sql.pipe_files_in_directory(JACINTHE_MODE, SQL_MODULE_DIR, '**/Views/*.sql')
         puts 'Reloading /Sage/export_client_sage.sql with special rights'

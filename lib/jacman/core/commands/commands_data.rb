@@ -8,7 +8,7 @@
 
 module JacintheManagement
   module Core
-# command : interface between scripts and GUI
+    # command : interface between scripts and GUI
     class Command
       JED_HELP = <<END_JED_HELP
 Cette commande permet de faire un dump total

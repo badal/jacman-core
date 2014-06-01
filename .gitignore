@@ -5,3 +5,4 @@
 /doc
 /.yardoc
 /lib/my_config.rb
+Gemfile.lock

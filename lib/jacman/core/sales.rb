@@ -17,7 +17,6 @@ module JacintheManagement
         extract_and_load_csv_files
         run_patch
         inject_in_database
-      #  check_remaining_sales
       end
 
       # Transfer directory for Sage sales

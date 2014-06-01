@@ -55,7 +55,7 @@ et pour lesquels l'accusé de réception
 n'a pas été reçu.
 END_DIR_HELP
 
-# @return [Command] import sales from GESCOM
+      # @return [Command] import sales from GESCOM
       def self.gr
         new('gr', 'Ré-exporter clients',
             ['Envoyer à nouveau',

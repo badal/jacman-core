@@ -12,10 +12,18 @@ module JacintheManagement
     class Command
       # directory where cron_execute writes his files
       CRON_DIR = File.join(DATADIR, 'Cron')
+
       # run the named command with cron reports
       # @param [String] call_name name of the command to be 'cron_executed'
       def self.cron_run(call_name)
-        send(call_name).cron_execute
+        fetch(call_name).cron_execute
+      end
+
+      # FIXME: add protection
+      # fetch the named command
+      # @param [String] call_name name of the command
+      def self.fetch(call_name)
+        send(call_name)
       end
 
       attr_reader :call_name, :title, :long_title, :proc, :help_text

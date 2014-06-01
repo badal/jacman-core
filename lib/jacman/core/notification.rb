@@ -148,10 +148,9 @@ module JacintheManagement
         number = tiers_list.size
         tiers_list.each do |tiers_id|
           done = Notify.new(tiers_id).notify
-          unless done
-            number -= 1
-            puts "notification impossible pour le tiers #{tiers_id}"
-          end
+          next if done
+          number -= 1
+          puts "notification impossible pour le tiers #{tiers_id}"
         end
         puts "#{number} mails(s) de notification envoyé(s)"
       end
