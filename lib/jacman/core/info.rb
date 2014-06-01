@@ -13,7 +13,7 @@ module JacintheManagement
       class << self
         attr_reader :values
 
-        LEGENDS = [
+        CAPTIONS = [
           'ventes non importées',
           'fichiers clients en cours',
           'clients à exporter',
@@ -37,8 +37,8 @@ module JacintheManagement
         # @return [Array<String>] lines reporting state of things
         def report
           refresh_values
-          LEGENDS.zip(@values).map do |legend, value|
-            "#{value} #{legend}"
+          CAPTIONS.zip(@values).map do |caption, value|
+            "#{value} #{caption}"
           end
         end
       end
