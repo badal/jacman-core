@@ -24,8 +24,6 @@ end
 module JacintheManagement
   # configuration methods
   module Conf
-    # path of configuration yaml file
-    CONFIG_FILE = File.join(File.dirname(__FILE__), 'config.ini')
 
     # fetch and cache configuration
     # @return [Hash] configuration hash

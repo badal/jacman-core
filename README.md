@@ -4,13 +4,13 @@
   Command line only part of Jacinthe management tools, extracted from Jacman as a gem
 
 ## Version
-  1.2
+  1.2.1
 
 ## Synopsis
 Can be used, either as a gem, or directly through three script tools.
 
 ## Configuration
-File `config.ini`.
+YAML File to be found in ENV['JACMAN_CONFIG']
 
 ## Usage : batch
 

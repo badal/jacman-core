@@ -1,4 +1,7 @@
 # jacman-core
+
+## [v1.2.1]
+* config in ENV['JACMAN_CONFIG']
 * moved constants inside Core module
 
 ## [v1.2]

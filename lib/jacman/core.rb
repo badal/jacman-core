@@ -20,11 +20,15 @@ require 'net/sftp'
 require 'net/smtp'
 
 # local config
+
 require_relative '../my_config.rb'
 require_relative '../config.rb'
 
 # script methods for Jacinthe Management
 module JacintheManagement
+  # path of configuration yaml file
+  CONFIG_FILE = ENV['JACMAN_CONFIG']
+
   # core methods for Jacinthe manager
   module Core
     # tab character for csv files
