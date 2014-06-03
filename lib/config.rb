@@ -24,7 +24,6 @@ end
 module JacintheManagement
   # configuration methods
   module Conf
-
     # fetch and cache configuration
     # @return [Hash] configuration hash
     def self.config

@@ -20,8 +20,6 @@ require 'net/sftp'
 require 'net/smtp'
 
 # local config
-
-require_relative '../my_config.rb'
 require_relative '../config.rb'
 
 # script methods for Jacinthe Management
