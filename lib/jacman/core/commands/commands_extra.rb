@@ -24,7 +24,7 @@ END_TB_HELP
             ['Construire le tableau de bord',
              'du jour et l\'envoyer aux',
              'destinataires fixés'],
-            -> { Report.mail_executive_report },
+            -> { Report.mail_dashboard },
             TB_HELP)
       end
     end

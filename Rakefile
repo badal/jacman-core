@@ -12,6 +12,7 @@ spec = Gem::Specification.new do |s|
   s.extra_rdoc_files = %w(README.md LICENSE)
   s.summary = 'Script tools (core) for Jacinthe DB management'
   s.description = 'Script tools (core) for Jacinthe DB management'
+  s.homepage = 'http://github/badal/jacman-core'
 
   s.add_development_dependency('rake')
   s.add_development_dependency('yard')

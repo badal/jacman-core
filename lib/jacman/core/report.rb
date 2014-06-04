@@ -23,18 +23,18 @@ module JacintheManagement
 
       # WARNING: calling j2r-core gem
       # @return [Path] pdf report file
-      def self.executive_report
-        require 'j2r/core/executive_report.rb'
+      def self.dashboard
+        require 'j2r/core/dashboard.rb'
         connect_mode = 'exploitation'
         dir = File.join(DATADIR, 'Archives')
         include JacintheReports
-        JacintheReports::ExecutiveReport.build(connect_mode, dir)
+        JacintheReports::Dashboard.build(connect_mode, dir)
       end
 
       # build, write and send report
       # @param [Array<String>] dest destination addresses
-      def self.mail_executive_report(dest = default_addresses)
-        file = executive_report
+      def self.mail_dashboard(dest = default_addresses)
+        file = dashboard
         date = file.match(/.*_(.*)\.pdf/)[1]
         subject = "Tableau de bord SMF au #{date}"
         mail = Mail.new(dest, subject, MESSAGE)
@@ -49,6 +49,6 @@ end
 if __FILE__ == $PROGRAM_NAME
 
   require_relative '../core.rb'
-  JacintheManagement::Core::Report.mail_executive_report(%w(michel@demazure.com))
+  JacintheManagement::Core::Report.mail_dashboard(%w(michel@demazure.com))
 
 end

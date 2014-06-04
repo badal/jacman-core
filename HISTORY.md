@@ -1,6 +1,6 @@
 # jacman-core
-## [v1.2.2]
-* calling new j2r/core/executive_report
+## [v1.2.2 - 1.2.3]
+* calling new j2r/core/dashboard
 
 ## [v1.2.1]
 * config in ENV['JACMAN_CONFIG']
