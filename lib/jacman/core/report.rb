@@ -21,14 +21,14 @@ module JacintheManagement
         Defaults.defaults[:report]
       end
 
-      # WARNING: calls j2r-core gem
+      # WARNING: calling j2r-core gem
       # @return [Path] pdf report file
       def self.executive_report
-        require 'j2r/core/audits/tableau_de_bord.rb'
+        require 'j2r/core/executive_report.rb'
         connect_mode = 'exploitation'
         dir = File.join(DATADIR, 'Archives')
         include JacintheReports
-        JacintheReports::Audits.executive_report_file(connect_mode, dir)
+        JacintheReports::ExecutiveReport.build(connect_mode, dir)
       end
 
       # build, write and send report
