@@ -26,6 +26,7 @@ require_relative '../config.rb'
 module JacintheManagement
   # path of configuration yaml file
   CONFIG_FILE = ENV['JACMAN_CONFIG']
+  fail "Le fichier de configuration n'existe pas" unless CONFIG_FILE
 
   # core methods for Jacinthe manager
   module Core
@@ -37,7 +38,7 @@ module JacintheManagement
     # to be used for aspaway_importer when REAL is false
     SMF2_PASSWORD = Conf.config['smf2_password']
 
-    # MySql command
+    # MySql commands
     MYSQL = Conf.mysql['command']
     # MySQL dump system command
     MYSQLDUMP = Conf.mysql['dump_command']
