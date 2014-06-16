@@ -12,13 +12,13 @@ Can be used, either as a gem, or directly through three script tools.
 ## Configuration
 YAML File, path to be given in ENV['JACMAN_CONFIG']
 
-## Usage : batch
+## Usage : batch commands in _bin_ directory
 
   * `batman`  : batch manager for plain users (usual commands)
   * `cronman` : batch manager for cron daemon with reports in files
   * `jacdev`  : batch manager for developers (reserved commands).
   
-Usage : `ruby batman.rb <call_name>`, idem for `cronman` or `jacdev`. 
+Usage : `ruby batman <call_name>`, idem for `cronman` or `jacdev`. 
 
 ## Usage : gem API
 
