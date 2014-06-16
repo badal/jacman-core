@@ -23,6 +23,8 @@ end
 
 module JacintheManagement
   # configuration methods
+  # Conf methods are only used only in core.rb
+  #    to build JacintheManagement::Core constants
   module Conf
     # fetch and cache configuration
     # @return [Hash] configuration hash

@@ -39,9 +39,9 @@ module JacintheManagement
     SMF2_PASSWORD = Conf.config['smf2_password']
 
     # MySql commands
-    MYSQL = Conf.mysql['command']
+    MYSQL = "#{Conf.mysql['command']} --host #{Conf.mysql['host']}"
     # MySQL dump system command
-    MYSQLDUMP = Conf.mysql['dump_command']
+    MYSQLDUMP = "#{Conf.mysql['dump_command']} --host #{Conf.mysql['host']}"
 
     # databases
     JACINTHE_DATABASE = Conf.config['databases']['jacinthe']
