@@ -7,11 +7,8 @@
 ## Structure problems
 * fix 'aspaway-importer' config !
 
-### gems problem
-* necessary gems for tb (sequel...) added in Gemfile and Rakefile
-
 ### Fix MODEL_DIRECTORY
-* changed in my_config : move content in SMF_SRVER
+* changed in my_config : move content in SMF_SERVER
 
 ### TO BE ADDED
 * IPv6 ranges !

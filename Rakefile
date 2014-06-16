@@ -10,8 +10,8 @@ spec = Gem::Specification.new do |s|
   s.version = JacintheManagement::Core::VERSION
   s.has_rdoc = true
   s.extra_rdoc_files = %w(README.md LICENSE)
-  s.summary = 'Script tools (core) for Jacinthe DB management'
-  s.description = 'Script tools (core) for Jacinthe DB management'
+  s.summary = 'Core methods for Jacinthe DB management'
+  s.description = 'Core and Script tools for Jacinthe DB management'
   s.homepage = 'http://github/badal/jacman-core'
 
   s.add_development_dependency('rake')
@@ -29,6 +29,7 @@ spec = Gem::Specification.new do |s|
   s.author = 'Michel Demazure'
   s.email = 'michel@demazure.com'
   s.files = %w(LICENSE README.md HISTORY.md MANIFEST Rakefile) + Dir.glob('{lib,spec}/**/*')
+  s.executables = %w(batman cronman jacdev)
   s.require_path = 'lib'
   s.bindir = 'bin'
 end
@@ -42,7 +43,7 @@ end
 
 desc 'build Manifest'
 task :manifest do
-  system ' mast lib spec HISTORY.md LICENSE Rakefile README.md > MANIFEST '
+  system ' mast bin lib spec HISTORY.md LICENSE Rakefile README.md > MANIFEST '
 end
 
 YARD::Rake::YardocTask.new do |t|

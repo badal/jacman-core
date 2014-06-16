@@ -48,7 +48,7 @@ end
 
 if __FILE__ == $PROGRAM_NAME
 
-  require_relative '../core.rb'
+  require_relative '../../core.rb'
   JacintheManagement::Core::Report.mail_dashboard(%w(michel@demazure.com))
 
 end
