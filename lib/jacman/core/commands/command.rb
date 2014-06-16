@@ -19,7 +19,7 @@ module JacintheManagement
         fetch(call_name).cron_execute
       end
 
-      # FIXME: add protection
+      # FIXME: add protection and error management
       # fetch the named command
       # @param [String] call_name name of the command
       def self.fetch(call_name)

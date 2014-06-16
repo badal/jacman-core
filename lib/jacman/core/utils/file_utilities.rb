@@ -34,7 +34,7 @@ module JacintheManagement
       # Create a directory if non existent
       # @param [Path] dir path of directory to be created
       # @param [Integer] permissions
-      def self.make_dir_if_necessary(dir, permissions)
+      def self.make_dir_if_necessary(dir, permissions = 0733)
         Dir.mkdir(dir, permissions) unless File.directory?(dir)
       end
 
