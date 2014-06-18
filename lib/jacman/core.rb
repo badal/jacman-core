@@ -51,6 +51,7 @@ module JacintheManagement
 
     # connection modes
     JACINTHE_MODE = Conf.admin_mode.merge(database: JACINTHE_DATABASE)
+    ROOT_MODE = Conf.root_mode
     JACINTHE_ROOT_MODE = Conf.root_mode.merge(database: JACINTHE_DATABASE)
     CATALOG_MODE = Conf.admin_mode.merge(database: CATALOG_DATABASE)
 

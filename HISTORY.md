@@ -1,4 +1,7 @@
 # jacman-core
+## [v1.2.5]
+* added bin and executables in gemspec
+
 ## [v1.2.4]
 * added  parametrized host in MYSQL and MSQLDUMP commands
 

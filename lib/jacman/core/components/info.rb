@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# encoding: utf-8/
+# encoding: utf-8
 
 # File: info
 # Created: 9/12/2013
