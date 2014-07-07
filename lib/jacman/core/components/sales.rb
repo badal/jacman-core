@@ -41,7 +41,7 @@ module JacintheManagement
 
       # fetch SYLK file from smf-2
       def self.fetch_aspaway_file
-        AspawayImporter.new(FILE_TO_IMPORT).fetch
+        AspawayImporter.fetch(FILE_TO_IMPORT)
       end
 
       # convert Sylk sales file to CSV

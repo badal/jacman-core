@@ -4,7 +4,7 @@
   Command line only part of Jacinthe management tools, extracted from Jacman as a gem
 
 ## Version
-  1.2.5
+  1.2.6
 
 ## Synopsis
 Can be used, either as a gem, or directly through three script tools.

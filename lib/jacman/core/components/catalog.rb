@@ -45,7 +45,7 @@ module JacintheManagement
 
         # fetch initial from Aspaway
         def fetch
-          AspawayImporter.new(@initial_path).fetch
+          AspawayImporter.fetch(@initial_path)
         end
 
         # convert initial to converted
@@ -123,7 +123,7 @@ module JacintheManagement
 
       # build Stock csv file by extracting lines from Stock txt file
       def self.build_stock_csv_file
-        AspawayImporter.new('Catalogue/Stock/Stock.txt').fetch
+        AspawayImporter.fetch('Catalogue/Stock/Stock.txt')
         puts 'Building Stock utf-8 file'
         txt_file = File.join(TRANSFERT_STOCK_DIR, 'Stock.txt')
         utf8_file = File.join(TRANSFERT_STOCK_DIR, 'Stock_utf8.txt')

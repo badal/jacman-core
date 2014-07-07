@@ -1,4 +1,7 @@
 # jacman-core
+## [v1.2.6]
+* added gemspec
+
 ## [v1.2.5]
 * added bin and executables in gemspec
 

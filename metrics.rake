@@ -48,7 +48,6 @@ namespace :metrics do
     puts `wc metrics/rubocop_spec.txt`
   end
 
-
   desc 'Flog, flay, reek, saikuro'
   task :all_checks => [:flog, :flay, :reek, :saikuro]
 

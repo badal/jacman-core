@@ -1,49 +1,20 @@
-require 'rubygems/package_task'
+# encoding: utf-8
+
 require 'yard'
 require 'yard/rake/yardoc_task'
 require 'rake/testtask'
 
 require_relative 'lib/jacman/core/version.rb'
 
-spec = Gem::Specification.new do |s|
-  s.name = 'jacman-core'
-  s.version = JacintheManagement::Core::VERSION
-  s.has_rdoc = true
-  s.extra_rdoc_files = %w(README.md LICENSE)
-  s.summary = 'Core methods for Jacinthe DB management'
-  s.description = 'Core and Script tools for Jacinthe DB management'
-  s.homepage = 'http://github/badal/jacman-core'
-
-  s.add_development_dependency('rake')
-  s.add_development_dependency('yard')
-  s.add_development_dependency('minitest')
-  s.add_development_dependency('minitest-reporters')
-
-  s.add_dependency('net-ssh')
-  s.add_dependency('net-scp')
-  s.add_dependency('net-sftp')
-  s.add_dependency('mysql2', '0.3.13')
-  s.add_dependency('sequel')
-  s.add_dependency('prawn')
-
-  s.author = 'Michel Demazure'
-  s.email = 'michel@demazure.com'
-  s.files = %w(LICENSE README.md HISTORY.md MANIFEST Rakefile) + Dir.glob('{lib,spec}/**/*')
-  s.executables = %w(batman cronman jacdev)
-  s.require_path = 'lib'
-  s.bindir = 'bin'
-end
-
-Gem::PackageTask.new(spec) do |p|
-  p.package_dir = ENV['LOCAL_GEMS']
-  p.gem_spec = spec
-  # p.need_tar = true
-  # p.need_zip = true
+desc 'build gem file'
+task :build_gem do
+  system 'gem build jacman-core.gemspec'
+  FileUtils.cp(Dir.glob('*.gem'), ENV['LOCAL_GEMS'])
 end
 
 desc 'build Manifest'
 task :manifest do
-  system ' mast bin lib spec HISTORY.md LICENSE Rakefile README.md > MANIFEST '
+  system ' mast bin lib spec HISTORY.md LICENSE Rakefile README.md *.gemspec > MANIFEST '
 end
 
 YARD::Rake::YardocTask.new do |t|

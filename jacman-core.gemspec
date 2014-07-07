@@ -1,8 +1,9 @@
-# -*- encoding: utf-8 -*-
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'jacman/core/version'
+# encoding: utf-8
 
+dir = File.dirname(__FILE__)
+$LOAD_PATH.unshift(dir) unless $LOAD_PATH.include?(dir)
+
+require 'lib/jacman/core/version'
 
 Gem::Specification.new do |s|
   s.name = "jacman-core"
@@ -12,10 +13,11 @@ Gem::Specification.new do |s|
   s.email = "michel@demazure.com"
   s.executables = ["batman", "cronman", "jacdev"]
   s.extra_rdoc_files = ["README.md", "LICENSE"]
-  s.files = ["bin/batman", "bin/cronman", "bin/jacdev", "README.md", "LICENSE"]
+  s.files = ["README.md", "LICENSE", "MANIFEST"] + Dir.glob('{bin,lib,spec}/**/*')
   s.homepage = "http://github/badal/jacman-core"
   s.require_paths = ["lib"]
-  s.summary = "Core methods for Jacinthe DB management"
+  s.bindir = 'bin'
+  s.summary = "Core methods for Jacinthe DB management tools"
 
   s.add_development_dependency(%q<rake>, [">= 0"])
   s.add_development_dependency(%q<yard>, [">= 0"])
@@ -28,5 +30,4 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency(%q<mysql2>, ["= 0.3.13"])
   s.add_runtime_dependency(%q<sequel>, [">= 0"])
   s.add_runtime_dependency(%q<prawn>, [">= 0"])
-
 end

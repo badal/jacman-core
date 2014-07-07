@@ -1,4 +1,4 @@
-#!mast bin lib spec HISTORY.md LICENSE Rakefile README.md
+#!mast bin lib spec HISTORY.md LICENSE Rakefile README.md jacman-core.gemspec
 bin/batman
 bin/cronman
 bin/jacdev
@@ -90,3 +90,4 @@ HISTORY.md
 LICENSE
 Rakefile
 README.md
+jacman-core.gemspec

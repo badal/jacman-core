@@ -24,7 +24,7 @@ module JacintheManagement
 
       # @param [String] cmd call_name of command
       def initialize(cmd)
-        @command = Command.send(cmd)
+        @command = Command.fetch(cmd)
         @stdout_file = @command.stdout_file
         @stderr_file = @command.stderr_file
       end

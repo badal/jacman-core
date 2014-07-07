@@ -7,6 +7,7 @@
 # (c) Michel Demazure <michel@demazure.com>
 
 # script methods for JacintheManagement
+
 module JacintheManagement
   # core methods for JacMan
   module Core
@@ -21,6 +22,11 @@ module JacintheManagement
 
     # Methods for accessing and fetching Aspaway files on smf-2
     class AspawayImporter
+      # @param [Path] local_path path of destination file w.r. to transferts directories
+      def self.fetch(local_path)
+        new(local_path).fetch
+      end
+
       # @param [Path] local_path path of destination file w.r. to transferts directories
       def initialize(local_path)
         @local_path = local_path
@@ -63,10 +69,7 @@ module JacintheManagement
 end
 
 if __FILE__ == $PROGRAM_NAME
-
-  require_relative '../core.rb'
-
-  include JacintheManagement
+  include JacintheManagement::Core
   importer = AspawayImporter.new('DocVente/Ventes.slk')
   puts 'Time of aspaway file'
   before = Time.now
