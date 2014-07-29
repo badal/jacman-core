@@ -23,21 +23,36 @@ module JacintheManagement
       def initialize(tiers_id)
         @tiers = Notification.find_tiers(tiers_id)
         @subscriptions = Notification.to_be_notified_for(tiers_id)
+        extract_destinations if @tiers
+      end
+
+      # extract french and other addresses
+      def extract_destinations
+        destinations = @tiers.mails.group_by { |dest| dest.split('.').last == 'fr' }
+        @french = destinations[true]
+        @other = destinations[false]
       end
 
       # do notification for this tiers
-      # WARNING: first line is HACK for invalid tiers
+      # @return [Bool] whether notifications were done
       def notify
-        return false unless @tiers
-        destinations = @tiers.mails.group_by { |dest| dest.split('.').last == 'fr' }
-        french = destinations[true]
-        other = destinations[false]
-        notify_french(french) if french
-        notify_english(other) if other
-        # register if mails is empty ?
-        register_tiers unless french || other
-        say_notified
-        true
+        return false unless @tiers # invalid tiers_id
+        if @french || @other
+          done = notify_all_destinations
+          say_notified if done
+          done
+        else # no mail
+          register_tiers
+          false
+        end
+      end
+
+      # send all notification mails
+      # @return [Bool] whether all possible notifications were done
+      def notify_all_destinations
+        done_french = !@french || notify_french(@french)
+        done_other = !@other || notify_english(@other)
+        done_french && done_other
       end
 
       # send notification in french to this address
@@ -89,8 +104,10 @@ module JacintheManagement
       def mail(dest, subject, content)
         mail_to_send = Mail.new(dest, subject, content)
         puts REAL ? mail_to_send.send : mail_to_send.demo
+        true
       rescue StandardError => err
         puts report_error(err.message, dest)
+        false
       end
 
       # @param [String] message erreur
