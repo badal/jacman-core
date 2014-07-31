@@ -6,9 +6,9 @@
 # (c) Kenji Lefevre & Michel Demazure
 
 require_relative 'spec_helper.rb'
-require_relative '../lib/jacman/core/electronic/octet_range.rb'
-require_relative '../lib/jacman/core/electronic/ip_range.rb'
-require_relative '../lib/jacman/core/electronic/subscription.rb'
+require_relative '../lib/jacman/core/components/electronic/octet_range.rb'
+require_relative '../lib/jacman/core/components/electronic/ip_range.rb'
+require_relative '../lib/jacman/core/components/electronic/subscription.rb'
 
 include Electronic
 

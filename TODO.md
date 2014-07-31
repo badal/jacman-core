@@ -1,8 +1,10 @@
 # jacman-core TODO list
 
 ## Dependency injections
-* Fix core/report.rb : link to j2r_core, via gems !
 * defaults.ini
+
+## FIX
+* protect Core::Command.fetch
 
 ## Structure problems
 * fix 'aspaway-importer' config !
