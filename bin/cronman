@@ -6,6 +6,6 @@
 #
 # (c) Michel Demazure <michel@demazure.com>
 
-require 'jacman/core.rb'
+require 'jacman/core'
 
 JacintheManagement::Core::Command.cron_run(ARGV)

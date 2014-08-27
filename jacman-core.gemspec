@@ -27,7 +27,5 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency(%q<net-ssh>, [">= 0"])
   s.add_runtime_dependency(%q<net-scp>, [">= 0"])
   s.add_runtime_dependency(%q<net-sftp>, [">= 0"])
-  s.add_runtime_dependency(%q<mysql2>, ["= 0.3.13"])
-  s.add_runtime_dependency(%q<sequel>, [">= 0"])
-  s.add_runtime_dependency(%q<prawn>, [">= 0"])
+  s.add_runtime_dependency(%q<j2r-core>, [">= 0"])
 end

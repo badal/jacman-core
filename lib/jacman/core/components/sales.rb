@@ -17,6 +17,7 @@ module JacintheManagement
         extract_and_load_csv_files
         run_patch
         inject_in_database
+        check_remaining_sales
       end
 
       # Transfer directory for Sage sales
@@ -55,6 +56,7 @@ module JacintheManagement
         lines = File.readlines(VENTES_CSV, encoding: 'utf-8')
         lines.each do |line|
           line.sub!(/NCTEXASI/, 'NVAU0099')
+          line.sub!(/KCTEXASI/, 'KCAU0099')
         end
         File.open(VENTES_CSV, 'w:utf-8') do |file|
           lines.each { |line| file.puts(line) }
@@ -135,9 +137,9 @@ module JacintheManagement
 end
 
 if __FILE__ == $PROGRAM_NAME
-  require_relative('../core.rb')
+  require_relative('../../core.rb')
 
   include JacintheManagement
-  Sales.import_sales
+  Core::Sales.import_sales
 
 end
