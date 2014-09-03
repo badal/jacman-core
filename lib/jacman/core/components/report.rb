@@ -24,7 +24,6 @@ module JacintheManagement
       # WARNING: calling j2r-core gem
       # @return [Path] pdf report file
       def self.dashboard
-        require 'j2r/core/dashboard.rb'
         connect_mode = 'exploitation'
         dir = File.join(DATADIR, 'Archives')
         include JacintheReports
