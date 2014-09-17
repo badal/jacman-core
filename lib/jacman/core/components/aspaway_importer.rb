@@ -7,14 +7,13 @@
 # (c) Michel Demazure <michel@demazure.com>
 
 # script methods for JacintheManagement
-
 module JacintheManagement
   # core methods for JacMan
   module Core
     SMF2_MODE = {
-      host: 'smf-2.ihp.fr',
-      user: 'smf',
-      directory: '/home/Aspaway/transfert'
+        host: 'smf-2.ihp.fr',
+        user: 'smf',
+        directory: '/home/Aspaway/transfert'
     }
 
     # in REAL mode, use ssh key, else use password
@@ -22,11 +21,6 @@ module JacintheManagement
 
     # Methods for accessing and fetching Aspaway files on smf-2
     class AspawayImporter
-      # @param [Path] local_path path of destination file w.r. to transferts directories
-      def self.fetch(local_path)
-        new(local_path).fetch
-      end
-
       # @param [Path] local_path path of destination file w.r. to transferts directories
       def initialize(local_path)
         @local_path = local_path
@@ -54,14 +48,13 @@ module JacintheManagement
           ls = ssh.exec!("stat --format=%Y #{@remote}")
           Time.at(ls.to_i)
         end
+      rescue => err
+        Time.at(0)
       end
-
-      # TODO: add a method to delete the aspaway file
 
       # used for checking client_sage files
       # @return [Boolean] whether a remote file exists with the same name
       def returned
-        # time_of_file > File.mtime(@local) # not Threadsafe
         time_of_file > Time.at(0)
       end
     end
@@ -69,7 +62,10 @@ module JacintheManagement
 end
 
 if __FILE__ == $PROGRAM_NAME
-  include JacintheManagement::Core
+
+  require_relative '../core.rb'
+
+  include JacintheManagement
   importer = AspawayImporter.new('DocVente/Ventes.slk')
   puts 'Time of aspaway file'
   before = Time.now

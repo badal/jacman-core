@@ -14,8 +14,8 @@ module JacintheManagement
       def self.import_sales
         fetch_aspaway_file
         build_global_csv_file
-        extract_and_load_csv_files
         run_patch
+        extract_and_load_csv_files
         inject_in_database
         check_remaining_sales
       end
@@ -26,10 +26,8 @@ module JacintheManagement
       # File for not imported sales
       REMAINING_SALES_FILE = File.join(TRANSFERT_DOC_VENTE_DIR, 'ventes_non_importees.txt')
 
-      # slk sales file (absolute)
+      # slk sales file
       VENTES_SLK = File.join(TRANSFERT_DOC_VENTE_DIR, 'Ventes.slk')
-      # slk sales file (relative to Transfer directory)
-      FILE_TO_IMPORT = 'DocVente/Ventes.slk'
 
       # CSV format of Sage sales data
       VENTES_CSV = File.join(TRANSFERT_DOC_VENTE_DIR, 'Ventes.csv')
@@ -40,9 +38,10 @@ module JacintheManagement
       # sql command to list non imported sales
       SHOW_SQL = SqlScriptFile.new('show_non_imported').script
 
+      # FIXME: SMELL: constant coupling
       # fetch SYLK file from smf-2
       def self.fetch_aspaway_file
-        AspawayImporter.fetch(FILE_TO_IMPORT)
+        AspawayImporter.new('DocVente/Ventes.slk').fetch
       end
 
       # convert Sylk sales file to CSV
@@ -81,16 +80,16 @@ module JacintheManagement
       def self.extract_and_load(regexp, filename)
         in_file = VENTES_CSV
         out_file = File.join(TRANSFERT_DOC_VENTE_DIR, "#{filename}-#{Utils.my_date}.csv")
-        Sql.filter_and_load(in_file, out_file, JACINTHE_MODE, regexp, DOCUMENT_SQL)
+        Sql.filter_and_load(in_file, out_file, ADMIN_MODE, regexp, DOCUMENT_SQL)
         Utils.archive(TRANSFERT_DOC_VENTE_DIR, out_file)
         File.delete(out_file)
       end
 
       # call SQL command 'import sage document'
       def self.inject_in_database
-        puts 'Launch import_sage_document() in Jacinthe database}'
+        puts "Launch import_sage_document() in DB #{JACINTHE_DATABASE}"
         command = 'call import_sage_document();'
-        puts Sql.answer_to_query(JACINTHE_MODE, command)
+        Sql.query(ADMIN_MODE, command)
       end
 
       # report non imported sales lines
@@ -107,7 +106,7 @@ module JacintheManagement
 
       # @return [Array<String>] lines reporting non imported sales
       def self.remaining_sales
-        lines = Sql.answer_to_query(JACINTHE_MODE, SHOW_SQL)
+        lines = Sql.answer_to_query(ADMIN_MODE, SHOW_SQL)
         lines.each_slice(4).map do |slice|
           slice[1..-1].map(&:chomp).join(', ')
         end
@@ -115,7 +114,7 @@ module JacintheManagement
 
       # @return [Integer] number of remaining sales
       def self.remaining_sales_number
-        lines = Sql.answer_to_query(JACINTHE_MODE, SHOW_SQL)
+        lines = Sql.answer_to_query(ADMIN_MODE, SHOW_SQL)
         lines.size / 4
       end
 
@@ -137,9 +136,10 @@ module JacintheManagement
 end
 
 if __FILE__ == $PROGRAM_NAME
-  require_relative('../../core.rb')
 
+  require_relative('../../../lib/my_config.rb')
+  require_relative('../../../lib/jacman/core.rb')
   include JacintheManagement
-  Core::Sales.import_sales
+  puts Sales.remaining sales
 
 end
