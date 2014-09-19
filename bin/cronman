@@ -8,4 +8,4 @@
 
 require 'jacman/core'
 
-JacintheManagement::Core::Command.cron_run(ARGV)
+JacintheManagement::Core::Command.cron_run(ARGV.first)
