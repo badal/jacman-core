@@ -11,12 +11,10 @@ Gem::Specification.new do |s|
   s.authors = ["Michel Demazure"]
   s.description = "Core and Script tools for Jacinthe DB management"
   s.email = "michel@demazure.com"
-  s.executables = ["batman", "cronman", "jacdev"]
   s.extra_rdoc_files = ["README.md", "LICENSE"]
-  s.files = ["README.md", "LICENSE", "MANIFEST"] + Dir.glob('{bin,lib,spec}/**/*')
+  s.files = ["README.md", "LICENSE", "MANIFEST"] + Dir.glob('{lib,spec}/**/*')
   s.homepage = "http://github/badal/jacman-core"
   s.require_paths = ["lib"]
-  s.bindir = 'bin'
   s.summary = "Core methods for Jacinthe DB management tools"
 
   s.add_development_dependency(%q<rake>, [">= 0"])
