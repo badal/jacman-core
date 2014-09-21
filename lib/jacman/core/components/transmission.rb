@@ -9,17 +9,20 @@
 # script methods for JacintheManagement
 module JacintheManagement
   module Core
+
+    KEYS = ['/Users/gestion/.ssh/id_rsa', '/Users/gestion/.ssh/id_rsa_save']
+
     DRUPAL_MODE = {
-      host: 'drupal.mathrice.fr',
-      user: 'kenjil'
+        host: 'drupal.mathrice.fr',
+        user: 'gestionsmf'
     }
     SMF4_MODE = {
-      host: 'smf4.emath.fr',
-      user: 'www-data'
+        host: 'smf4.emath.fr',
+        user: 'www-data'
     }
     ASPAWAY_MODE = {
-      host: '185.7.39.70',
-      user: 'SMF_SFTP'
+        host: '185.7.39.70',
+        user: 'SMF_SFTP'
     }
 
     # transmission methods
@@ -74,7 +77,7 @@ module JacintheManagement
       # @param [String] remote filename
       def self.push_to_smf4_server(local, remote)
         puts "Pushing #{local} to smf4"
-        Net::SCP.start(SMF4_MODE[:host], SMF4_MODE[:user]) do |scp|
+        Net::SCP.start(SMF4_MODE[:host], SMF4_MODE[:user], keys: KEYS) do |scp|
           scp_report(scp.upload!(File.join(DATADIR, local), File.join('postgres', remote)),
                      "uploading #{local} to #{remote}")
         end
@@ -96,7 +99,7 @@ module JacintheManagement
       def self.push_to_aspaway(path)
         puts "pushing #{path} to aspaway"
         remote = File.join('ClientSage', File.basename(path))
-        Net::SFTP.start(ASPAWAY_MODE[:host], ASPAWAY_MODE[:user]) do |sftp|
+        Net::SFTP.start(ASPAWAY_MODE[:host], ASPAWAY_MODE[:user], keys: KEYS) do |sftp|
           sftp.upload!(path, remote)
         end
       rescue Errno::ETIMEDOUT

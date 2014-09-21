@@ -21,6 +21,14 @@ module JacintheManagement
 
     # Methods for accessing and fetching Aspaway files on smf-2
     class AspawayImporter
+      # get file from Aspaway 'transfert' directory on smf-2
+      #    to Transfert directory on SMF_SERVEUR
+      #
+      # @param [Path] local_path path of destination file w.r. to transferts directories
+      def self.fetch(local_path)
+        new(local_path).fetch
+      end
+
       # @param [Path] local_path path of destination file w.r. to transferts directories
       def initialize(local_path)
         @local_path = local_path

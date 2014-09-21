@@ -49,7 +49,7 @@ module JacintheManagement
 
     # @return [Hash] root sql connection mode
     def self.root_mode
-      @root_mode ||= mysql['admin'].symbolize
+      @root_mode ||= mysql['root'].symbolize
     end
 
     # @return [Hash] mailer configuration
