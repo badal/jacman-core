@@ -22,6 +22,10 @@ class Hash
 end
 
 module JacintheManagement
+  # path of configuration yaml file
+  CONFIG_FILE = ENV['JACMAN_CONFIG']
+  fail "Le fichier de configuration n'existe pas" unless CONFIG_FILE
+
   # configuration methods
   # Conf methods are only used only in core.rb
   #    to build JacintheManagement::Core constants

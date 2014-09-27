@@ -29,9 +29,6 @@ require_relative('core/utils/file_utilities.rb')
 
 # script methods for Jacinthe Management
 module JacintheManagement
-  # path of configuration yaml file
-  CONFIG_FILE = ENV['JACMAN_CONFIG']
-  fail "Le fichier de configuration n'existe pas" unless CONFIG_FILE
 
   # core methods for Jacinthe manager
   module Core
