@@ -43,22 +43,22 @@ module JacintheManagement
 
     # @return [Hash] mysql part of configuration
     def self.mysql
-      @mysql = config['mysql']
+      config['mysql']
     end
 
     # @return [Hash] admin sql connection mode
     def self.admin_mode
-      @admin_mode ||= mysql['admin'].symbolize
+      mysql['admin'].symbolize
     end
 
     # @return [Hash] root sql connection mode
     def self.root_mode
-      @root_mode ||= mysql['root'].symbolize
+      mysql['root'].symbolize
     end
 
     # @return [Hash] mailer configuration
     def self.mail_mode
-      @mail_mode ||= config['mail'].symbolize
+      config['mail'].symbolize
     end
   end
 end

@@ -40,21 +40,6 @@ module JacintheManagement
     # to be used for aspaway_importer when REAL is false
     SMF2_PASSWORD = Conf.config['smf2_password']
 
-    # MySql command
-    MYSQL = "#{Conf.mysql['command']} --host #{Conf.mysql['host']}"
-    # MySQL dump command
-    MYSQLDUMP = "#{Conf.mysql['dump_command']} --host #{Conf.mysql['host']}"
-
-    # databases
-    JACINTHE_DATABASE = Conf.config['databases']['jacinthe']
-    CATALOG_DATABASE = Conf.config['databases']['catalog']
-
-    # connection modes
-    JACINTHE_MODE = Conf.admin_mode.merge(database: JACINTHE_DATABASE)
-    ROOT_MODE = Conf.root_mode
-    JACINTHE_ROOT_MODE = Conf.root_mode.merge(database: JACINTHE_DATABASE)
-    CATALOG_MODE = Conf.admin_mode.merge(database: CATALOG_DATABASE)
-
     # paths
     # # free access directory
     SQL_DUMP_DIR = Conf.config['paths']['dump']
@@ -73,6 +58,7 @@ module JacintheManagement
 end
 
 require_relative('core/utils/sql.rb')
+require_relative('core/utils/sql_tools.rb')
 require_relative('core/utils/sql_script_file.rb')
 require_relative('core/utils/sylk2csv.rb')
 require_relative('core/utils/win_file.rb')
