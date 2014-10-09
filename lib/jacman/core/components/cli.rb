@@ -57,8 +57,9 @@ module JacintheManagement
                 @commands.map do |command|
                   "#{command.call_name} : #{command.long_title.join(' ')}"
                 end +
-                ['', 'info : opérations pendantes',
-                 "#{CONFIG_CMD_NAME} : Configuration du manageur"])
+                ['', 'info : Opérations pendantes',
+                 "#{CONFIG_CMD_NAME} : Configuration du manageur",
+                'vers : versions des composantes'])
       end
 
       # @param [String] cmd call name of command
@@ -72,6 +73,13 @@ module JacintheManagement
         end
       end
 
+      # @return [Arrayy<String>] versions of the three base gems
+      def versions
+        ["j2r-jaccess : #{J2R::Jaccess::VERSION}",
+         "j2r-core    : #{J2R::Core::VERSION}",
+         "jacman-core : #{JacintheManagement::Core::VERSION}"]
+      end
+
       # @param [String] cmd command
       # @return [String] answer for this command
       def simple_command(cmd)
@@ -82,6 +90,8 @@ module JacintheManagement
           Info.report.join("\n")
         when 'help'
           help_text.join("\n")
+        when 'vers'
+          versions.join("\n")
         else
           unknown_command(cmd)
         end

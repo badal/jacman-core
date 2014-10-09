@@ -61,6 +61,8 @@ module JacintheManagement
   end
 end
 
+require_relative('core/version.rb')
+
 require_relative('core/utils/sql.rb')
 require_relative('core/utils/sql_tools.rb')
 require_relative('core/utils/sql_script_file.rb')
