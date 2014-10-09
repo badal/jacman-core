@@ -50,6 +50,9 @@ module JacintheManagement
     TRANSFERT_DIR = File.join(SMF_SERVEUR, 'Transfert')
     DATADIR = File.join(SMF_SERVEUR, 'Data')
 
+    # defaults_file
+    DEFAULTS_FILE = Conf.config['paths']['defaults']
+
     # model mail files
     MODEL_DIR = File.join(SMF_SERVEUR, 'Jacinthe', 'Tools', 'Templates', 'Mail')
     # mail smtp server

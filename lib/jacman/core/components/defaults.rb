@@ -11,7 +11,7 @@ module JacintheManagement
     # to manage configuration command
     module Defaults
       # defaults file
-      FILE = File.expand_path('../../defaults.ini', File.dirname(__FILE__))
+      FILE = Core::DEFAULTS_FILE
 
       USAGE = [
         'Commande commune à batman et jacdev. Usage:',
