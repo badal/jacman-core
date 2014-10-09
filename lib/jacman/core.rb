@@ -20,6 +20,7 @@ require 'net/sftp'
 require 'net/smtp'
 
 # j2r dependency
+require 'j2r/jaccess'
 require 'j2r/core'
 
 # local config
