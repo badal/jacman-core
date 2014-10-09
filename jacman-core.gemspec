@@ -25,5 +25,4 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency(%q<net-ssh>, [">= 0"])
   s.add_runtime_dependency(%q<net-scp>, [">= 0"])
   s.add_runtime_dependency(%q<net-sftp>, [">= 0"])
-  s.add_runtime_dependency(%q<j2r-core>, [">= 0"])
 end

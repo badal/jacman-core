@@ -26,8 +26,6 @@ module JacintheManagement
       def self.dashboard
         connect_mode = 'exploitation'
         dir = File.join(DATADIR, 'Archives')
-        require 'j2r/jaccess'
-        require 'J2r/core'
         include JacintheReports
         JacintheReports::Dashboard.build(connect_mode, dir)
       end
