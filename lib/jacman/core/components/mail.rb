@@ -95,10 +95,6 @@ ATTACHEMENT_END
             @header + @message_part +
             '------------ end of mail ------------'
       end
-
-      def essai
-        @attached
-      end
     end
   end
 end
