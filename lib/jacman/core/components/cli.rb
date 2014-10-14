@@ -100,7 +100,7 @@ module JacintheManagement
       # @param [String] cmd call name not recognized
       # @return [String] help text
       def unknown_command(cmd)
-        "Commande inconnue : #{cmd}\n\n#{help_text}"
+        "Commande inconnue : #{cmd}\n\n#{help_text.join("\n")}"
       end
 
       # process the call
