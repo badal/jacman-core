@@ -30,7 +30,6 @@ require_relative('core/utils/file_utilities.rb')
 
 # script methods for Jacinthe Management
 module JacintheManagement
-
   # core methods for Jacinthe manager
   module Core
     # tab character for csv files

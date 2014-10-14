@@ -13,11 +13,11 @@ module JacintheManagement
 
     # for automatic message and file sending
     class Mail
-      # @param [Array<String>] dest destination addresses
       # @param [String] subject subject of mail
       # @return [String] header of message
-      # @param [String] to addresses appearing in header
-      def self.header(dest, subject, to)
+      # @param [Object] dest addresses
+      def self.header(dest, subject)
+        to = Array(dest).join(',')
         header = <<HEADER_END
 Content-Type: multipart/mixed; boundary=#{MARKER}
 MIME-Version: 1.0
@@ -25,20 +25,21 @@ Subject: #{subject}
 From: #{MAIL_MODE[:from]}
 TO: #{to}
 
+--#{MARKER}
 HEADER_END
         header
       end
 
       # @param [String] message content of mail
       # @return [String] encoded message
-      # @param [String] type type of text ('plain', 'html')
-      def self.message_part(message, type)
+      def self.message_part(message)
         part = <<MESSAGE_END
---#{MARKER}
-Content-Type: text/#{type} ; charset=UTF-8
+Content-Type: text/plain ; charset=UTF-8
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 #{message}
 
+--#{MARKER}
 MESSAGE_END
         part
       end
@@ -48,13 +49,11 @@ MESSAGE_END
       # @param [String] message content of mail
       # @param [Array<String>] dest destination addresses
       # @param [String] subject subject of mail
-      # @param [String] to addresses appearing in header
-      # @param [String] type type of text ('plain', 'html')
-      def initialize(dest, subject, message, type = 'plain', to = Array(dest).join(',') )
+      def initialize(dest, subject, message)
         @dest = dest
-        @header = Mail.header(dest, subject, to)
-        @message_part = Mail.message_part(message, type)
-        @attached = []
+        @header = Mail.header(dest, subject)
+        @message_part = Mail.message_part(message)
+        @attached = nil
       end
 
       # @param [Path] path path of file to be attached
@@ -63,23 +62,22 @@ MESSAGE_END
         file_content = File.read(path)
         encoded_content = [file_content].pack('m') # base64
         filename = File.basename(path)
-        to_attach = <<ATTACHEMENT_END
---#{MARKER}
+
+        @attached = <<ATTACHEMENT_END
 Content-Type: application/octet-stream
+MIME-Version: 1.0
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="#{filename}"
 #{encoded_content}
+--#{MARKER}--
 ATTACHEMENT_END
-        @attached << to_attach
       end
 
       # @return [String] packed content to send
       def packed
         packed = @header + @message_part
-        @attached.each do |attached|
-        packed += attached
-        end
-        packed + "--#{MARKER}--"
+        packed += @attached if @attached
+        packed
       end
 
       # Send the mail
@@ -98,4 +96,3 @@ ATTACHEMENT_END
     end
   end
 end
-

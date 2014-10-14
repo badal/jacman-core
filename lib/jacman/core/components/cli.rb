@@ -59,7 +59,7 @@ module JacintheManagement
                 end +
                 ['', 'info : Opérations pendantes',
                  "#{CONFIG_CMD_NAME} : Configuration du manageur",
-                'vers : versions des composantes'])
+                 'vers : versions des composantes'])
       end
 
       # @param [String] cmd call name of command

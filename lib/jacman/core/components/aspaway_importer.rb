@@ -11,9 +11,9 @@ module JacintheManagement
   # core methods for JacMan
   module Core
     SMF2_MODE = {
-        host: 'smf-2.ihp.fr',
-        user: 'smf',
-        directory: '/home/Aspaway/transfert'
+      host: 'smf-2.ihp.fr',
+      user: 'smf',
+      directory: '/home/Aspaway/transfert'
     }
 
     # in REAL mode, use ssh key, else use password

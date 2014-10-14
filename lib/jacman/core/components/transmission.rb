@@ -9,20 +9,19 @@
 # script methods for JacintheManagement
 module JacintheManagement
   module Core
-
     KEYS = ['/Users/gestion/.ssh/id_rsa', '/Users/gestion/.ssh/id_rsa_save']
 
     DRUPAL_MODE = {
-        host: 'drupal.mathrice.fr',
-        user: 'gestionsmf'
+      host: 'drupal.mathrice.fr',
+      user: 'gestionsmf'
     }
     SMF4_MODE = {
-        host: 'smf4.emath.fr',
-        user: 'www-data'
+      host: 'smf4.emath.fr',
+      user: 'www-data'
     }
     ASPAWAY_MODE = {
-        host: '185.7.39.70',
-        user: 'SMF_SFTP'
+      host: '185.7.39.70',
+      user: 'SMF_SFTP'
     }
 
     # transmission methods

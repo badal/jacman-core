@@ -1,4 +1,8 @@
 # jacman-core
+## [v1.3.1]
+* added 'vers' command
+* no more bin
+
 ## [v1.2.6]
 * added gemspec
 
