@@ -12,6 +12,10 @@ module JacintheManagement
     module Notification
       # list to register Tiers with subscriptions but without mail
       @register = [['Id', 'Nom', 'Plages ?'].join(TAB)]
+      # will be built and cached
+      @tiers_list = nil
+      # will be built and cached
+      @all_jacinthe_tiers = nil
 
       # Register a line
       # @param [String] line line to be registered

@@ -56,7 +56,7 @@ module JacintheManagement
           ls = ssh.exec!("stat --format=%Y #{@remote}")
           Time.at(ls.to_i)
         end
-      rescue => err
+      rescue RuntimeError
         Time.at(0)
       end
 
