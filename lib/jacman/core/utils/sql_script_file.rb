@@ -24,10 +24,10 @@ module JacintheManagement
       # @return [String] sql fragment contained in file
       def script
         File.readlines(self)
-        .reject { |line| SQL_SCRIPT_IGNORE_PATTERN.match(line) } # comments and empty lines
-        .map(&:chomp)
-        .join(' ')
-        .gsub(/\s+/, ' ')
+          .reject { |line| SQL_SCRIPT_IGNORE_PATTERN.match(line) } # comments and empty lines
+          .map(&:chomp)
+          .join(' ')
+          .gsub(/\s+/, ' ')
       end
     end
   end

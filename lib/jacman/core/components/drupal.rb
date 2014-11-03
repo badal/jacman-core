@@ -76,9 +76,9 @@ module JacintheManagement
       # @return [String] actual sql command, with real values substituted
       def self.parameterize(model, dump_file, years)
         model
-        .gsub('::DUMP_FILE::', dump_file)
-        .gsub('::SQL_DUMP_OPTIONS::', ESCAPED_DRUPAL_DUMP_OPTIONS)
-        .gsub('::YEARS::', years.to_s)
+          .gsub('::DUMP_FILE::', dump_file)
+          .gsub('::SQL_DUMP_OPTIONS::', ESCAPED_DRUPAL_DUMP_OPTIONS)
+          .gsub('::YEARS::', years.to_s)
       end
 
       ## Importing
@@ -95,7 +95,7 @@ module JacintheManagement
       def self.import_query(file, table)
         "LOAD DATA LOCAL INFILE '#{file}'" \
             " REPLACE INTO TABLE #{table} " +
-            DRUPAL_LOAD_OPTIONS
+          DRUPAL_LOAD_OPTIONS
       end
 
       # Import in JacintheD from drupal

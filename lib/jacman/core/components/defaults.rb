@@ -63,7 +63,7 @@ module JacintheManagement
       # @return [Array<String>] help for defaults command
       def self.help_conf
         ['Fixe les valeurs des variables de configuration'] + USAGE +
-            help_years + help_bonus + help_from + help_report
+          help_years + help_bonus + help_from + help_report
       end
 
       # pattern for email addresses

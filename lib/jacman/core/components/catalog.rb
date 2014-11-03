@@ -85,21 +85,21 @@ module JacintheManagement
       def self.import_articles
         CatalogImporter.new('Articles', 'Articles.slk', 'Articles.csv',
                             ARTICLE_SQL, :convert_from_sylk)
-        .import
+          .import
       end
 
       # import in catalog DB nomenclature from Sage
       def self.import_nomenclature
         CatalogImporter.new('Nomenclatures', 'Nomenclatures.slk', 'Nomenclatures.csv',
                             NOMENCLATURE_SQL, :convert_from_sylk)
-        .import
+          .import
       end
 
       # import in catalog DB tariffs from Sage
       def self.import_tariffs
         CatalogImporter.new('Tarifs', 'Tarifs.csv', 'Tarifs-utf8.csv',
                             TARIFF_SQL, :convert_to_unicode)
-        .import
+          .import
       end
 
       ### importation of stock

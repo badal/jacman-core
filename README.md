@@ -4,7 +4,7 @@
   Command line only part of Jacinthe management tools, extracted from Jacman as a gem
 
 ## Version
-  1.2.6
+  1.3.3
 
 ## Synopsis
 Can be used, either as a gem, or directly through three script tools.
@@ -17,8 +17,8 @@ YAML File, path to be given in ENV['JACMAN_CONFIG']
   * `batman`  : batch manager for plain users (usual commands)
   * `cronman` : batch manager for cron daemon with reports in files
   * `jacdev`  : batch manager for developers (reserved commands).
-  
-Usage : `ruby batman <call_name>`, idem for `cronman` or `jacdev`. 
+
+Usage : `ruby batman <call_name>`, idem for `cronman` or `jacdev`.
 
 ## Usage : gem API
 
@@ -27,7 +27,7 @@ Usage : `ruby batman <call_name>`, idem for `cronman` or `jacdev`.
 #### Attributes (read only)
 
 * `call_name` : short call name
-* `title` : title of command 
+* `title` : title of command
 * `help_text` : text to be shown in help dialog
 * `proc` : Proc to be executed.
 
@@ -63,9 +63,9 @@ where file is the `stdout_file` and `age` is the age in hours of this file,
 
 * if the last "cron execution" of the command had errors, `[:ERROR, file]`
   where file is the `stderr_file`.
-  
+
 * if the command was never "cron executed", `[:NEVER]`.
-  
+
 ## More documentation
   * See the Yardoc/RDoc documentation.
   * See the html help file
