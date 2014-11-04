@@ -11,7 +11,7 @@ module JacintheManagement
     # Methods for e-subscriptions notification
     module Notification
       # list to register Tiers with subscriptions but without mail
-      @register = [['Id', 'Nom', 'Plages ?'].join(TAB)]
+      @register = [['Id', 'Nom', 'Nombre', 'Plages ?'].join(TAB)]
       # will be built and cached
       @tiers_list = nil
       # will be built and cached
@@ -171,7 +171,12 @@ module JacintheManagement
       # save the list of registered Tiers in a csv file
       def self.save_register
         File.open(NO_MAIL_FILE, 'w:utf-8') do |file|
-          @register.each { |line| file.puts(line) }
+          sum = 0
+          @register.each do |line|
+            file.puts(line)
+            sum += line[2].to_i
+          end
+          file.puts(['','', sum, ''].join(TAB))
         end
         puts "File #{NO_MAIL_FILE} saved"
       end
@@ -183,7 +188,8 @@ module JacintheManagement
 
       # @return [Integer] number of tiers without mail
       def self.tiers_without_mail
-        File.foreach(NO_MAIL_FILE).count - 1
+        lines = File.open(NO_MAIL_FILE, 'r:utf-8').readlines
+        "#{lines.size - 2}/#{lines.last.split(TAB)[2]}"
       end
     end
   end

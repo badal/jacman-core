@@ -94,7 +94,9 @@ module JacintheManagement
       # Register this Tiers
       def register_tiers
         ranges = @tiers.ranges.empty? ? 'pas de plages' : 'plages'
-        Notification.register [@tiers.tiers_id, @tiers.name, ranges].join(TAB)
+        Notification.register [@tiers.tiers_id, @tiers.name,
+                               @subscriptions.size,
+                               ranges].join(TAB)
       end
 
       # send mail

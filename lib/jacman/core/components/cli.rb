@@ -73,7 +73,7 @@ module JacintheManagement
         end
       end
 
-      # @return [Arrayy<String>] versions of the three base gems
+      # @return [Array<String>] versions of the three base gems
       def versions
         ["j2r-jaccess : #{J2R::Jaccess::VERSION}",
          "j2r-core    : #{J2R::Core::VERSION}",
