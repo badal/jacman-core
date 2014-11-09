@@ -186,7 +186,7 @@ module JacintheManagement
         Utils.open_in_editor(NO_MAIL_FILE)
       end
 
-      # @return [Integer] number of tiers without mail
+      # @return [String] number of tiers without mail and number of subscriptions
       def self.tiers_without_mail
         lines = File.open(NO_MAIL_FILE, 'r:utf-8').readlines
         "#{lines.size - 2}/#{lines.last.split(TAB)[2]}"
