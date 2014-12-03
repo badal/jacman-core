@@ -7,3 +7,6 @@
 /lib/my_config.rb
 Gemfile.lock
 *.gem
+jacman-core.reek
+.rubocop.yml
+.gitignore
