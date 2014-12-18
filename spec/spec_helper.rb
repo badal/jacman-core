@@ -6,6 +6,7 @@
 #
 # (c) Michel Demazure <michel@demazure.com>
 
+require 'minitest'
 require 'minitest/autorun'
 
 require_relative '../lib/jacman/core.rb'

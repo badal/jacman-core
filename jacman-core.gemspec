@@ -6,7 +6,7 @@ $LOAD_PATH.unshift(dir) unless $LOAD_PATH.include?(dir)
 require 'lib/jacman/core/version'
 
 Gem::Specification.new do |s|
-  s.name = 'jacman-core-new'
+  s.name = 'jacman-core'
   s.version = JacintheManagement::Core::VERSION
   s.authors = ['Michel Demazure']
   s.description = 'Core and Script tools for Jacinthe DB management'
@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency('minitest', ['>= 0'])
   s.add_development_dependency('minitest-reporters', ['>= 0'])
 
+  s.add_runtime_dependency('jacman-utils', ['>=0'])
   s.add_runtime_dependency('net-ssh', ['>= 0'])
   s.add_runtime_dependency('net-scp', ['>= 0'])
   s.add_runtime_dependency('net-sftp', ['>= 0'])

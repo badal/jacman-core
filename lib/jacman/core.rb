@@ -6,56 +6,13 @@
 #
 # (c) Michel Demazure & Kenji Lefevre
 
-# stdlib dependencies
-require 'fileutils'
-require 'set'
-require 'yaml'
-require 'logger'
-require 'tempfile'
-
 # external dependencies
 require 'net/ssh'
 require 'net/scp'
 require 'net/sftp'
 require 'net/smtp'
 
-# j2r dependency
-require 'j2r/jaccess'
-require 'j2r/core'
-
-# FIXME: future Utils gem
-require_relative('utils.rb')
-
-# script methods for Jacinthe Management
-module JacintheManagement
-  # core methods for Jacinthe manager
-  module Core
-    # tab character for csv files
-    TAB = "\t"
-
-    # are we on real server ?
-    REAL = Conf.config['real']
-    # to be used for aspaway_importer when REAL is false
-    SMF2_PASSWORD = Conf.config['smf2_password']
-
-    # paths
-    # # free access directory
-    SQL_DUMP_DIR = Conf.config['paths']['dump']
-    # top path
-    SMF_SERVEUR = Conf.config['paths']['server']
-    # second level paths
-    TRANSFERT_DIR = File.join(SMF_SERVEUR, 'Transfert')
-    DATADIR = File.join(SMF_SERVEUR, 'Data')
-
-    # defaults_file
-    DEFAULTS_FILE = Conf.config['paths']['defaults']
-
-    # model mail files
-    MODEL_DIR = File.join(SMF_SERVEUR, 'Jacinthe', 'Tools', 'Templates', 'Mail')
-    # mail smtp server
-    MAIL_MODE = Conf.mail_mode
-  end
-end
+require 'jacman/utils'
 
 require_relative('core/version.rb')
 
