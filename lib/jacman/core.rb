@@ -12,8 +12,6 @@ require 'net/scp'
 require 'net/sftp'
 require 'net/smtp'
 
-require 'jacman/utils'
-
 require_relative('core/version.rb')
 
 require_relative('core/components/aspaway_importer.rb')
