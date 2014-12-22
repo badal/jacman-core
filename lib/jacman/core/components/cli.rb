@@ -77,6 +77,7 @@ module JacintheManagement
       def versions
         ["j2r-jaccess : #{J2R::Jaccess::VERSION}",
          "j2r-core    : #{J2R::Core::VERSION}",
+         "jacman-utils: #{JacintheManagement::Utils::VERSION}",
          "jacman-core : #{JacintheManagement::Core::VERSION}"]
       end
 

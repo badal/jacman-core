@@ -100,7 +100,6 @@ module JacintheManagement
         if size > 0
           write_remaining_sales_file(sales)
           puts "<b>#{size} vente(s) non importée(s)</b>"
-          puts sales
         end
       end
 
