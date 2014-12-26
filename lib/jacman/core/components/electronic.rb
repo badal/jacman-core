@@ -28,8 +28,7 @@ module JacintheManagement
       # @param [String] bonus extra time on next year, format 'MM-DD'
       # @return [Array<Subscription>] array of subscriptions
       def self.subscriptions(bonus = default_bonus)
-        subs = Sql.answer_to_query(JACINTHE_MODE, SQL_DUMP_IP)
-        subs.shift
+        subs = Sql.answer_to_query(JACINTHE_MODE, SQL_DUMP_IP).drop(1)
         res = subs.map { |line| line.chomp.split(TAB) }
         res.reject! { |line| line.last == 'NULL' }
         res.map { |line| Subscription.new(*line, bonus) }
@@ -48,10 +47,10 @@ module JacintheManagement
         subscriptions.map(&:invalid_ranges).flatten.uniq
       end
 
+      ## exporting subscriptions
+
       # sql command to get electronic subscriptions for exporting
       ABO_ELEC_EXPORT_SQL = SqlScriptFile.new('dump_electronic_subscriptions').script
-
-      ## exporting subscriptions
 
       # get from DB electronic subscriptions formatted for smf4
       # @param [String] bonus extra time on next year, format 'MM-DD'

@@ -9,6 +9,8 @@
 require 'minitest'
 require 'minitest/autorun'
 
+require 'jacman/utils'
+
 require_relative '../lib/jacman/core.rb'
 
 include JacintheManagement

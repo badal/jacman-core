@@ -4,13 +4,14 @@
   Command line only part of Jacinthe management tools, extracted from Jacman as a gem
 
 ## Version
-  1.3.3
+  2.2
+
+## Gems needed
+* _jacman-utils_
+* _j2r_jaccess_ and _j2r-core_ for 'dashboard' method
 
 ## Synopsis
 Can be used, either as a gem, or directly through three script tools.
-
-## Configuration
-YAML File, path to be given in ENV['JACMAN_CONFIG']
 
 ## Usage : batch commands in _bin_ directory
 
@@ -42,15 +43,14 @@ Usage : `ruby batman <call_name>`, idem for `cronman` or `jacdev`.
 * `Command.fetch(call_name)` : returns the Command
 * `Command.cron_run(call_name)` : "cron executes" the Command.
 
-### module Info
+### module Infos
 
 #### Class method
 
-`Info.report` returns an Array of items : `[value, caption]`.
+* `Infos.report` returns an Array of items : `[value, caption]`.
+* Example of item : `[3, 'fichiers clients en cours']`
 
-Example of item : `[3, 'fichiers clients en cours']`
-
-### Class CommandWatcher
+### class CommandWatcher
 
 #### Class method
 
@@ -73,7 +73,7 @@ where file is the `stdout_file` and `age` is the age in hours of this file,
 ## Source and issues
    [![Code Climate](https://codeclimate.com/github/badal/jacman-core.png)](https://codeclimate.com/github/badal/jacman-qt)
 
-   * Source code on repository [GitHub](https://github.com/badal/jacman-core)
+   Source code on repository [GitHub](https://github.com/badal/jacman-core)
 
 ## Copyright
   (c) 2014, Michel Demazure
@@ -82,5 +82,5 @@ where file is the `stdout_file` and `age` is the age in hours of this file,
   See LICENSE
 
 ## Author
-* Michel Demazure: michel at demazure dot com
+  Michel Demazure: michel at demazure dot com
 
