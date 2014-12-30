@@ -21,6 +21,7 @@ module JacintheManagement
         header = <<HEADER_END
 Content-Type: multipart/mixed; boundary=#{MARKER}
 MIME-Version: 1.0
+Date: #{Time.now.to_date.rfc822}
 Subject: #{subject}
 From: #{MAIL_MODE[:from]}
 TO: #{to}
