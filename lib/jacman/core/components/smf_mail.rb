@@ -30,10 +30,10 @@ module JacintheManagement
 
       # @param [String] content content in utf-8
       def add_content(content)
-        self.text_part = ::Mail::Part.new do
-          content_type 'text/plain; charset=UTF-8'
-          body content
-        end
+        part = ::Mail::Part.new
+        part.content_type = 'text/plain; charset=UTF-8'
+        part.body = content
+        add_part part
       end
 
       # send the mail
