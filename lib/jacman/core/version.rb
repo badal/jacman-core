@@ -10,7 +10,7 @@ module JacintheManagement
   module Core
     MAJOR = 2
     MINOR = 2
-    TINY  = 4
+    TINY  = 5
 
     VERSION = [MAJOR, MINOR, TINY].join('.').freeze
   end

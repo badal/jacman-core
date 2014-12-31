@@ -37,7 +37,7 @@ module JacintheManagement
         date = file.match(/.*_(.*)\.pdf/)[1]
         subject = "Tableau de bord SMF au #{date}"
         mail = Mail.new(dest, subject, MESSAGE)
-        mail.attach_file(file)
+        mail.add_file(file)
         mail.send
         puts "#{file} sent to #{dest.join(', ')}"
       end

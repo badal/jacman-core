@@ -12,6 +12,7 @@ require 'net/scp'
 require 'net/sftp'
 require 'net/smtp'
 require 'date'
+require 'mail'
 
 require_relative('core/version.rb')
 
@@ -23,7 +24,7 @@ require_relative('core/components/data.rb')
 require_relative('core/components/defaults.rb')
 require_relative('core/components/drupal.rb')
 require_relative('core/components/electronic.rb')
-require_relative('core/components/mail.rb')
+require_relative('core/components/new_mail.rb')
 require_relative('core/components/report.rb')
 require_relative('core/components/reset_db.rb')
 require_relative('core/components/sales.rb')

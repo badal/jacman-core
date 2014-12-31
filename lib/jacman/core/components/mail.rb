@@ -60,7 +60,7 @@ MESSAGE_END
       end
 
       # @param [Path] path path of file to be attached
-      def attach_file(path)
+      def add_file(path)
         # Read the file and encode it into base64 format
         file_content = File.read(path)
         encoded_content = [file_content].pack('m') # base64
