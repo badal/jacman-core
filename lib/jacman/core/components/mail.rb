@@ -13,6 +13,10 @@ module JacintheManagement
 
     # for automatic message and file sending
     class Mail
+      # marker
+      MARKER = 'SMFmarkerforautomaticmail'
+      END_MARKER = "--#{MARKER}--\n"
+
       # @param [String] subject subject of mail
       # @return [String] header of message
       # @param [Object] dest addresses
@@ -40,12 +44,10 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 #{message}
 
---#{MARKER}
 MESSAGE_END
         part
       end
 
-      MARKER = 'AUNIQUEMARKER'
 
       # @param [String] message content of mail
       # @param [Array<String>] dest destination addresses
@@ -65,12 +67,13 @@ MESSAGE_END
         filename = File.basename(path)
 
         @attached = <<ATTACHEMENT_END
+--#{MARKER}
+
 Content-Type: application/octet-stream
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="#{filename}"
 #{encoded_content}
---#{MARKER}--
 ATTACHEMENT_END
       end
 
@@ -78,7 +81,7 @@ ATTACHEMENT_END
       def packed
         packed = @header + @message_part
         packed += @attached if @attached
-        packed
+        packed + END_MARKER
       end
 
       # Send the mail
@@ -91,7 +94,7 @@ ATTACHEMENT_END
       # Fake sending the mail for tests
       def demo
         "------------ mail content ----------\n" +
-          @header + @message_part +
+          packed +
           '------------ end of mail ------------'
       end
     end
