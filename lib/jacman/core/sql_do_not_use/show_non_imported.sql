@@ -1,3 +1,4 @@
+--
 SELECT
   sage_document_article                                         article,
   CONCAT(client_sage_intitule, ' #', sage_document_client_sage) client,

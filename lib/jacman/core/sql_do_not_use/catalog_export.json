@@ -1,0 +1,1 @@
+{"type":"Requête","object":"Produire une source csv du catalogue","return_type":"aucune : production du fichier 'catalog.csv'","remark":"voir requête pour contenu des lignes","used_in_gem":"core","used_in_file":"catalog.rb","used_in_method":"Catalog.export_catalog"}

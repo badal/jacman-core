@@ -1,0 +1,1 @@
+{"type":"Commande","object":"mise à jour de l'état de notification","security":"modifie l'abonnement en le marquant comlme notifié","token":"time_stamp, abonnement_id","used_in_gem":"notifications","used_in_file":"base.rb","used_in_method":"update"}

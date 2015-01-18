@@ -1,0 +1,1 @@
+{"type":"Requête","object":"Assembler  les informations sur les abonnements électroniques","return_type":"listes abonnement par abonnement","return":"tiers_id, drupal_id, revue, début, fin","token":"::bonus::   pour la fin d'abonnement, format  '01:04'","used_in_gem":"core","used_in_file":"electronic.rb","used_in_method":"Electronic.subscriptions_to_export"}

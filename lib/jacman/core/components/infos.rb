@@ -32,7 +32,7 @@ module JacintheManagement
         # fetch values and refresh the variables
         def refresh_values
           @values = [
-            Core::Sales.remaining_sales_number,
+            Sales.remaining_sales_number,
             Clients.pending_client_files_number,
             Clients.clients_to_export_number,
             notifications_number

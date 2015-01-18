@@ -1,0 +1,1 @@
+{"type":"Fragment","object":"Importer dans la table sage_document","remark":"Utilisé pour importer abonnements/adhésions, dons et monographies","used_in_gem":"core","used_in_file":"sales.rb","used_in_method":"extract_and_load"}

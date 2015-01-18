@@ -108,7 +108,7 @@ module JacintheManagement
       TRANSFERT_STOCK_DIR = File.join(TRANSFERT_DIR, 'Catalogue', 'Stock')
 
       # sql fragment for stock
-      STOCK_SQL = SqlScriptFile.new('catalog_tariff').script
+      STOCK_SQL = SqlScriptFile.new('catalog_stock').script
 
       # Regexp to select lines and extract catalog data
       CAT_REGEXP = /^(?<item>N\w*)\t+(?<qty>\d*).*/

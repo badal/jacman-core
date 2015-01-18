@@ -1,0 +1,1 @@
+{"type":"Requête","object":"-Produire la liste des ventes non importées","return_type":"liste","return":"article, client, facture","used_in_gem":"core","used_in_file":"sales","used_in_method":"remaining_sales.rb"}

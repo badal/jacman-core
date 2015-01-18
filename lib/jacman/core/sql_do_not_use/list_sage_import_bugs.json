@@ -1,0 +1,1 @@
+{"type":"Requête","object":"Lister les sage_documents renvoyant à un client inexistant","return_type":"liste","return":"sage_document_id, numéro de la pièce","remark":"Non utilisé dans JacMan"}

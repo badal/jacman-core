@@ -1,0 +1,1 @@
+{"type":"Requête","object":"Retourne le nombre d'abonnements qui restent à notifier","return_type":"nombre","remark":"Pour l'année en cours","used_in_gem":"notifications","used_in_file":"base.rb","used_in_method":"notifications_number"}

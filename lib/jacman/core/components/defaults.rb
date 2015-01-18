@@ -8,29 +8,16 @@
 
 module JacintheManagement
   module Core
-    # to manage configuration command
+    # reopening to manage configuration command
     module Defaults
-      # defaults file
-      FILE = Core::DEFAULTS_FILE
-
       USAGE = [
         'Commande commune à batman et jacdev. Usage:',
         '<cmd> désigne batman ou jacdev indifféremment.'
       ]
 
-      # @return [Hash] the defaults, memoized
-      def self.defaults
-        @defaults ||= load_defaults
-      end
-
-      # @return [Hash] the defaults, read from the file
-      def self.load_defaults
-        YAML.load_file(FILE)
-      end
-
       # save the defaults in the file
       def self.save_defaults
-        File.open(FILE, 'w:utf-8') do |file|
+        File.open(Core::DEFAULTS_FILE, 'w:utf-8') do |file|
           file.puts Psych.dump(@defaults)
         end
       end

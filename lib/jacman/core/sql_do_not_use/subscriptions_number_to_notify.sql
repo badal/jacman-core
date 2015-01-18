@@ -3,9 +3,6 @@
 -- returns :
 -- le nombre d'abonnements
 --
--- NB : un client ayant resouscrit deux années successives donne lieu à deux lignes
--- distinctes
---
 
 SELECT
   count(*)

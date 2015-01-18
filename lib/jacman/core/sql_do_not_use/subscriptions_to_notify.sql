@@ -1,15 +1,14 @@
--- requete de recuperation des abonnement a notifier
+-- Requete de récupération des abonnements a notifier
 --
 -- returns :
 -- identifiant interne à la SMF de l'abonnement
 -- le nom de la revue
 -- l'année d'abonnement souscrit
--- la reference de la commande cote cote client
--- le numéro de la facture cote SMF
--- l'identifiant du tiers ayant souscrit
+-- la référence de la commande côté client
+-- le numéro de la facture côtéSMF
+-- l'identifiant du tiers ayant souscrit l'abonnement
 --
--- NB : un client ayant resouscrit deux années successives donne lieu à deux lignes
--- distinctes
+-- NB : un client ayant resouscrit deux années successives donne lieu à deux lignes distinctes
 --
 
 

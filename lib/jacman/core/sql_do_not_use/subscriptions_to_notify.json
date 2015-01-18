@@ -1,0 +1,1 @@
+{"type":"Requête","object":"Extraire la liste de tous les abonnements non encore notifiés","return_type":"liste","return":"id, revue, année, référence, facture, tiers_id","remark":"Pour l'année en cours","used_in_gem":"notifications","used_in_file":"base.rb","used_in_method":"all_notifications"}

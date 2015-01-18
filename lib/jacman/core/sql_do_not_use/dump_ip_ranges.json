@@ -1,0 +1,1 @@
+{"type":"Requête","object":"Rassembler les plages IP autorisées ( pour envoi à smf-4)","return_type":"liste plage par plage","return":"abonné, revue,année, bornes de la plage","used_in_gem":"core","used_in_file":"electronic.rb","used_in_method":"Electronic.subscriptions"}
