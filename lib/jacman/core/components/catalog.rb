@@ -33,7 +33,7 @@ module JacintheManagement
         # @param [String] initial_file file to fetch from Aspaway
         # @param [String] converted_file converted file
         # @param [String] sql_fragment sql fragment for DB importation
-        # @param [Symbon] conversion WinFile method to use
+        # @param [Symbol] conversion WinFile method to use
         def initialize(subdirectory, initial_file, converted_file, sql_fragment, conversion)
           @initial_path = File.join('Catalogue', subdirectory, initial_file)
           @full_initial_path = File.join(TRANSFERT_DIR, @initial_path)

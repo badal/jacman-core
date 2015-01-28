@@ -11,7 +11,7 @@ module JacintheManagement
     # to execute commands without GUI
     class Cli
       # commands for batman
-      USER_COMMAND_NAMES = %w(gi ge gr di de ca cn ca cs ce ep ea tb)
+      USER_COMMAND_NAMES = %w(gi ge gr di de ca cn ct cs ce ep ea tb)
 
       # commands for jacdev
       DEV_COMMAND_NAMES = %w(jpd jtd jpr jtr cron crb)
