@@ -13,7 +13,8 @@ SELECT
   tiers_nom,
   tiers_prenom,
   tiers_ip_plage,
-  tiers_ip_mails
+  tiers_ip_mails,
+  tiers_drupal
 FROM
   tiers
   LEFT JOIN etat_tiers ON tiers_etat = etat_tiers_id

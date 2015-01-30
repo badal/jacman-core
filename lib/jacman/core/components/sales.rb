@@ -53,12 +53,13 @@ module JacintheManagement
       # PATCH to fix wrong article name
       def self.run_patch
         lines = File.readlines(VENTES_CSV, encoding: 'utf-8')
-        lines.each do |line|
-          line.sub!(/NCTEXASI/, 'NVAU0099')
-          line.sub!(/KCTEXASI/, 'KCAU0099')
-        end
         File.open(VENTES_CSV, 'w:utf-8') do |file|
-          lines.each { |line| file.puts(line) }
+          lines.each do |line|
+            next if line =~ /^2015/
+            line.sub!(/NCTEXASI/, 'NVAU0099')
+            line.sub!(/KCTEXASI/, 'KCAU0099')
+            file.puts(line)
+          end
         end
       end
 
