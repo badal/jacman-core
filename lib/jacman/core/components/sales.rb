@@ -33,10 +33,10 @@ module JacintheManagement
       VENTES_CSV = File.join(TRANSFERT_DOC_VENTE_DIR, 'Ventes.csv')
 
       # sql fragment to import document
-      DOCUMENT_SQL = SqlScriptFile.new('import_document').script
+      DOCUMENT_SQL = SQLFiles.script('import_document')
 
       # sql command to list non imported sales
-      SHOW_SQL = SqlScriptFile.new('show_non_imported').script
+      SHOW_SQL = SQLFiles.script('show_non_imported')
 
       # FIXME: SMELL: constant coupling
       # fetch SYLK file from smf-2

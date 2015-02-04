@@ -14,7 +14,7 @@ module JacintheManagement
         attr_reader :values
 
         # sql to count electronic subscriptions to be notified
-        SQL_SUBSCRIPTION_NUMBER = SqlScriptFile.new('subscriptions_number_to_notify').script
+        SQL_SUBSCRIPTION_NUMBER = SQLFiles.script('subscriptions_number_to_notify')
 
         CAPTIONS = [
           'ventes non importées',

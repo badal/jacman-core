@@ -12,7 +12,7 @@ module JacintheManagement
     module Catalog
       ### exportation
       # sql command for catalog exporting
-      EXPORT_SQL = SqlScriptFile.new('catalog_export').script
+      EXPORT_SQL = SQLFiles.script('catalog_export')
 
       # export catalogue to file +catalogue.csv+
       def self.export_catalogue
@@ -70,13 +70,13 @@ module JacintheManagement
       ## sql fragments
 
       # sql fragment for articles
-      ARTICLE_SQL = SqlScriptFile.new('catalog_article').script
+      ARTICLE_SQL = SQLFiles.script('catalog_article')
 
       # sql fragment for nomenclature
-      NOMENCLATURE_SQL = SqlScriptFile.new('catalog_nomenclature').script
+      NOMENCLATURE_SQL = SQLFiles.script('catalog_nomenclature')
 
       # sql fragment for tariff
-      TARIFF_SQL = SqlScriptFile.new('catalog_tariff').script
+      TARIFF_SQL = SQLFiles.script('catalog_tariff')
 
       # Regexp to select lines
       KN_REGEXP = /^(K|N)/
@@ -108,7 +108,7 @@ module JacintheManagement
       TRANSFERT_STOCK_DIR = File.join(TRANSFERT_DIR, 'Catalogue', 'Stock')
 
       # sql fragment for stock
-      STOCK_SQL = SqlScriptFile.new('catalog_stock').script
+      STOCK_SQL = SQLFiles.script('catalog_stock')
 
       # Regexp to select lines and extract catalog data
       CAT_REGEXP = /^(?<item>N\w*)\t+(?<qty>\d*).*/

@@ -22,7 +22,7 @@ module JacintheManagement
       ## managing subscriptions
 
       # sql command to get electronic subscriptions for processing
-      SQL_DUMP_IP = SqlScriptFile.new('dump_ip_ranges').script
+      SQL_DUMP_IP = SQLFiles.script('dump_ip_ranges')
 
       # get from DB all electronic subscriptions for this year or year past
       # @param [String] bonus extra time on next year, format 'MM-DD'
@@ -50,7 +50,7 @@ module JacintheManagement
       ## exporting subscriptions
 
       # sql command to get electronic subscriptions for exporting
-      ABO_ELEC_EXPORT_SQL = SqlScriptFile.new('dump_electronic_subscriptions').script
+      ABO_ELEC_EXPORT_SQL = SQLFiles.script('dump_electronic_subscriptions')
 
       # get from DB electronic subscriptions formatted for smf4
       # @param [String] bonus extra time on next year, format 'MM-DD'

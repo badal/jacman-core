@@ -4,7 +4,7 @@
   Command line only part of Jacinthe management tools, extracted from Jacman as a gem
 
 ## Version
-  2.2
+  2.3
 
 ## Gems needed
 * _jacman-utils_
@@ -65,6 +65,9 @@ where file is the `stdout_file` and `age` is the age in hours of this file,
   where file is the `stderr_file`.
 
 * if the command was never "cron executed", `[:NEVER]`.
+
+## Note
+For commodity, gem contains sql_do_not_use directory with sql files
 
 ## More documentation
   * See the Yardoc/RDoc documentation.
