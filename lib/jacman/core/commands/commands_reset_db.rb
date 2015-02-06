@@ -41,6 +41,20 @@ END_RWD_HELP
             RWD_HELP)
       end
 
+      CLONE_HELP = <<END_CLONE_HELP
+Cette commande permet de créer un clone
+de la bse Jacinthe, à partir du dernier dump.
+END_CLONE_HELP
+
+      # @return [Command] total reset command
+      def self.clone
+        new('clone', 'Cloner la base',
+            ['Créer un clone de la base',
+             'à partir du dernier dump total'],
+            -> { ResetDb.clone_db },
+            CLONE_HELP)
+      end
+
       CRON_HELP = <<END_CRON_HELP
 Cette commande permet de lancer le cron dans
 la base.

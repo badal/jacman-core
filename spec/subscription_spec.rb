@@ -13,7 +13,6 @@ require_relative '../lib/jacman/core/components/electronic/subscription.rb'
 module Core
   include Electronic
   describe Subscription do
-
     DEFAULT_TIERS = '1'
     # some default value
     DEFAULT_YEAR = '2000'
