@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
 #
-# File: reset_db.rb
+# File: reset_db_old.rb
 # Created: 28/06/13
 #
 # (c) Michel Demazure & Kenji Lefevre
