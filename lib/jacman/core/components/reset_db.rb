@@ -27,14 +27,13 @@ module JacintheManagement
 
       # build a clone from dumped_data.sql
       def self.clone_db
-        new('clone', false).reset_and_load_data
+        new(CLONE_DATABASE).reset_and_load_data
       end
 
       ## Default parameters give Jacinthe usual base
-      def initialize(database = JACINTHE_DATABASE, with_drupal = true,
+      def initialize(database = JACINTHE_DATABASE,
         mode = ADMIN_MODE, root_mode = ROOT_MODE)
         @database = database
-        @with_drupal = with_drupal
         @normal_mode = mode.merge(database: @database)
         @root_mode = root_mode
         @database_root_mode = root_mode.merge(database: @database)
@@ -53,10 +52,8 @@ module JacintheManagement
         reset_db_schema
         puts "Loading #{@database} db data..."
         import_data
-        if @with_drupal
-          puts 'Loading drupal db data...'
-          Drupal.import_drupal
-        end
+        puts 'Loading drupal db data...'
+        Drupal.import_drupal
         reset_db_post
       end
 
