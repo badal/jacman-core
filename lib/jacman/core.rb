@@ -25,6 +25,7 @@ require_relative('core/components/drupal.rb')
 require_relative('core/components/electronic.rb')
 require_relative('core/components/report.rb')
 require_relative('core/components/reset_db.rb')
+require_relative('core/components/build_catalog_db.rb')
 require_relative('core/components/sales.rb')
 require_relative('core/components/transmission.rb')
 

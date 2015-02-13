@@ -58,6 +58,7 @@ module JacintheManagement
             next if line =~ /^2015/
             line.sub!(/NCTEXASI/, 'NVAU0099')
             line.sub!(/KCTEXASI/, 'KCAU0099')
+            line.sub!(/KDIBNI/, 'KDIB')
             file.puts(line)
           end
         end

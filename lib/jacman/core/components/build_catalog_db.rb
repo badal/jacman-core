@@ -22,7 +22,7 @@ module JacintheManagement
       # build database, with schema and tables
       def self.reset_db_schema
         puts 'SCHEMA'
-        ResteDb.recreate_database(CATALOG_DATABASE)
+        ResetDb.new(CATALOG_DATABASE).recreate_database
         create_tables
       end
 

@@ -60,19 +60,18 @@ module JacintheManagement
       # build database, with schema and tables
       def reset_db_schema
         puts 'SCHEMA'
-        recreate_database(@database)
+        recreate_database
         create_tables
         puts 'MODULES'
         load_tables_in_modules
       end
 
       # drop and recreate databose
-      # @param [STRING] database name of base to recreate
-      def recreate_database(database)
-        puts "Drop db #{database}"
-        Sql.query(@root_mode, "drop database #{database}")
-        puts "Create db #{database}"
-        qry = "CREATE DATABASE #{database} " \
+      def recreate_database
+        puts "Drop db #{@database}"
+        Sql.query(@root_mode, "drop database #{@database}")
+        puts "Create db #{@database}"
+        qry = "CREATE DATABASE #{@database} " \
             'CHARACTER SET utf8 COLLATE utf8_general_ci;'
         Sql.query(@root_mode, qry)
       end
