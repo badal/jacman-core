@@ -30,6 +30,11 @@ module JacintheManagement
         new(CLONE_DATABASE).reset_and_load_data
       end
 
+      # start the cron stored procedure
+      def self.start_cron
+        new.start_cron
+      end
+
       ## Default parameters give Jacinthe usual base
       def initialize(database = JACINTHE_DATABASE,
         mode = ADMIN_MODE, root_mode = ROOT_MODE)
@@ -95,7 +100,7 @@ module JacintheManagement
         start_cron
       end
 
-      # start sql cron
+      # call the cron stored procedure
       def start_cron
         puts "Run cron on #{@database} db"
         Sql.query(@normal_mode, 'CALL CRON();')
