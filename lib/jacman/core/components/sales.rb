@@ -17,6 +17,7 @@ module JacintheManagement
         run_patch
         extract_and_load_csv_files
         inject_in_database
+        correct_livraisons
         check_remaining_sales
       end
 
@@ -91,6 +92,15 @@ module JacintheManagement
       def self.inject_in_database
         puts "Launch import_sage_document() in DB #{JACINTHE_DATABASE}"
         command = 'call import_sage_document();'
+        Sql.query(JACINTHE_MODE, command)
+      end
+
+      # call SQL command 'import sage document'
+      def self.correct_livraisons
+        puts "Correct 'livraisons' in DB #{JACINTHE_DATABASE}"
+        command = 'call correct_livraison_abonnement_for_bonus_fascicule();'
+        Sql.query(JACINTHE_MODE, command)
+        command = 'call correct_livraison_abonnement_when_cancelled();'
         Sql.query(JACINTHE_MODE, command)
       end
 

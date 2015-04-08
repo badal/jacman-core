@@ -1,1 +1,1 @@
-{"type":"Fragment","object":"Requête exécutée à distance sur DRUPAL","return_type":"dump du contenu","remark":"Ce fichier esr sur le serveur DRUPAL","used_in_gem":"core","used_in_file":"transmission.rb","used_in_method":"fetch_from_drupal"}
+{"type":"Fragment","object":"Requête exécutée à distance sur DRUPAL","return_type":"dump du contenu","remark":"Ce fichier est sur le serveur DRUPAL","used_in_gem":"core","used_in_file":"transmission.rb","used_in_method":"fetch_from_drupal"}
