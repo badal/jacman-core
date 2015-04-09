@@ -1,5 +1,12 @@
 # jacman-core
 
+## [v2.3]
+* fixed bug in tariff importation
+* filtering wrong lines in 'sage_document' importation
+* fix for KDIBNI
+* adding 'clone 'command
+* moved 'mail to 'utils'
+
 ## [v2.2]
 * extracted 'notifications' methods in specific gems
 
