@@ -95,7 +95,7 @@ module JacintheManagement
         Sql.query(JACINTHE_MODE, command)
       end
 
-      # call SQL command 'import sage document'
+      # call SQL commands to fix 'livraison' table
       def self.correct_livraisons
         puts "Correct 'livraisons' in DB #{JACINTHE_DATABASE}"
         command = 'call correct_livraison_abonnement_for_bonus_fascicule();'

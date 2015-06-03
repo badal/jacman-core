@@ -72,17 +72,19 @@ For commodity, gem contains sql_do_not_use directory with sql files
 ## More documentation
   * See the Yardoc/RDoc documentation.
   * See the html help file
+  
+  ![documentation](http://inch-ci.org/github/badal/jacman-core.svg?branch=master)
 
 ## Source and issues
-   [![Code Climate](https://codeclimate.com/github/badal/jacman-core.png)](https://codeclimate.com/github/badal/jacman-qt)
-
+   ![Code Climate](https://codeclimate.com/github/badal/jacman-core.png)
+   
    Source code on repository [GitHub](https://github.com/badal/jacman-core)
 
 ## Copyright
   (c) 2014, Michel Demazure
 
 ## License
-  See LICENSE
+  ![License](http://img.shields.io/:license-mit-blue.svg)(http://doge.mit-license.org)
 
 ## Author
   Michel Demazure: michel at demazure dot com
