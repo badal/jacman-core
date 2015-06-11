@@ -29,8 +29,11 @@ module JacintheManagement
       # report whether ssh remote command was executed
       # @param [Boolean] result result of remote command
       def self.ssh_report(result, command_name)
-        puts result ? "remote command '#{command_name}' executed :...\n#{result}" :
-                 "error executing remote command '#{command_name}'"
+        if result
+          puts "remote command '#{command_name}' executed :...\n#{result}"
+        else
+          puts "error executing remote command '#{command_name}'"
+        end
       end
 
       # report errors from remote scp command

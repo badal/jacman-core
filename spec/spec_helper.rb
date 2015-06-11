@@ -15,8 +15,4 @@ require_relative '../lib/jacman/core.rb'
 
 include JacintheManagement
 
-if __FILE__ == $PROGRAM_NAME
-
-  Dir.glob('*_spec.rb') { |f| require_relative f }
-
-end
+Dir.glob('*_spec.rb') { |f| require_relative f } if __FILE__ == $PROGRAM_NAME
