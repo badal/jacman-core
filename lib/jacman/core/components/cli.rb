@@ -65,7 +65,7 @@ module JacintheManagement
       # @param [String] cmd call name of command
       # @return [String] help text for command
       def help_for(cmd)
-        if  @commands.map(&:call_name).include?(cmd)
+        if @commands.map(&:call_name).include?(cmd)
           command = Command.send(cmd)
           "Commande : #{command.title}\n#{command.help_text}"
         else

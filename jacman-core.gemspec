@@ -23,8 +23,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency('minitest', ['>= 0'])
   s.add_development_dependency('minitest-reporters', ['>= 0'])
 
-  s.add_runtime_dependency('jacman-utils',  '~> 2.3', '>= 2.3.1')
-  s.add_runtime_dependency('net-ssh', ['>= 0'])
+  s.add_runtime_dependency('net-ssh', ['>= 0', '<= 2.9.2'])
   s.add_runtime_dependency('net-scp', ['>= 0'])
   s.add_runtime_dependency('net-sftp', ['>= 0'])
 end
