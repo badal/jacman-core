@@ -80,8 +80,8 @@ module JacintheManagement
           def build_range
             @valid = true
             match_data = /^(\d+)-(\d+)$/.match(@string)
-            @min = match_data[1]
-            @max = match_data[2]
+            @min = match_data[1].to_i
+            @max = match_data[2].to_i
           end
         end
       end
