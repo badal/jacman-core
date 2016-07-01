@@ -7,6 +7,7 @@
 # (c) Michel Demazure <michel@demazure.com>
 
 require 'minitest'
+require 'minitest/spec'
 require 'minitest/autorun'
 
 require 'jacman/utils'

@@ -26,4 +26,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency('net-ssh', ['>= 0', '<= 2.9.2'])
   s.add_runtime_dependency('net-scp', ['>= 0'])
   s.add_runtime_dependency('net-sftp', ['>= 0'])
+
+  s.add_runtime_dependency('jacman-ip')
 end

@@ -6,9 +6,8 @@
 # (c) Kenji Lefevre & Michel Demazure
 
 require_relative 'spec_helper.rb'
-require_relative '../lib/jacman/core/components/electronic/octet_range.rb'
-require_relative '../lib/jacman/core/components/electronic/ip_range.rb'
-require_relative '../lib/jacman/core/components/electronic/subscription.rb'
+require 'jacman/ip'
+require_relative '../lib/jacman/core/components/subscription.rb'
 
 module Core
   include Electronic
@@ -36,7 +35,7 @@ module Core
       non_valid = %W(1\t1.*.* 1\ttoto)
       sub = Electronic::Subscription.new(DEFAULT_TIERS, DEFAULT_REVUE,
                                          DEFAULT_YEAR, DEFAULT_RANGE_LIST, DEFAULT_BONUS)
-      sub.invalid_ranges.must_equal non_valid
+      assert_equal(sub.invalid_ranges, non_valid)
     end
   end
 end

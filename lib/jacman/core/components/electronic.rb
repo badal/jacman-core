@@ -6,9 +6,7 @@
 #
 # (c) Michel Demazure & Kenji Lefevre
 
-require_relative('electronic/octet_range.rb')
-require_relative('electronic/ip_range.rb')
-require_relative('electronic/subscription.rb')
+require_relative('subscription.rb')
 
 module JacintheManagement
   module Core
@@ -117,7 +115,10 @@ end
 
 if $PROGRAM_NAME == __FILE__
 
+
   include JacintheManagement
+  include Core
+
   Electronic.show_invalid_ranges
 
 end

@@ -4,10 +4,11 @@
   Command line only part of Jacinthe management tools, extracted from Jacman as a gem
 
 ## Version
-  2.3
+  2.4
 
 ## Gems needed
-* _jacman-utils_
+* _jacman-utils
+* _jacman-ip_
 * _j2r_jaccess_ and _j2r-core_ for 'dashboard' method
 
 ## Synopsis
@@ -72,12 +73,12 @@ For commodity, gem contains sql_do_not_use directory with sql files
 ## More documentation
   * See the Yardoc/RDoc documentation.
   * See the html help file
-  
+
   ![documentation](http://inch-ci.org/github/badal/jacman-core.svg?branch=master)
 
 ## Source and issues
    ![Code Climate](https://codeclimate.com/github/badal/jacman-core.png)
-   
+
    Source code on repository [GitHub](https://github.com/badal/jacman-core)
 
 ## Copyright

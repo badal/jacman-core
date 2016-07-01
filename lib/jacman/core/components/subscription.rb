@@ -20,7 +20,7 @@ module JacintheManagement
         def initialize(tiers, revue, year, ranges, bonus)
           @tiers = tiers
           @revue = revue
-          @ranges = ranges.split('\\n')
+          @ranges = ranges.split('\\n').map{ |item| IP::IPRange.new(item)}
           @start = year + '-01-01'
           @end = (year.to_i + 1).to_s + "-#{bonus}"
         end
@@ -28,8 +28,7 @@ module JacintheManagement
         # returns valid ranges expressed as an array of string ('\t' separated)
         # @return [Array<String>] items are (abo, ip range, start, end)
         def valid_ranges
-          list = @ranges.map { |item| IPRange.new(item) }.select(&:valid?)
-          list.map do |range|
+          @ranges.select(&:valid?).map do |range|
             [@tiers, @revue, range.min_and_max, @start, @end].flatten.join(TAB)
           end
         end
@@ -37,11 +36,7 @@ module JacintheManagement
         # return invalid ranges expressed as an array of strings ('\t' separated)
         # @return [Array<String>] array of (tiers, range) where range is invalid
         def invalid_ranges
-          list = @ranges.reject do |item|
-            # do not take blank line or line commented out with a sharp sign
-            item =~ /^\s*$/ || item =~ /^\s*#/ || IPRange.new(item).valid?
-          end
-          list.map { |range| [@tiers, range].flatten.join(TAB) }
+          @ranges.reject(&:accepted).map { |range| [@tiers, range.string].flatten.join(TAB) }
         end
       end
     end
